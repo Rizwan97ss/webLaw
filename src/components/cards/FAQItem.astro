@@ -1,0 +1,12 @@
+---
+const { item, open = false } = Astro.props;
+---
+
+<details class="faq-item" open={open}>
+  <summary>
+    {item.question}
+    <span>+</span>
+  </summary>
+
+  <p>{item.answer}</p>
+</details>

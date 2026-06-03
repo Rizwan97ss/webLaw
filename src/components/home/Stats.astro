@@ -1,0 +1,56 @@
+---
+import {
+  Scale,
+  UserRound,
+  Smile,
+  Medal,
+} from "lucide-react";
+
+const stats = [
+  {
+    icon: Scale,
+    value: "1K+",
+    label: "Cases Completed",
+  },
+  {
+    icon: UserRound,
+    value: "10+",
+    label: "Expert Attorneys",
+  },
+  {
+    icon: Smile,
+    value: "2K+",
+    label: "Happy Clients",
+  },
+  {
+    icon: Medal,
+    value: "20+",
+    label: "Award Winning",
+  },
+];
+---
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      {
+        stats.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article class="stat-card">
+              <div class="stat-icon">
+                <Icon size={38} strokeWidth={2.3} />
+              </div>
+
+              <div class="stat-content">
+                <h3>{item.value}</h3>
+                <p>{item.label}</p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

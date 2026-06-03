@@ -1,0 +1,22 @@
+<button class="scroll-top" aria-label="Scroll to top">
+  ↑
+</button>
+
+<script>
+  const button = document.querySelector(".scroll-top");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 500) {
+      button?.classList.add("is-visible");
+    } else {
+      button?.classList.remove("is-visible");
+    }
+  });
+
+  button?.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+</script>

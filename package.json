@@ -13,9 +13,23 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^6.0.1",
+    "@astrojs/react": "^5.0.6",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/vercel": "^10.0.8",
+    "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
     "astro": "^6.4.2",
+    "lucide-astro": "^0.556.0",
+    "lucide-react": "^1.17.0",
+    "motion": "^12.40.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.4",
+    "eslint-plugin-astro": "^1.7.0",
+    "prettier": "^3.8.3"
   }
 }

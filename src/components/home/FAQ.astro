@@ -1,0 +1,97 @@
+---
+const faqs = [
+  {
+    question: "How much will my legal representation cost?",
+    answer:
+      "Our fee structures are transparent and tailored to your specific case, ranging from hourly rates and flat fees to contingency-based arrangements where you only pay if we win.",
+  },
+  {
+    question: "How long will it take to resolve my case?",
+    answer:
+      "Every case is different. The timeline depends on the complexity of your matter, court schedules, negotiations, and the legal strategy required.",
+  },
+  {
+    question: "Will I work directly with an attorney?",
+    answer:
+      "Yes. You will communicate directly with an attorney who understands your case and can provide clear legal guidance throughout the process.",
+  },
+  {
+    question: "What should I bring to my initial consultation?",
+    answer:
+      "Bring any relevant documents, contracts, emails, notices, court papers, photos, reports, or notes related to your legal matter.",
+  },
+  {
+    question: "How often will I receive updates on my case?",
+    answer:
+      "We provide regular updates and remain available to answer questions so you always understand the status and next steps of your case.",
+  },
+];
+---
+
+<section class="faq-section">
+  <div class="container faq-layout">
+    <div class="faq-left">
+      <p class="faq-kicker">⚖ FAQ's</p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <a href="/faq" class="faq-btn">
+        Read More <span>→</span>
+      </a>
+
+      <img
+        class="faq-image"
+        src="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?auto=format&fit=crop&w=1000&q=80"
+        alt="Lady justice statue"
+      />
+    </div>
+
+    <div class="faq-right">
+      {faqs.map((faq, index) => (
+        <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
+          <button class="faq-question" type="button">
+            <span>{faq.question}</span>
+            <strong>{index === 0 ? "−" : "+"}</strong>
+          </button>
+
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item) => {
+    const button = item.querySelector(".faq-question");
+
+    button?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      faqItems.forEach((other) => {
+        other.classList.remove("is-open");
+
+        const icon = other.querySelector(".faq-question strong");
+        if (icon) icon.textContent = "+";
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+
+        const icon = item.querySelector(".faq-question strong");
+        if (icon) icon.textContent = "−";
+      } else {
+        faqItems[0]?.classList.add("is-open");
+
+        const firstIcon = faqItems[0]?.querySelector(".faq-question strong");
+        if (firstIcon) firstIcon.textContent = "−";
+      }
+    });
+  });
+</script>

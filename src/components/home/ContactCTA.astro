@@ -1,0 +1,65 @@
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-card contact-animate">
+      <div class="contact-image-box">
+        <img
+          src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=80"
+          alt="Judge gavel"
+        />
+
+        <div class="contact-overlay"></div>
+
+        <div class="contact-image-content">
+          <p>⚖ Have Any Question?</p>
+          <h2>
+            Contact Us For More
+            <br />
+            Information
+          </h2>
+        </div>
+      </div>
+
+      <form class="contact-form">
+        <div class="contact-row">
+          <input type="text" placeholder="Name" />
+          <input type="tel" placeholder="Phone Number" />
+        </div>
+
+        <input type="email" placeholder="Email Address" />
+
+        <select>
+          <option>Select Service</option>
+          <option>Corporate & Business Law</option>
+          <option>Family Law</option>
+          <option>Personal Injury Litigation</option>
+          <option>Real Estate Law</option>
+        </select>
+
+        <textarea placeholder="Your Message"></textarea>
+
+        <button class="contact-btn">
+  Book Appointment
+  <span>→</span>
+</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const contactCard = document.querySelector(".contact-animate");
+
+  const contactObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          contactCard?.classList.add("is-visible");
+          contactObserver.disconnect();
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+
+  if (contactCard) contactObserver.observe(contactCard);
+</script>

@@ -1,0 +1,58 @@
+---
+const links = [
+  { label: "About", href: "/about" },
+  { label: "Practice Areas", href: "/practice-areas" },
+  { label: "Case Study", href: "/case-study" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
+];
+---
+
+<footer class="site-footer">
+  <div class="container footer__grid">
+    <div>
+      <a class="logo logo--footer" href="/">
+        <span class="logo__mark">⚖</span>
+        <span>Civitas</span>
+      </a>
+
+      <p>
+        Strategic legal guidance with integrity, precision, and client-first advocacy.
+      </p>
+    </div>
+
+    <div>
+      <h3>Quick Links</h3>
+      <ul>
+        {links.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h3>Practice Areas</h3>
+      <ul>
+        <li><a href="/practice-areas/corporate-business-law">Corporate Law</a></li>
+        <li><a href="/practice-areas/family-law-mediation">Family Law</a></li>
+        <li><a href="/practice-areas/personal-injury-litigation">Personal Injury</a></li>
+        <li><a href="/practice-areas/criminal-defense">Criminal Defense</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li>121 King Street, Melbourne</li>
+        <li>+1 234 567 890</li>
+        <li>info@example.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container">
+      <p>© {new Date().getFullYear()} Civitas Law. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

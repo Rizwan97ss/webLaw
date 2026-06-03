@@ -1,0 +1,87 @@
+---
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Send } from "lucide-astro";
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-contact-row">
+      <div class="footer-contact-card">
+        <span class="footer-contact-icon"><Phone size={28} /></span>
+        <strong>+01 23456789</strong>
+      </div>
+
+      <div class="footer-contact-card">
+        <span class="footer-contact-icon"><Mail size={28} /></span>
+        <strong>contact@example.com</strong>
+      </div>
+
+      <div class="footer-contact-card">
+        <span class="footer-contact-icon"><MapPin size={28} /></span>
+        <strong>9976 Reynalda Ways, UK</strong>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-about-col">
+        <a href="/" class="footer-logo">BRAND LOGO</a>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Nullam sit amet elit dignissim, consectetur velit vitae,
+          congue felis.
+        </p>
+
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><Facebook size={21} /></a>
+          <a href="#" aria-label="Instagram"><Instagram size={21} /></a>
+          <a href="#" aria-label="LinkedIn"><Linkedin size={21} /></a>
+          <a href="#" aria-label="Phone"><Phone size={21} /></a>
+        </div>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/practice-areas">Practice Area</a></li>
+          <li><a href="/case-study">Case Study</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Practice Areas</h3>
+        <ul>
+          <li><a href="/practice-areas/corporate-law">Corporate Law</a></li>
+          <li><a href="/practice-areas/family-law">Family Law</a></li>
+          <li><a href="/practice-areas/injury-litigation">Injury Litigation</a></li>
+          <li><a href="/practice-areas/estate-planning">Estate Planning</a></li>
+          <li><a href="/practice-areas/criminal-defense">Criminal Defense</a></li>
+          <li><a href="/practice-areas/real-estate-law">Real Estate Law</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-newsletter">
+        <h3>Stay Informed With Our Newsletter</h3>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Nullam sit amet elit dignissim.
+        </p>
+
+        <form class="newsletter-form">
+          <input type="email" placeholder="Email" />
+          <button type="submit" aria-label="Subscribe">
+            <Send size={22} />
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      Copyright © 2026 – CompanyName | All Right Reserved.
+    </div>
+  </div>
+</footer>

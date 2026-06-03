@@ -1,0 +1,56 @@
+---
+import { CalendarDays, TrendingUp, Handshake } from "lucide-react";
+
+const steps = [
+  {
+    number: "01",
+    title: "Free Consultation",
+    text: "Talk to an experienced attorney to review your case, understand your options, and assess possible outcomes.",
+    icon: CalendarDays,
+  },
+  {
+    number: "02",
+    title: "Strategic Planning",
+    text: "We create a tailored legal plan to protect your interests and help resolve your case quickly and effectively.",
+    icon: TrendingUp,
+  },
+  {
+    number: "03",
+    title: "Dedicated Advocacy",
+    text: "Our team executes the strategy through expert negotiation or aggressive litigation to secure your victory.",
+    icon: Handshake,
+  },
+];
+---
+
+<section class="process-section">
+  <div class="container">
+    <div class="process-heading">
+      <p class="process-kicker">⚖ How It Works</p>
+      <h2>Schedule A Free Consultation</h2>
+    </div>
+
+    <div class="process-steps">
+      {steps.map((step) => {
+        const Icon = step.icon;
+
+        return (
+          <article class="process-item">
+            <div class="process-icon-wrap">
+              <div class="process-icon">
+                <Icon size={54} strokeWidth={2.4} />
+              </div>
+
+              <span class="process-number">{step.number}</span>
+            </div>
+
+            <div class="process-card">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

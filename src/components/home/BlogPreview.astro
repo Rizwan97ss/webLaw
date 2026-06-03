@@ -1,0 +1,127 @@
+---
+const posts = [
+  {
+    title: "Protecting Your Rights with Professional Legal Services",
+    author: "Civitas Law",
+    category: "Real Estate Law",
+    date: "Mar 28, 2026",
+    image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Expert Lawyer Guidance for Business and Personal Matters",
+    author: "Civitas Law",
+    category: "Criminal Law",
+    date: "Mar 10, 2026",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Trusted Legal Solutions for Your Complex Cases",
+    author: "Civitas Law",
+    category: "Family Law",
+    date: "Mar 2, 2026",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Smart Estate Planning for Long-Term Family Security",
+    author: "Civitas Law",
+    category: "Estate Planning",
+    date: "Feb 18, 2026",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "How Strong Contracts Protect Your Business",
+    author: "Civitas Law",
+    category: "Business Law",
+    date: "Feb 8, 2026",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80",
+  },
+];
+---
+
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-head">
+      <div>
+        <p class="blog-kicker">⚖ News & Blog</p>
+        <h2>Latest News & Update</h2>
+      </div>
+
+      <a href="/blog" class="blog-view">
+        View More <span>→</span>
+      </a>
+    </div>
+
+    <div class="blog-slider">
+      <div class="blog-track">
+        {posts.map((post) => (
+          <article class="blog-slide">
+            <div class="blog-card">
+              <div class="blog-image">
+                <img src={post.image} alt={post.title} />
+                <span>{post.date}</span>
+              </div>
+
+              <div class="blog-meta">
+                <span>♟ By {post.author}</span>
+                <span>🏷 {post.category}</span>
+              </div>
+
+              <h3>{post.title}</h3>
+
+              <a href="/blog" class="blog-btn">
+                Read More <span>→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="blog-arrows">
+      <button class="blog-arrow blog-prev" type="button">‹</button>
+      <button class="blog-arrow blog-next" type="button">›</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const blogTrack = document.querySelector(".blog-track");
+  const blogSlides = document.querySelectorAll(".blog-slide");
+  const blogPrev = document.querySelector(".blog-prev");
+  const blogNext = document.querySelector(".blog-next");
+
+  let blogIndex = 0;
+
+  function visibleBlogCards() {
+    if (window.innerWidth <= 640) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+  }
+
+  function updateBlogSlider() {
+    if (!blogTrack || !blogSlides.length) return;
+
+    const visible = visibleBlogCards();
+    const maxIndex = Math.max(blogSlides.length - visible, 0);
+
+    if (blogIndex > maxIndex) blogIndex = maxIndex;
+
+    const slideWidth = blogSlides[0].getBoundingClientRect().width;
+    blogTrack.style.transform = `translateX(-${blogIndex * slideWidth}px)`;
+  }
+
+  blogNext?.addEventListener("click", () => {
+    const maxIndex = Math.max(blogSlides.length - visibleBlogCards(), 0);
+    blogIndex = blogIndex >= maxIndex ? 0 : blogIndex + 1;
+    updateBlogSlider();
+  });
+
+  blogPrev?.addEventListener("click", () => {
+    const maxIndex = Math.max(blogSlides.length - visibleBlogCards(), 0);
+    blogIndex = blogIndex <= 0 ? maxIndex : blogIndex - 1;
+    updateBlogSlider();
+  });
+
+  window.addEventListener("resize", updateBlogSlider);
+  updateBlogSlider();
+</script>

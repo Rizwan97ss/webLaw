@@ -1,0 +1,21 @@
+---
+const { item } = Astro.props;
+---
+
+<article class="testimonial-card" data-reveal>
+  <div class="testimonial-card__top">
+    <strong>BRAND LOGO</strong>
+    <span>{"★".repeat(item.rating)}</span>
+  </div>
+
+  <p>{item.quote}</p>
+
+  <div class="testimonial-card__author">
+    <img src={item.image} alt={item.name} loading="lazy" />
+
+    <div>
+      <h4>{item.name}</h4>
+      <span>{item.role}</span>
+    </div>
+  </div>
+</article>

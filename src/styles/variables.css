@@ -1,0 +1,26 @@
+/* src/styles/variables.css */
+
+:root {
+  --color-primary: #ffc400;
+  --color-primary-soft: #fff1b8;
+  --color-dark: #101a36;
+  --color-dark-2: #1d2947;
+  --color-text: #242424;
+  --color-muted: #6f6f6f;
+  --color-white: #ffffff;
+  --color-cream: #fff9df;
+
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: Inter, system-ui, sans-serif;
+
+ --container: 1320px;
+  --gutter: clamp(24px, 8vw, 154px);
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 20px 50px rgba(16, 26, 54, 0.08);
+
+  --section-padding: clamp(4rem, 8vw, 7rem);
+}

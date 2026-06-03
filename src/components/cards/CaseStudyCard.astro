@@ -1,0 +1,20 @@
+---
+const { item } = Astro.props;
+---
+
+<article class="case-card" data-reveal>
+  <img src={item.image} alt={item.title} loading="lazy" />
+
+  <div class="case-card__badge">
+    {item.category}
+  </div>
+
+  <div class="case-card__content">
+    <h3>{item.title}</h3>
+
+    <a href={`/case-study/${item.slug}`}>
+      View Details
+      <span>→</span>
+    </a>
+  </div>
+</article>

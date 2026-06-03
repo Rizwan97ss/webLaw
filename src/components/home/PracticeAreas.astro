@@ -1,0 +1,89 @@
+---
+import {
+  Building2,
+  Handshake,
+  UserRoundCheck,
+  Home,
+  UserCog,
+  Landmark,
+} from "lucide-react";
+
+const areas = [
+  {
+    number: "01",
+    title: "Corporate & Business Law",
+    text: "Navigating the complexities of entity formation, contract negotiations, and regulatory compliance to protect your commercial interests.",
+    icon: Building2,
+  },
+  {
+    number: "02",
+    title: "Family Law & Mediation",
+    text: "Providing compassionate yet firm representation for divorce, child custody, and asset division during life’s most difficult transitions.",
+    icon: Handshake,
+  },
+  {
+    number: "03",
+    title: "Personal Injury Litigation",
+    text: "Fighting for the compensation you deserve following accidents, ensuring that insurance companies and negligent parties are held accountable.",
+    icon: UserRoundCheck,
+  },
+  {
+    number: "04",
+    title: "Estate Planning & Probate",
+    text: "Securing your legacy through meticulous drafting of wills, trusts, and comprehensive wealth preservation strategies.",
+    icon: Home,
+  },
+  {
+    number: "05",
+    title: "Criminal Defense",
+    text: "Protecting your constitutional rights and your freedom with an aggressive, detail-oriented defense against state and federal charges.",
+    icon: UserCog,
+  },
+  {
+    number: "06",
+    title: "Real Estate Law",
+    text: "Facilitating seamless transactions and resolving complex disputes for residential and commercial property owners and developers.",
+    icon: Landmark,
+  },
+];
+---
+
+<section class="practice-section">
+  <div class="container">
+    <div class="practice-head">
+      <div>
+        <p class="section-kicker">⚖ What We Do</p>
+        <h2>Practice Areas</h2>
+      </div>
+
+      <a href="/practice-areas" class="practice-view-btn">
+        View More <span>→</span>
+      </a>
+    </div>
+
+    <div class="practice-grid">
+      {areas.map((area) => {
+        const Icon = area.icon;
+
+        return (
+          <article class="practice-card">
+            <span class="practice-number">{area.number}</span>
+
+            <div class="practice-icon">
+              <Icon size={36} strokeWidth={2.7} />
+            </div>
+
+            <div class="practice-content">
+              <h3>{area.title}</h3>
+              <p>{area.text}</p>
+
+              <a href="/practice-areas" class="practice-btn">
+                Read More <span>→</span>
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

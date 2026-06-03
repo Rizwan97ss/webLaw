@@ -1,0 +1,83 @@
+---
+import { CheckSquare, ChartNoAxesCombined, SlidersHorizontal, Handshake } from "lucide-react";
+
+const features = [
+  {
+    title: "Direct Attorney Access",
+    text: "You won't be passed off to a paralegal. You will work directly with a senior attorney who understands every nuance of your case.",
+    icon: CheckSquare,
+    align: "right",
+  },
+  {
+    title: "Strategic Innovation",
+    text: "We utilize the latest legal technology and investigative techniques to build robust cases that stand up to the toughest opposition.",
+    icon: ChartNoAxesCombined,
+    align: "left",
+  },
+  {
+    title: "Proven Track Record",
+    text: "With millions recovered for clients and a high success rate in litigation, our reputation for winning is built on a foundation of hard work.",
+    icon: SlidersHorizontal,
+    align: "right",
+  },
+  {
+    title: "Transparent Communication",
+    text: "Legal jargon shouldn't be a barrier. We provide clear, consistent updates and honest assessments so you always know where you stand.",
+    icon: Handshake,
+    align: "left",
+  },
+];
+---
+
+<section class="why-section">
+  <div class="container">
+    <div class="why-heading" data-reveal>
+      <p class="why-kicker">⚖ Why Choose Civitas</p>
+      <h2>Why Choose Us?</h2>
+    </div>
+
+    <div class="why-layout">
+      <div class="why-column">
+        {features.filter((_, i) => i % 2 === 0).map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article class={`why-card why-card--${item.align}`} data-reveal="left">
+              <div class="why-card__icon">
+                <Icon size={30} strokeWidth={2.8} />
+              </div>
+
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+
+      <div class="why-video" data-reveal="zoom">
+        <img src="/images/why-choose.jpg" alt="Legal consultation" />
+
+        <a href="#" class="why-play" aria-label="Play video">
+          ▶
+        </a>
+      </div>
+
+      <div class="why-column">
+        {features.filter((_, i) => i % 2 === 1).map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <article class={`why-card why-card--${item.align}`} data-reveal="right">
+              <div class="why-card__icon">
+                <Icon size={30} strokeWidth={2.8} />
+              </div>
+
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

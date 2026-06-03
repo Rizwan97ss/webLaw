@@ -1,0 +1,141 @@
+---
+const testimonials = [
+  {
+    logo: "BRAND LOGO",
+    quote:
+      "During the most difficult time of my life, their team provided both empathy and a brilliant legal defense. I couldn’t have asked for a better outcome.",
+    name: "Sarah L",
+    role: "Family Law Client",
+    image: "/images/testimonials/sarah.jpg",
+  },
+  {
+    logo: "BRAND LOGO",
+    quote:
+      "After a serious accident, I felt overwhelmed. They took over the fight and secured a settlement that changed my family's future. Highly recommended.",
+    name: "David K",
+    role: "Corporate Law Client",
+    image: "/images/testimonials/david.jpg",
+  },
+  {
+    logo: "BRAND LOGO",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are true business partners.",
+    name: "Michael R",
+    role: "Personal Injury Client",
+    image: "/images/testimonials/michael.jpg",
+  },
+  {
+    logo: "BRAND LOGO",
+    quote:
+      "They handled my estate planning with clarity, patience, and professionalism from beginning to end.",
+    name: "Anna P",
+    role: "Estate Planning Client",
+    image: "/images/testimonials/sarah.jpg",
+  },
+  {
+    logo: "BRAND LOGO",
+    quote:
+      "Their communication was consistent and honest. I always knew exactly where my case stood.",
+    name: "Robert M",
+    role: "Real Estate Client",
+    image: "/images/testimonials/david.jpg",
+  },
+];
+---
+
+<section class="testimonial-section">
+  <div class="container">
+    <div class="testimonial-head">
+      <div>
+        <p class="testimonial-kicker">⚖ Testimonials</p>
+        <h2>What Our Client's Say</h2>
+      </div>
+
+      <a href="/testimonials" class="testimonial-view">
+        View More <span>→</span>
+      </a>
+    </div>
+
+    <div class="testimonial-slider">
+      <div class="testimonial-track">
+        {testimonials.map((item) => (
+          <article class="testimonial-card">
+            <div class="testimonial-card__inner">
+              <div class="testimonial-box">
+                <div class="testimonial-top">
+                  <strong>{item.logo}</strong>
+                  <span>★★★★★</span>
+                </div>
+
+                <div class="testimonial-line"></div>
+
+                <p>{item.quote}</p>
+              </div>
+
+              <div class="testimonial-author">
+                <img src={item.image} alt={item.name} />
+
+                <div>
+                  <h3>{item.name}</h3>
+                  <span>{item.role}</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="testimonial-arrows">
+      <button class="testimonial-arrow testimonial-prev" type="button">‹</button>
+      <button class="testimonial-arrow testimonial-next" type="button">›</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector(".testimonial-track");
+  const cards = document.querySelectorAll(".testimonial-card");
+  const prevBtn = document.querySelector(".testimonial-prev");
+  const nextBtn = document.querySelector(".testimonial-next");
+
+  let current = 0;
+
+  function getVisibleCards() {
+    if (window.innerWidth <= 640) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+  }
+
+  function updateSlider() {
+    if (!track || !cards.length) return;
+
+    const visible = getVisibleCards();
+    const maxIndex = Math.max(cards.length - visible, 0);
+
+    if (current > maxIndex) current = maxIndex;
+
+    const cardWidth = cards[0].getBoundingClientRect().width;
+
+    track.style.transform = `translateX(-${current * cardWidth}px)`;
+  }
+
+  nextBtn?.addEventListener("click", () => {
+    const visible = getVisibleCards();
+    const maxIndex = Math.max(cards.length - visible, 0);
+
+    current = current >= maxIndex ? 0 : current + 1;
+    updateSlider();
+  });
+
+  prevBtn?.addEventListener("click", () => {
+    const visible = getVisibleCards();
+    const maxIndex = Math.max(cards.length - visible, 0);
+
+    current = current <= 0 ? maxIndex : current - 1;
+    updateSlider();
+  });
+
+  window.addEventListener("resize", updateSlider);
+  updateSlider();
+</script>

@@ -1,0 +1,65 @@
+---
+const cases = [
+  {
+    title: "The $2.4M Settlement",
+    category: "Personal Injury",
+    image:
+      "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Corporate Merger Victory",
+    category: "Business Law",
+    image:
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Asset Protection Success",
+    category: "Family Law",
+    image:
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Criminal Charges Dismissal",
+    category: "Defense",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80",
+  },
+];
+---
+
+<section class="case-section">
+  <div class="container">
+    <div class="case-heading">
+      <p class="case-kicker">⚖ Case Study</p>
+      <h2>Our Success Stories</h2>
+    </div>
+
+    <div class="case-grid">
+      {cases.map((item) => (
+        <article class="case-card">
+          <div class="case-card__inner">
+            <img src={item.image} alt={item.title} />
+
+            <span class="case-badge">{item.category}</span>
+
+            <div class="case-overlay"></div>
+
+            <div class="case-content">
+              <h3>{item.title}</h3>
+
+              <a href="/case-study">
+                View Details <span>→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="case-action">
+      <a href="/case-study" class="case-btn">
+        View More <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>

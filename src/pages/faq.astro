@@ -1,0 +1,18 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import PageHero from "../components/common/PageHero.astro";
+import FAQ from "../components/home/FAQ.astro";
+---
+
+<MainLayout title="FAQs - Civitas Law">
+  <Header />
+  <PageHero
+    eyebrow="FAQ's"
+    title="Frequently Asked Questions"
+    description="Answers to common questions about consultations, costs, timelines, and legal representation."
+  />
+  <FAQ />
+  <Footer />
+</MainLayout>
