@@ -52,13 +52,13 @@ const areas = [
   <div class="container">
     <div class="practice-head">
       <div>
-        <p class="section-kicker">⚖ What We Do</p>
+        <p class="section-kicker">What We Do</p>
         <h2>Practice Areas</h2>
       </div>
 
-      <a href="/practice-areas" class="practice-view-btn">
-        View More <span>→</span>
-      </a>
+      <a class="practice-view-btn btn-fill-hover">
+  View More <span>→</span>
+</a>
     </div>
 
     <div class="practice-grid">
@@ -67,7 +67,7 @@ const areas = [
 
         return (
           <article class="practice-card">
-            <span class="practice-number">{area.number}</span>
+          <div class="practice-number">  <h2>{area.number}</h2> </div>
 
             <div class="practice-icon">
               <Icon size={36} strokeWidth={2.7} />

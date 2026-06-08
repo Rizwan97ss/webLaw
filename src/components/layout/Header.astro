@@ -2,10 +2,39 @@
 const navLinks = [
   { label: "Home", href: "/", active: true },
   { label: "About Us", href: "/about" },
-  { label: "Practice Areas", href: "/practice-areas", dropdown: true },
-  { label: "Blog", href: "/blog", dropdown: true },
-  { label: "Pages", href: "#", dropdown: true },
-  { label: "Contact Us", href: "/contact", dropdown: true },
+  {
+    label: "Practice Areas",
+    href: "#",
+    children: [
+      { label: "Practice Area", href: "/practice-area" },
+      { label: "Practice Area Details", href: "/practice-area-details" },
+    ],
+  },
+  {
+    label: "Blog",
+    href: "#",
+    children: [
+      { label: "Blog", href: "/blog" },
+      { label: "Blog Details", href: "/trusted-legal-solutions-for-your-complex-cases" },
+    ],
+  },
+  {
+    label: "Pages",
+    href: "#",
+    children: [
+      { label: "Case Study", href: "/case-study" },
+      { label: "Attorney Profile", href: "/attorney-profile" },
+      { label: "FAQ’s", href: "/faqs" },
+    ],
+  },
+  {
+    label: "Contact Us",
+    href: "#",
+    children: [
+      { label: "Contact Style 1", href: "/contact-style-1" },
+      { label: "Contact Style 2", href: "/contact-style-2" },
+    ],
+  },
 ];
 ---
 
@@ -43,14 +72,26 @@ const navLinks = [
         <span></span>
       </button>
 
-      <div class="nav-menu">
-        {navLinks.map((link) => (
-          <a class={link.active ? "active" : ""} href={link.href}>
-            {link.label}
-            {link.dropdown && <span class="nav-arrow">⌄</span>}
-          </a>
-        ))}
-      </div>
+      <ul class="nav-menu">
+  {navLinks.map((link) => (
+    <li class={link.children ? "has-dropdown" : ""}>
+      <a class={link.active ? "active" : ""} href={link.href}>
+        {link.label}
+        {link.children && <span class="nav-arrow">⌄</span>}
+      </a>
+
+      {link.children && (
+        <ul class="sub-menu">
+          {link.children.map((child) => (
+            <li>
+              <a href={child.href}>{child.label}</a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  ))}
+</ul>
 
       <a href="/contact" class="header-cta">
         Free Consultation
@@ -59,7 +100,6 @@ const navLinks = [
     </div>
   </nav>
 </header>
-
 <script>
   const toggle = document.querySelector(".nav-toggle");
   const menu = document.querySelector(".nav-menu");
@@ -71,11 +111,12 @@ const navLinks = [
     toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
   });
 
-  document.querySelectorAll(".nav-menu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menu?.classList.remove("is-open");
-      toggle?.classList.remove("is-active");
-      toggle?.setAttribute("aria-expanded", "false");
+  document.querySelectorAll(".has-dropdown > a").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (window.innerWidth <= 1100) {
+        event.preventDefault();
+        link.parentElement?.classList.toggle("is-open");
+      }
     });
   });
 </script>

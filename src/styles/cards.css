@@ -1,7 +1,8 @@
 /* Practice Areas */
+@import "./variables.css";
 
 .practice-section {
-  padding: 98px 0 94px;
+  padding: 60px 0 60px;
   background: #fff9e8;
 }
 
@@ -32,20 +33,70 @@
 }
 
 .practice-view-btn {
+  position: relative;
+  overflow: hidden;
+
   width: 139px;
   height: 45px;
   margin-bottom: 4px;
+
   border-radius: 999px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+
   background: #ffc342;
-  color: #10182f;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: 700;
+  color: var(--gcid-qdtr7s3apr) !important;
+
+  font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
   text-decoration: none;
+
+  transition:
+    color .4s ease,
+    transform .3s ease;
+
+  z-index: 1;
+}
+
+.practice-view-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+  width: 0;
+
+  background: #101932;
+
+  border-radius: inherit;
+
+  transform: translateX(-50%);
+
+  transition:
+    width .45s cubic-bezier(.22, .61, .36, 1);
+
+  z-index: -1;
+}
+
+.practice-view-btn:hover {
+  color: #fff !important;
+}
+
+.practice-view-btn:hover::before {
+  width: 100%;
+}
+
+.practice-view-btn span {
+  position: relative;
+  z-index: 2;
 }
 
 .practice-grid {
@@ -56,9 +107,10 @@
 
 .practice-card {
   position: relative;
-  padding: 118px 32px 28px;
+  padding: 118px 20px 20px;
   border-radius: 9px;
-  background: #fff0bd;
+  background: #feefcf;
+      /* width: calc(33.3333% - var(--horizontal-gap-parent, 5.5%) * 2 / 3); */
   overflow: hidden;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
@@ -82,18 +134,46 @@
 .practice-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 40px rgba(16, 24, 47, 0.12);
+  /* background: linear-gradient(to bottom, hsl(from var(--gcid-secondary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.3), hsl(from var(--gcid-secondary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
 }
-
 .practice-number {
   position: absolute;
-  top: 28px;
-  left: 28px;
-  color: rgba(255, 255, 255, 0.42);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 82px;
-  font-weight: 900;
-  line-height: 1;
+  top: 15px;
+  left: 15px;
+  z-index: 1;
+
+  font-family: 'Bitter';
+  pointer-events: none;
 }
+
+.practice-number h2 {
+  margin: 0;
+  font-size: 90px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(
+    to bottom,
+    hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.4),
+    hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.01)
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: 0.4s;
+}
+
+.practice-card:hover .practice-number h2 {
+  background: transparent;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.15);
+}
+/* .practice-number .text-inner h2{
+      background: linear-gradient(to bottom, hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.4), hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.01));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-transition: .4s !important;
+} */
 
 .practice-icon {
   position: absolute;
@@ -117,22 +197,23 @@
 
 .practice-content {
   position: relative;
+  /* padding: 10px 20px 20px 20px !important; */
   z-index: 2;
 }
 
 .practice-card h3 {
   margin: 0 0 12px;
-  color: #202020;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 23px;
-  font-weight: 800;
+    color: var(--gcid-heading-color) !important;
+  font-family: 'Bitter';
+  font-size: 20px;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 .practice-card p {
-  margin: 0 0 24px;
-  color: #1f1f1f;
-  font-family: Arial, Helvetica, sans-serif;
+  /* margin: 0 0 24px; */
+  color: #242424;
+  font-family: 'Cabin';
   font-size: 16px;
   font-weight: 500;
   line-height: 1.55;

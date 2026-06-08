@@ -10,17 +10,18 @@ body {
   font-family: var(--font-body);
   color: var(--color-text);
   background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
   margin: 0;
 }
 
-h1,
+/* h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-heading);
   color: var(--color-text);
   line-height: 1.1;
-}
+} */
 
 /* .container {
   width: min(100% - 2rem, var(--container));

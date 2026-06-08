@@ -1,26 +1,86 @@
 /* src/styles/variables.css */
 
 :root {
-  --color-primary: #ffc400;
+  /* Colors */
+  --color-primary: #ffc64a;
   --color-primary-soft: #fff1b8;
-  --color-dark: #101a36;
+
+  --color-dark: #0f1a34;
   --color-dark-2: #1d2947;
+
   --color-text: #242424;
-  --color-muted: #6f6f6f;
+  --color-muted: #6b6b6b;
+
   --color-white: #ffffff;
   --color-cream: #fff9df;
 
-  --font-heading: Georgia, "Times New Roman", serif;
+  /* Typography */
+  --font-heading: "Bitter", Georgia, serif;
   --font-body: Inter, system-ui, sans-serif;
 
- --container: 1320px;
+  /* Layout */
+  --container: 1320px;
   --gutter: clamp(24px, 8vw, 154px);
+
+  /* Radius */
   --radius-sm: 10px;
   --radius-md: 18px;
   --radius-lg: 28px;
   --radius-pill: 999px;
 
+  /* Shadows */
   --shadow-card: 0 20px 50px rgba(16, 26, 54, 0.08);
+  --shadow-hover: 0 24px 60px rgba(16, 26, 54, 0.12);
 
+  /* Sections */
   --section-padding: clamp(4rem, 8vw, 7rem);
+
+  /* Transition */
+  --transition: 0.3s ease;
+      --horizontal-gap-parent: 2.5%;
+  --gcid-primary-color:#ffc64a;
+  --gcid-heading-color:#242424;
+  --gcid-body-color:#6b6b6b;
+--gcid-bah6l7jb1n:#242424;
+--gcid-36p6h9qc3l:#0f1a34;
+--gcid-qdtr7s3apr:#242424;
+--et_global_heading_font:'Bitter';
+--et_global_body_font: 'Cabin';
+
+}
+.btn-fill-hover {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  transition:
+    color .4s ease,
+    transform .3s ease;
+}
+
+.btn-fill-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+
+  background: #101932;
+  border-radius: inherit;
+
+  transform: translateX(-50%);
+
+  transition:
+    width .45s cubic-bezier(.22,.61,.36,1);
+
+  z-index: -1;
+}
+
+.btn-fill-hover:hover::before {
+  width: 100%;
+}
+
+.btn-fill-hover:hover {
+  color: #fff !important;
 }

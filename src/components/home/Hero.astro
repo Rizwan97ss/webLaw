@@ -32,7 +32,18 @@ import Button from "../common/Button.astro";
     </div>
 
     <div class="hero__image">
-      <img src="/images/hero-lawyer.jpg" alt="Lawyer working at desk" />
-    </div>
+<img
+  id="hero-image"
+  src="https://picsum.photos/700/800"
+  alt="Lawyer"
+/>  </div>
   </div>
 </section>
+
+<script>
+  const image = document.getElementById("hero-image");
+
+  setInterval(() => {
+    image.src = `https://picsum.photos/700/800?random=${Date.now()}`;
+  }, 3000); // change every 3 seconds
+</script>
