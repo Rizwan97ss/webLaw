@@ -3658,29 +3658,31 @@ line-height: 1.7em;
 ================================ */
 
 .site-footer {
-  padding: 66px 0 40px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   background: #101932;
   color: #ffffff;
 }
 
 .footer-contact-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-bottom: 76px;
+  display: flex;
 }
 
 .footer-contact-card {
-  min-height: 116px;
-  padding: 24px 28px;
-  border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 22px;
-  background: #646b81;
-  transition:
-    transform 0.35s ease,
-    background 0.35s ease;
+  gap: 10px;
+  width: calc(33.3333% - var(--horizontal-gap-parent, 5.5%) * 2 / 3);
+    background-color: rgba(255, 255, 255, 0.3);
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
 }
 
 .footer-contact-card:hover {
@@ -3689,8 +3691,8 @@ line-height: 1.7em;
 }
 
 .footer-contact-icon {
-  width: 64px;
-  height: 64px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -3905,11 +3907,11 @@ line-height: 1.7em;
     margin-bottom: 56px;
   }
 
-  .footer-contact-card {
+  /* .footer-contact-card {
     min-height: 84px;
     padding: 18px 22px;
     gap: 16px;
-  }
+  } */
 
   .footer-contact-icon {
     width: 50px;
