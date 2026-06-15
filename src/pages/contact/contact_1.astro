@@ -1,0 +1,117 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+// import ContactCTA from "../../components/home/ContactCTA.astro";
+import { Phone, Mail, Clock, MapPin, Gavel } from "lucide-astro";
+
+const services = [
+  "Corporate & Business Law",
+  "Family Law & Mediation",
+  "Personal Injury Litigation",
+  "Estate Planning & Probate",
+  "Criminal Defense",
+  "Real Estate Law",];
+---
+
+<MainLayout title="Contact Us - Civitas Law">
+  <Header />
+  <PageHero title="Schedule Your Consultation" />
+
+  <section class="contact-page">
+    <div class="container">
+    <div class="contact-card">
+      <div class="contact-info">
+        <div class="contact-kicker">
+          <Gavel size={16} />
+          <span>Have Any Question?</span>
+        </div>
+
+        <h2>Contact Us For More Information</h2>
+
+        <div class="contact-list">
+          <a href="tel:+0123456789" class="contact-item">
+            <span><Phone size={20} /></span>
+            <p>+01 23456789</p>
+          </a>
+
+          <a href="mailto:contact@example.com" class="contact-item">
+            <span><Mail size={20} /></span>
+            <p>contact@example.com</p>
+          </a>
+
+          <div class="contact-item">
+            <span><Clock size={20} /></span>
+            <p>Open Hours: Mon-Sat: 9am - 6pm</p>
+          </div>
+
+          <div class="contact-item">
+            <span><MapPin size={20} /></span>
+            <p>9976 Reynalda Ways, UK</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form">
+        <div class="form-row">
+          <input type="text" placeholder="Name" required />
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            pattern="[0-9\s\-]*"
+            required
+          />
+        </div>
+
+        <input type="email" placeholder="Email Address" required />
+
+        <select required>
+          <option value="">Select Service</option>
+          {services.map((service) => (
+            <option value={service}>{service}</option>
+          ))}
+        </select>
+
+        <textarea placeholder="Your Message" required></textarea>
+
+        <div class="form-action">
+          <button type="submit" class="btn-fill-hover">
+            Book Appointment
+            <span>→</span>
+          </button>
+        </div>
+      </form>
+    </div>
+    </div>
+
+    <div class="container contact-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d37912432.365362324!2d-4.473772!3d54.55128!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25a3b1142c791a9%3A0xc4f8a0433288257a!2sUnited%20Kingdom!5e0!3m2!1sen!2sbd!4v1774210451357!5m2!1sen!2sbd"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </section>
+  <!-- <ContactCTA /> -->
+  <Footer />
+</MainLayout>
+
+<style>
+  /* Reset the components.css slide-in animation — this page has no IntersectionObserver */
+  .contact-form {
+    opacity: 1;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+  }
+  .contact-card {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5%;
+    padding: 30px;
+  }
+</style>

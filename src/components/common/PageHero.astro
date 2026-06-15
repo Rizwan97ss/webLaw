@@ -1,15 +1,18 @@
 ---
 const {
-  eyebrow = "",
   title,
-  description = "",
+  breadcrumb = "Home",
 } = Astro.props;
 ---
 
 <section class="page-hero">
+  <div class="page-hero__mask" aria-hidden="true"></div>
   <div class="container page-hero__inner">
-    {eyebrow && <p class="eyebrow">⚖ {eyebrow}</p>}
-    <h1>{title}</h1>
-    {description && <p>{description}</p>}
+    <h1 class="page-hero__title">{title}</h1>
+    <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+      <a href="/">{breadcrumb}</a>
+      <span aria-hidden="true">›</span>
+      <span>{title}</span>
+    </nav>
   </div>
 </section>

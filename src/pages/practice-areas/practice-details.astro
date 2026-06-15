@@ -1,0 +1,164 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+
+const services = [
+  "Corporate & Business Law",
+  "Family Law & Mediation",
+  "Personal Injury Litigation",
+  "Estate Planning & Probate",
+  "Criminal Defense",
+  "Real Estate Law",
+];
+
+const faqs = [
+  {
+    question: "How much will my legal representation cost?",
+    answer:
+      "Our fee structures are transparent and tailored to your specific case, ranging from hourly rates and flat fees to contingency-based arrangements where you only pay if we win.",
+  },
+  {
+    question: "How long will it take to resolve my case?",
+    answer:
+      "Timeline varies based on complexity and the court's schedule, but our priority is always to achieve a favorable resolution as efficiently as possible without sacrificing quality.",
+  },
+  {
+    question: "Will I work directly with an attorney?",
+    answer:
+      "Yes. You will have a dedicated lead attorney managing your strategy and providing direct communication throughout.",
+  },
+];
+---
+
+<MainLayout title="Practice Area Details - Civitas Law">
+  <Header />
+  <PageHero title="Practice Area Details" />
+<section class="practice-details">
+    <div class="container practice-details__grid">
+      <main class="practice-details__main">
+        <div class="shine-image practice-details__hero-image">
+          <img
+            src="https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg"
+            alt="Corporate business law"
+          />
+        </div>
+
+        <div class="content-box">
+          <h2>Corporate &amp; Business Law</h2>
+          <p>
+            In the landscape of modern commerce, Corporate &amp; Business Law
+            serves as the essential framework that allows enterprises to grow,
+            innovate, and compete fairly.
+          </p>
+          <p>
+            We provide comprehensive support for mergers and acquisitions,
+            contract negotiations, and intellectual property protection, acting
+            as a dedicated shield for your most valuable assets.
+          </p>
+        </div>
+
+        <div class="case-row">
+          <div class="shine-image case-row__image">
+            <img
+              src="https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg"
+              alt="Court case"
+            />
+          </div>
+
+          <div class="case-row__content">
+            <h3>Case To The Court</h3>
+            <ul>
+              <li>Full service corporate commercial law</li>
+              <li>Team building leadership.</li>
+              <li>24/7 availability across time zones</li>
+              <li>Reliable and innovative legal solutions.</li>
+              <li>Multilingual content capabilities</li>
+              <li>Workflows, reporting content organization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="margin: 0 0 20px; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 700; color: var(--gcid-heading-color, #101932);">Answers To Your Legal Questions</h2>
+
+          <div class="faq-right">
+            {faqs.map((faq, index) => (
+              <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
+                <button class="faq-question" type="button">
+                  <span>{faq.question}</span>
+                  <strong>{index === 0 ? "−" : "+"}</strong>
+                </button>
+                <div class="faq-answer">
+                  <div class="faq-answer-inner">
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      <aside class="practice-sidebar">
+        <div class="sidebar-card">
+          <h3>What we provide ?</h3>
+          <ul class="service-list">
+            {services.map((service) => (
+              <li>
+                <a href="#">{service}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Downloads</h3>
+
+          <a href="#" class="download-card">
+            <span>📄 Service Report</span>
+            <span>⬇</span>
+          </a>
+
+          <a href="#" class="download-card download-card--dark">
+            <span>📄 Service Report</span>
+            <span>⬇</span>
+          </a>
+        </div>
+
+        <div class="sidebar-cta">
+          <div class="sidebar-cta__icon">☎</div>
+          <h4>Call Us 24/7 For Help!</h4>
+          <a href="tel:+0123456789">+01 23456789</a>
+          <a href="/contact-style-1" class="sidebar-cta__button">
+            Get In Touch
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <Footer />
+</MainLayout>
+
+<script>
+  const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+  faqItems.forEach((item) => {
+    item.querySelector(".faq-question")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      faqItems.forEach((other) => {
+        other.classList.remove("is-open");
+        const icon = other.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "+";
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        const icon = item.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "−";
+      }
+    });
+  });
+</script>

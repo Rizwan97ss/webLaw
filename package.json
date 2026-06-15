@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
     "@astrojs/mdx": "^6.0.1",
     "@astrojs/react": "^5.0.6",
     "@astrojs/rss": "^4.0.18",
@@ -25,7 +26,8 @@
     "motion": "^12.40.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.3",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "eslint": "^9.39.4",

@@ -1,4 +1,7 @@
 ---
+import { ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+
 const posts = [
   {
     title: "Protecting Your Rights with Professional Legal Services",
@@ -68,9 +71,10 @@ const posts = [
 
               <h3>{post.title}</h3>
 
-              <a href="/blog" class="blog-btn">
+              <a href="/blog" class="blog-btn btn-fill-hover">
                 Read More <span>→</span>
               </a>
+
             </div>
           </article>
         ))}
@@ -78,8 +82,8 @@ const posts = [
     </div>
 
     <div class="blog-arrows">
-      <button class="blog-arrow blog-prev" type="button">‹</button>
-      <button class="blog-arrow blog-next" type="button">›</button>
+      <button class="blog-arrow blog-prev" type="button"><ChevronLeft /></button>
+      <button class="blog-arrow blog-next" type="button"><ChevronRight /></button>
     </div>
   </div>
 </section>

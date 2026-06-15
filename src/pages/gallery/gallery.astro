@@ -1,0 +1,270 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+
+const images = [
+  {
+    src: "https://civitas.divigurus.com/wp-content/uploads/2026/04/woman-man-30s-adult-latin-hispanic-1700934-pxhere.com_11zon-1-scaled.jpg",
+    alt: "Legal consultation between attorneys",
+  },
+  {
+    src: "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg",
+    alt: "Attorney working at desk",
+  },
+  {
+    src: "https://civitas.divigurus.com/wp-content/uploads/2026/04/leader-welcoming-employee-handshake-confident-office-1700922-pxhere.com_11zon-scaled.jpg",
+    alt: "Professional handshake in office",
+  },
+  {
+    src: "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+    alt: "Legal books and gavel",
+  },
+  {
+    src: "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+    alt: "Business professional client meeting",
+  },
+  {
+    src: "https://civitas.divigurus.com/wp-content/uploads/2026/04/lawyer-eyewear-clothing-glasses-head-vision-care-1701078-pxhere.com-1.jpg",
+    alt: "Attorney portrait",
+  },
+];
+---
+
+<MainLayout title="Our Gallery - Civitas Law">
+  <Header />
+  <PageHero title="Our Gallery" />
+
+  <section class="gallery-section">
+    <div class="container">
+
+      <!-- ── Header ─────────────────────────────────── -->
+      <div class="gallery-head">
+        <div class="contact-kicker">
+          <span>⚖</span>
+          <span>Firm Excellence in Focus</span>
+        </div>
+        <h2>A Glimpse Inside Our<br />Professional Environment</h2>
+      </div>
+
+      <!-- ── Grid ──────────────────────────────────── -->
+      <div class="gallery-grid">
+        {images.map((img, i) => (
+          <button
+            class="gallery-item"
+            data-src={img.src}
+            data-alt={img.alt}
+            aria-label={`Open image: ${img.alt}`}
+            type="button"
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
+            <div class="gallery-overlay">
+              <span class="gallery-zoom" aria-hidden="true">&#x2315;</span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Lightbox ───────────────────────────────────── -->
+  <dialog id="lightbox" class="lightbox" aria-modal="true" aria-label="Image lightbox">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close lightbox">&times;</button>
+    <img id="lightboxImg" src="" alt="" />
+  </dialog>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  /* ── Section ─────────────────────────────────────── */
+  .gallery-section {
+    padding: 80px 0;
+    background: #fff8f2;
+  }
+
+  /* ── Header ──────────────────────────────────────── */
+  .gallery-head {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 50px;
+  }
+
+  .gallery-head h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+    line-height: 1.3;
+  }
+
+  /* ── Grid ────────────────────────────────────────── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  /* ── Item (button reset + card) ──────────────────── */
+  .gallery-item {
+    all: unset;
+    display: block;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    outline-offset: 3px;
+  }
+
+  .gallery-item:focus-visible {
+    outline: 2px solid var(--gcid-primary-color, #ffc342);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* ── Hover overlay ───────────────────────────────── */
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-zoom {
+    font-size: 38px;
+    color: var(--gcid-primary-color, #ffc342);
+    line-height: 1;
+  }
+
+  /* ── Lightbox ────────────────────────────────────── */
+  .lightbox {
+    border: none;
+    background: transparent;
+    padding: 0;
+    max-width: min(90vw, 1000px);
+    max-height: 90vh;
+    margin: auto;
+  }
+
+  .lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .lightbox img {
+    display: block;
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 44px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s;
+    z-index: 9999;
+  }
+
+  .lightbox-close:hover {
+    color: var(--gcid-primary-color, #ffc342);
+  }
+
+  /* ── Responsive ──────────────────────────────────── */
+  @media (max-width: 767px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .gallery-item img {
+      height: 160px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-section {
+      padding: 40px 0;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll<HTMLButtonElement>(".gallery-item");
+  const lightbox = document.getElementById("lightbox") as HTMLDialogElement | null;
+  const lightboxImg = document.getElementById("lightboxImg") as HTMLImageElement | null;
+  const lightboxClose = document.getElementById("lightboxClose");
+
+  function openLightbox(src: string, alt: string) {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.showModal();
+  }
+
+  function closeLightbox() {
+    lightbox?.close();
+    if (lightboxImg) {
+      lightboxImg.src = "";
+      lightboxImg.alt = "";
+    }
+  }
+
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      const src = item.dataset.src ?? "";
+      const alt = item.dataset.alt ?? "";
+      openLightbox(src, alt);
+    });
+  });
+
+  lightboxClose?.addEventListener("click", closeLightbox);
+
+  lightbox?.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+</script>

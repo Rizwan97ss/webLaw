@@ -1,0 +1,395 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+import { FileText, Calendar, User, Clock, Phone } from "lucide-astro";
+
+const caseInfo = [
+  { icon: FileText, label: "Case Name",     value: "The $2.4M Settlement" },
+  { icon: Calendar, label: "Start Date",    value: "04 Feb, 2025"          },
+  { icon: User,     label: "Client Name",   value: "Daniel Carter"          },
+  { icon: Clock,    label: "Case Duration", value: "8 Months"               },
+];
+
+const recentCases = [
+  { label: "The $2.4M Settlement",    href: "#" },
+  { label: "Corporate Merger Victory", href: "#" },
+  { label: "Asset Protection Success", href: "#" },
+  { label: "Criminal Charges Dismissal", href: "#" },
+];
+
+const faqs = [
+  {
+    question: "How much will my legal representation cost?",
+    answer:
+      "Our fee structures are transparent and tailored to your specific case, ranging from hourly rates and flat fees to contingency-based arrangements where you only pay if we win.",
+  },
+  {
+    question: "How long will it take to resolve my case?",
+    answer:
+      "Timeline varies based on complexity and the court's schedule, but our priority is always to achieve a favorable resolution as efficiently as possible without sacrificing quality.",
+  },
+  {
+    question: "Will I work directly with an attorney?",
+    answer:
+      "Yes. Unlike larger firms where cases are often handed to paralegals, you will have a dedicated lead attorney managing your strategy and providing direct communication throughout.",
+  },
+];
+---
+
+<MainLayout title="Case Study Details - Civitas Law">
+  <Header />
+  <PageHero title="The $2.4M Settlement" />
+
+  <section class="practice-details">
+    <div class="container">
+      <div class="practice-details__grid">
+
+        <!-- ── Main content ────────────────────────────── -->
+        <div class="practice-details__main">
+
+          <!-- Hero image -->
+          <div class="shine-image practice-details__hero-image">
+            <img
+              src="https://civitas.divigurus.com/wp-content/uploads/2026/04/lawyer-eyewear-clothing-glasses-head-vision-care-1701078-pxhere.com-1.jpg"
+              alt="Case study hero"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Settlement summary -->
+          <div class="cs-section">
+            <h2>The $2.4M Settlement</h2>
+            <p>A concise 2-3 sentence summary of the case. This helps visitors immediately understand if this case is relevant to their own legal needs.</p>
+            <p>Example: "Our firm represented a mid-sized tech firm facing an aggressive breach of contract suit. We successfully navigated the complexities of international trade law to secure a favorable outcome for our client."</p>
+          </div>
+
+          <!-- Strategy -->
+          <div class="cs-section">
+            <h2>Our Strategy</h2>
+            <p>Sed porttitor tellus vel neque accumsan, eget blandit massa vulputate. In hac habitasse platea dictumst. Quisque accumsan nisi non sapien cursus, sit amet vulputate velit rhoncus. Nunc tempor velit eget quam vehicula facilisis. Proin lacinia fringilla cursus. Aenean ante libero, consequat at lobortis quis, commodo et arcu.</p>
+            <ul class="cs-bullet-list">
+              <li>Initial Discovery</li>
+              <li>Strategic Approach</li>
+              <li>Execution</li>
+            </ul>
+          </div>
+
+          <!-- Gallery -->
+          <div class="cs-gallery">
+            <div class="cs-gallery__row">
+              <div class="shine-image cs-gallery__small">
+                <img
+                  src="https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg"
+                  alt="Gallery image 1"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="shine-image cs-gallery__small">
+                <img
+                  src="https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-pencil-pen-red-paper-lip-1363790-pxhere.com-1-scaled.jpg"
+                  alt="Gallery image 2"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            <div class="shine-image cs-gallery__wide">
+              <img
+                src="https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-table-book-light-wood-vintage-959354-pxhere.com-1-scaled.jpg"
+                alt="Gallery image 3"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+
+          <!-- Outcome -->
+          <div class="cs-section">
+            <h2>The Outcome</h2>
+            <p>Sed porttitor tellus vel neque accumsan, eget blandit massa vulputate. In hac habitasse platea dictumst. Quisque accumsan nisi non sapien cursus, sit amet vulputate velit rhoncus. Nunc tempor velit eget quam vehicula facilisis. Proin lacinia fringilla cursus. Aenean ante libero, consequat at lobortis quis, commodo et arcu.</p>
+          </div>
+
+          <!-- Achievement blurbs -->
+          <div class="cs-achieve-grid">
+            <div class="cs-achieve-blurb">
+              <h4>Financial Impact</h4>
+              <p>Specific settlement amounts or avoided costs.</p>
+            </div>
+            <div class="cs-achieve-blurb">
+              <h4>Client Peace of Mind</h4>
+              <p>How the resolution allowed the client to move forward.</p>
+            </div>
+          </div>
+
+          <!-- FAQ -->
+          <div class="cs-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-right">
+              {faqs.map((faq, index) => (
+                <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
+                  <button class="faq-question" type="button">
+                    <span>{faq.question}</span>
+                    <strong>{index === 0 ? "−" : "+"}</strong>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>{faq.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Sidebar ──────────────────────────────────── -->
+        <aside class="practice-sidebar">
+
+          <!-- Case Information -->
+          <div class="sidebar-card">
+            <h3>Case Information</h3>
+            <div class="cs-info-list">
+              {caseInfo.map(({ icon: Icon, label, value }) => (
+                <div class="cs-info-item">
+                  <span class="cs-info-item__icon">
+                    <Icon size={20} />
+                  </span>
+                  <div>
+                    <h4>{label}</h4>
+                    <p>{value}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Recent Cases -->
+          <div class="sidebar-card">
+            <h3>Recent Cases</h3>
+            <ul class="service-list">
+              {recentCases.map((c) => (
+                <li><a href={c.href}>{c.label}</a></li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- CTA -->
+          <div class="sidebar-cta">
+            <div class="sidebar-cta__icon">
+              <Phone size={28} />
+            </div>
+            <h4>Call Us 24/7 For Help!</h4>
+            <a href="tel:+0123456789">+01 23456789</a>
+            <a href="/contact/contact_1" class="sidebar-cta__button">Get In Touch</a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  /* ── Content sections ──────────────────────────────── */
+  .cs-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cs-section h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--gcid-heading-color, #101932);
+    line-height: 1.2;
+  }
+
+  .cs-section p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  /* ── Bullet list ───────────────────────────────────── */
+  .cs-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cs-bullet-list li {
+    position: relative;
+    padding-left: 34px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  .cs-bullet-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gcid-primary-color, #ffc342);
+    color: #101932;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ── Gallery ───────────────────────────────────────── */
+  .cs-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .cs-gallery__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .cs-gallery__small img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  .cs-gallery__wide img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  /* ── Achievement blurbs ────────────────────────────── */
+  .cs-achieve-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .cs-achieve-blurb {
+    padding: 24px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 12%, white);
+    border-left: 4px solid var(--gcid-primary-color, #ffc342);
+  }
+
+  .cs-achieve-blurb h4 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gcid-heading-color, #101932);
+  }
+
+  .cs-achieve-blurb p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  /* ── Case info list ────────────────────────────────── */
+  .cs-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+  }
+
+  .cs-info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 15%, white);
+  }
+
+  .cs-info-item__icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gcid-primary-color, #ffc342);
+    color: #101932;
+  }
+
+  .cs-info-item h4 {
+    margin: 0 0 2px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gcid-body-color, #505658);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .cs-info-item p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .cs-achieve-grid,
+    .cs-gallery__row {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-gallery__small img {
+      height: 160px;
+    }
+
+    .cs-gallery__wide img {
+      height: 200px;
+    }
+  }
+</style>
+
+<script>
+  const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+  faqItems.forEach((item) => {
+    item.querySelector(".faq-question")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      faqItems.forEach((other) => {
+        other.classList.remove("is-open");
+        const icon = other.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "+";
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        const icon = item.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "−";
+      }
+    });
+  });
+</script>

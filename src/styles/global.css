@@ -27,11 +27,17 @@ h4 {
   width: min(100% - 2rem, var(--container));
   margin-inline: auto;
 } */
- .container,
+.container,
 .header-container,
 .hero-container {
-  width: 1280px;
+  width: min(100% - var(--container-gutter), var(--container-max));
   margin-inline: auto;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-gutter: 1.5rem;
+  }
 }
 
 .section {

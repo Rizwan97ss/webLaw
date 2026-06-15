@@ -1,52 +1,91 @@
 /* src/styles/variables.css */
 
 :root {
-  /* Colors */
-  --color-primary: #ffc64a;
+  /* ── Brand Colors ─────────────────────────────────────── */
+  --color-primary:      #ffc64a;
   --color-primary-soft: #fff1b8;
+  --color-primary-dark: #101932;   /* dark navy – used on buttons, backgrounds */
 
-  --color-dark: #0f1a34;
+  --color-dark:   #0f1a34;
   --color-dark-2: #1d2947;
 
-  --color-text: #242424;
+  --color-text:  #242424;
   --color-muted: #6b6b6b;
-
   --color-white: #ffffff;
-  --color-cream: #fff9df;
 
-  /* Typography */
+  /* Background tones */
+  --color-cream:      #fff9df;
+  --color-cream-warm: #fff9e8;   /* section / card bg */
+  --color-cream-soft: #fff1cf;   /* lighter card / faq bg */
+  --color-primary-bg: #ffeecc;   /* clients strip */
+  --color-card-hover: #ffe3a3;   /* testimonial card */
+
+  /* Aliases kept for backward-compatibility */
+  --gcid-primary-color:    #ffc64a;
+  --gcid-secondary-color:  #ffffff;
+  --gcid-heading-color:    #242424;
+  --gcid-body-color:       #6b6b6b;
+  --gcid-bah6l7jb1n:       #242424;
+  --gcid-36p6h9qc3l:       #0f1a34;
+  --gcid-qdtr7s3apr:       #242424;
+
+  /* ── Font Families ────────────────────────────────────── */
   --font-heading: "Bitter", Georgia, serif;
-  --font-body: Inter, system-ui, sans-serif;
+  --font-body:    Inter, system-ui, sans-serif;
+  --font-cabin:   "Cabin", Helvetica, Arial, Lucida, sans-serif;
+  --font-arial:   Arial, Helvetica, sans-serif;
 
-  /* Layout */
-  --container: 1320px;
-  --gutter: clamp(24px, 8vw, 154px);
+  /* Aliases kept for existing components */
+  --et_global_heading_font: 'Bitter';
+  --et_global_body_font:    'Cabin';
 
-  /* Radius */
-  --radius-sm: 10px;
-  --radius-md: 18px;
-  --radius-lg: 28px;
+  /* ── Font Size Scale ──────────────────────────────────── */
+  --fs-xs:   13px;
+  --fs-sm:   14px;
+  --fs-base: 16px;   /* body text */
+  --fs-md:   17px;   /* kickers, nav links */
+  --fs-h4:   20px;   /* card headings */
+  --fs-h3:   24px;   /* sub-headings */
+  --fs-h2:   38px;   /* section headings */
+  --fs-h1:   50px;   /* hero */
+
+  /* ── Font Weights ─────────────────────────────────────── */
+  --fw-normal:   400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-heavy:    800;
+  --fw-black:    900;
+
+  /* ── Line Heights ─────────────────────────────────────── */
+  --lh-tight:   1em;
+  --lh-heading: 1.2em;
+  --lh-body:    1.6em;
+  --lh-loose:   1.8em;
+
+  /* ── Layout ───────────────────────────────────────────── */
+  --container-max:    1280px;
+  --container-gutter: 2rem;      /* side padding on smaller screens */
+  --container:        1320px;    /* legacy alias */
+  --gutter:           clamp(24px, 8vw, 154px);
+  --horizontal-gap-parent: 2.5%;
+
+  /* ── Border Radius ────────────────────────────────────── */
+  --radius-sm:   10px;
+  --radius-md:   18px;
+  --radius-lg:   28px;
   --radius-pill: 999px;
 
-  /* Shadows */
-  --shadow-card: 0 20px 50px rgba(16, 26, 54, 0.08);
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-card:  0 20px 50px rgba(16, 26, 54, 0.08);
   --shadow-hover: 0 24px 60px rgba(16, 26, 54, 0.12);
 
-  /* Sections */
+  /* ── Section ──────────────────────────────────────────── */
   --section-padding: clamp(4rem, 8vw, 7rem);
 
-  /* Transition */
-  --transition: 0.3s ease;
-      --horizontal-gap-parent: 2.5%;
-  --gcid-primary-color:#ffc64a;
-  --gcid-heading-color:#242424;
-  --gcid-body-color:#6b6b6b;
---gcid-bah6l7jb1n:#242424;
---gcid-36p6h9qc3l:#0f1a34;
---gcid-qdtr7s3apr:#242424;
---et_global_heading_font:'Bitter';
---et_global_body_font: 'Cabin';
-
+  /* ── Transitions ──────────────────────────────────────── */
+  --transition:       0.3s ease;
+  --transition-slow:  0.45s cubic-bezier(.22, .61, .36, 1);
 }
 .btn-fill-hover {
   position: relative;

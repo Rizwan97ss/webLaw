@@ -1,0 +1,156 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+
+const sections = [
+  {
+    heading: "Information We Collect",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+  },
+  {
+    heading: "How We Use Your Information",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+  },
+  {
+    heading: "Cookies",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+  },
+  {
+    heading: "Changes to This Policy",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+    list: [
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+    ],
+  },
+];
+---
+
+<MainLayout title="Privacy Policy - Civitas Law">
+  <Header />
+  <PageHero title="Privacy Policy" />
+
+  <section class="policy-section">
+    <div class="container">
+      <div class="policy-stack">
+        {sections.map((s) => (
+          <div class="policy-block">
+            <h2>{s.heading}</h2>
+            {s.paragraphs.map((p) => (
+              <p>{p}</p>
+            ))}
+            {s.list && (
+              <ul class="policy-list">
+                {s.list.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  /* ── Section ─────────────────────────────────────── */
+  .policy-section {
+    padding: 80px 0;
+    background: #fff;
+  }
+
+  /* ── Stack of blocks ──────────────────────────────── */
+  .policy-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* ── Individual block ─────────────────────────────── */
+  .policy-block {
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 10%, white);
+    border-radius: 10px;
+    padding: 32px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .policy-block h2 {
+    margin: 0;
+    font-size: clamp(1.4rem, 2vw, 1.9rem);
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+    line-height: 1.2;
+  }
+
+  .policy-block p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  /* ── Bullet list ──────────────────────────────────── */
+  .policy-list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .policy-list li {
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  .policy-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gcid-primary-color, #ffc342);
+    color: #101932;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 767px) {
+    .policy-section {
+      padding: 40px 0;
+    }
+
+    .policy-block {
+      padding: 24px 20px;
+    }
+  }
+</style>

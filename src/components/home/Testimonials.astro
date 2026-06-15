@@ -1,4 +1,8 @@
 ---
+import { ChevronRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+
+
 const testimonials = [
   {
     logo: "BRAND LOGO",
@@ -6,7 +10,8 @@ const testimonials = [
       "During the most difficult time of my life, their team provided both empathy and a brilliant legal defense. I couldn’t have asked.",
     name: "Sarah L",
     role: "Family Law Client",
-    image: "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
   },
   {
     logo: "BRAND LOGO",
@@ -14,7 +19,8 @@ const testimonials = [
       "After a serious accident, I felt overwhelmed. They took over the fight and secured a settlement that changed my family's .",
     name: "David K",
     role: "Corporate Law Client",
-    image: "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
   },
   {
     logo: "BRAND LOGO",
@@ -22,7 +28,8 @@ const testimonials = [
       "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are .",
     name: "Michael R",
     role: "Personal Injury Client",
-    image: "https://civitas.divigurus.com/wp-content/uploads/2026/04/man-person-people-hair-white-boy-1046502-pxhere.com_.jpg",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/man-person-people-hair-white-boy-1046502-pxhere.com_.jpg",
   },
   {
     logo: "BRAND LOGO",
@@ -30,7 +37,8 @@ const testimonials = [
       "They handled my estate planning with clarity, patience, and professionalism.",
     name: "Anna P",
     role: "Estate Planning Client",
-    image: "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
   },
   {
     logo: "BRAND LOGO",
@@ -38,7 +46,8 @@ const testimonials = [
       "Their communication was consistent and honest. I always knew exactly.",
     name: "Robert M",
     role: "Real Estate Client",
-    image: "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
   },
 ];
 ---
@@ -52,43 +61,47 @@ const testimonials = [
       </div>
 
       <a class="practice-view-btn btn-fill-hover">
-  View More <span>→</span>
-</a>
+        View More <span>→</span>
+      </a>
     </div>
 
     <div class="testimonial-slider">
       <div class="testimonial-track">
-        {testimonials.map((item) => (
-          <article class="testimonial-card">
-            <div class="testimonial-card__inner">
-              <div class="testimonial-box">
-                <div class="testimonial-top">
-                  <strong>{item.logo}</strong>
-                  <span>★★★★★</span>
+        {
+          testimonials.map((item) => (
+            <article class="testimonial-card">
+              <div class="testimonial-card__inner">
+                <div class="testimonial-box">
+                  <div class="testimonial-top">
+                    <strong>{item.logo}</strong>
+                    <span>★★★★★</span>
+                  </div>
+
+                  <div class="testimonial-line" />
+
+                  <p>{item.quote}</p>
                 </div>
 
-                <div class="testimonial-line"></div>
+                <div class="testimonial-author">
+                  <img src={item.image} alt={item.name} />
 
-                <p>{item.quote}</p>
-              </div>
-
-              <div class="testimonial-author">
-                <img src={item.image} alt={item.name} />
-
-                <div>
-                  <h3>{item.name}</h3>
-                  <span>{item.role}</span>
+                  <div>
+                    <h3>{item.name}</h3>
+                    <span>{item.role}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))
+        }
       </div>
     </div>
 
     <div class="testimonial-arrows">
-      <button class="testimonial-arrow testimonial-prev" type="button">‹</button>
-      <button class="testimonial-arrow testimonial-next" type="button">›</button>
+      <button class="testimonial-arrow testimonial-prev" type="button"><ChevronLeft/></button
+      >
+      <button class="testimonial-arrow testimonial-next" type="button"><ChevronRight /></button
+      >
     </div>
   </div>
 </section>

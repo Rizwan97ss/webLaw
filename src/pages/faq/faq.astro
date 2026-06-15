@@ -1,0 +1,457 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+import { Phone } from "lucide-astro";
+
+const categories = [
+  { label: "Getting Started",        href: "#getting-started" },
+  { label: "Fees & Billing",         href: "#fees-billing" },
+  { label: "Case Process",           href: "#case-process" },
+  { label: "General Legal Expertise",href: "#general-legal-expertise" },
+];
+
+const groups = [
+  {
+    id: "getting-started",
+    heading: "Getting Started",
+    items: [
+      {
+        q: "How do I schedule an initial consultation?",
+        a: "You can schedule a consultation by calling our office directly or filling out the contact form on our website. We offer both in-person and virtual meetings to accommodate your schedule.",
+      },
+      {
+        q: "What should I bring to my first meeting?",
+        a: "Please bring any relevant documents, such as police reports, contracts, court notices, or correspondence. Having a written timeline of events can also help us maximize our time together.",
+      },
+      {
+        q: "Is the first consultation confidential?",
+        a: "Yes. Even if you choose not to retain our firm, the details of your case discussed during the initial consultation are protected by attorney-client privilege and remain strictly confidential.",
+      },
+    ],
+  },
+  {
+    id: "fees-billing",
+    heading: "Fees & Billing",
+    items: [
+      {
+        q: "How does the firm charge for legal services?",
+        a: "Depending on the type of case, we work on hourly rates, flat fees, or contingency bases (where you only pay if we win). We provide a detailed fee agreement before any work begins.",
+      },
+      {
+        q: "Are there any hidden costs I should know about?",
+        a: "We believe in full transparency. Beyond our legal fees, clients are responsible for \"out-of-pocket\" costs such as court filing fees, expert witness fees, or process server charges, all of which are itemized in your billing.",
+      },
+      {
+        q: "Do you offer payment plans?",
+        a: "We understand that legal needs can be unexpected. We offer flexible payment structures for certain cases to ensure you have access to the representation you need.",
+      },
+    ],
+  },
+  {
+    id: "case-process",
+    heading: "Case Process",
+    items: [
+      {
+        q: "How long will it take to resolve my legal matter?",
+        a: "Every case is unique. Simple filings may take weeks, while complex litigation can take months or even years. After reviewing your specifics, we will provide a realistic estimated timeline.",
+      },
+      {
+        q: "How often will I receive updates on my case?",
+        a: "We provide regular updates at every major milestone. You will also have a dedicated point of contact who is available to answer questions via email or phone within one business day.",
+      },
+      {
+        q: "Will I have to go to court?",
+        a: "Not necessarily. Many cases are settled through negotiation or mediation. However, if a fair agreement cannot be reached, we are fully prepared to advocate for you in a courtroom setting.",
+      },
+    ],
+  },
+  {
+    id: "general-legal-expertise",
+    heading: "General Legal Expertise",
+    items: [
+      {
+        q: "What specific areas of law do you specialize in?",
+        a: "Our firm focuses on several key practice areas, including personal injury, family law, and corporate law. This specialization allows us to provide deep expertise in these fields.",
+      },
+      {
+        q: "What happens if my case falls outside your expertise?",
+        a: "If your legal issue requires a specialist we don't have on staff, we will leverage our professional network to refer you to a trusted attorney who can best assist you.",
+      },
+      {
+        q: "How do I know if I actually have a valid legal case?",
+        a: "The law is complex. During our initial evaluation, we analyze the facts of your situation against current statutes and case law to give you a candid assessment of your case's merits.",
+      },
+    ],
+  },
+];
+---
+
+<MainLayout title="FAQ's - Civitas Law">
+  <Header />
+  <PageHero title="FAQ's" />
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-layout">
+
+        <!-- ── Sidebar ──────────────────────────────────── -->
+        <aside class="faq-sidebar">
+
+          <!-- Category nav -->
+          <div class="faq-nav-card">
+            <ul class="faq-nav">
+              {categories.map((cat) => (
+                <li>
+                  <a href={cat.href}>{cat.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- CTA card -->
+          <div class="faq-cta">
+            <div class="faq-cta__icon">
+              <Phone size={28} />
+            </div>
+            <h4>Call Us 24/7 For Help!</h4>
+            <a href="tel:+0123456789" class="faq-cta__phone">+01 23456789</a>
+            <a href="/contact/contact_1" class="faq-cta__btn btn-fill-hover">Get In Touch</a>
+          </div>
+
+        </aside>
+
+        <!-- ── Main content ─────────────────────────────── -->
+        <div class="faq-main">
+          {groups.map((group) => (
+            <div class="faq-group" id={group.id}>
+              <h2>{group.heading}</h2>
+              <div class="faq-accordion">
+                {group.items.map((item, i) => (
+                  <div class={`faq-item ${i === 0 ? "is-open" : ""}`}>
+                    <button class="faq-question" type="button">
+                      <span>{item.q}</span>
+                      <strong>{i === 0 ? "−" : "+"}</strong>
+                    </button>
+                    <div class="faq-answer">
+                      <div class="faq-answer-inner">
+                        <p>{item.a}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  /* ── Section ─────────────────────────────────────────── */
+  .faq-section {
+    padding: 80px 0;
+    background: #fff;
+  }
+
+  /* ── 2-column layout ─────────────────────────────────── */
+  .faq-layout {
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── Sidebar ─────────────────────────────────────────── */
+  .faq-sidebar {
+    position: sticky;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* ── Category nav card ───────────────────────────────── */
+  .faq-nav-card {
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 12%, white);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .faq-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-nav li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 18px;
+    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .faq-nav li:last-child a {
+    margin-bottom: 0;
+  }
+
+  .faq-nav li a::after {
+    content: "→";
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-nav li a:hover {
+    background: var(--gcid-primary-color, #ffc342);
+  }
+
+  .faq-nav li a:hover::after {
+    transform: translateX(5px);
+  }
+
+  /* ── CTA card ────────────────────────────────────────── */
+  .faq-cta {
+    background:
+      linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
+      url("https://civitas.divigurus.com/wp-content/uploads/2026/04/wood-tool-hammer-symbol-balance-business-839873-pxhere.com-1-scaled.jpg")
+      center / cover no-repeat;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .faq-cta__icon {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gcid-primary-color, #ffc342);
+    border: 5px solid #fff;
+    color: #101932;
+    margin-top: -54px;
+    margin-bottom: 6px;
+    animation: trin 1.5s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes trin {
+    from                          { transform: rotate3d(0,0,1,0deg); }
+    20%,32%,44%,56%,68%           { transform: rotate3d(0,0,1,0deg); }
+    23%,35%,47%,59%,71%           { transform: rotate3d(0,0,1,15deg); }
+    26%,38%,50%,62%,74%           { transform: rotate3d(0,0,1,0deg); }
+    29%,41%,53%,65%,77%           { transform: rotate3d(0,0,1,-15deg); }
+    80%                           { transform: rotate3d(0,0,1,0deg); }
+  }
+
+  .faq-cta h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .faq-cta__phone {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .faq-cta__phone:hover {
+    color: var(--gcid-primary-color, #ffc342);
+  }
+
+  .faq-cta__btn {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 22px;
+    background: var(--gcid-primary-color, #ffc342);
+    color: var(--gcid-heading-color, #101932);
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  /* ── FAQ groups ──────────────────────────────────────── */
+  .faq-main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .faq-group {
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 10%, white);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scroll-margin-top: 100px;
+  }
+
+  .faq-group h2 {
+    margin: 0;
+    font-size: clamp(1.4rem, 2vw, 1.9rem);
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+    line-height: 1.2;
+  }
+
+  /* ── Accordion ───────────────────────────────────────── */
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    border-radius: 10px;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 30%, white);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+    line-height: 1.3;
+    transition: background 0.3s;
+  }
+
+  .faq-question span {
+    flex: 1;
+  }
+
+  .faq-question strong {
+    flex-shrink: 0;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--gcid-heading-color, #101932);
+    min-width: 18px;
+    text-align: center;
+  }
+
+  .faq-item.is-open .faq-question,
+  .faq-item:not(.is-open) .faq-question:hover {
+    background: var(--gcid-primary-color, #ffc342);
+  }
+
+  /* ── Answer (CSS grid expand trick) ──────────────────── */
+  .faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+  }
+
+  .faq-item.is-open .faq-answer {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-answer-inner {
+    overflow: hidden;
+  }
+
+  .faq-answer-inner p {
+    margin: 0;
+    padding: 18px 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 980px) {
+    .faq-layout {
+      grid-template-columns: 270px 1fr;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .faq-section {
+      padding: 40px 0;
+    }
+    .faq-layout {
+      grid-template-columns: 1fr;
+    }
+    .faq-sidebar {
+      position: static;
+    }
+    .faq-cta {
+      margin-top: 24px;
+    }
+  }
+</style>
+
+<script>
+  const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+  faqItems.forEach((item) => {
+    item.querySelector(".faq-question")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      faqItems.forEach((other) => {
+        other.classList.remove("is-open");
+        const icon = other.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "+";
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        const icon = item.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "−";
+      }
+    });
+  });
+
+  /* Smooth scroll with offset for sticky nav */
+  document.querySelectorAll<HTMLAnchorElement>(".faq-nav a").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const targetId = link.getAttribute("href")?.slice(1);
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+</script>

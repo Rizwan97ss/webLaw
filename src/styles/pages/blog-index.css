@@ -1,0 +1,291 @@
+/* ============================================================
+   BLOG INDEX PAGE — src/pages/blog/index.astro
+   Shared sidebar styles live in: components/sidebar-widgets.css
+   Usage: @import "../components/sidebar-widgets.css";
+   ============================================================ */
+
+/* ── Section ─────────────────────────────────────────── */
+.blog-section {
+  padding: 80px 0;
+  background: #ffffff;
+}
+
+/* ── 2-column layout (blog-grid | sidebar) ──────────── */
+.blog-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── Blog card grid ──────────────────────────────────── */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+/* ── Blog card ───────────────────────────────────────── */
+.blog-card {
+  background: #fff8e8;
+  border: 1px solid rgba(255, 196, 66, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 20px rgba(255, 196, 66, 0.12);
+}
+
+.blog-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.blog-card__img-wrap a {
+  display: block;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.blog-card__img-wrap img {
+  width: 100%;
+  height: 280px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  transition: transform 0.6s ease;
+}
+
+.blog-card:hover .blog-card__img-wrap img {
+  transform: scale(1.08);
+}
+
+.blog-card__date {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-heading-color, #101932);
+  font-family: "Cabin", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.blog-card__body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.blog-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.blog-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gcid-body-color, #505658);
+  font-family: "Cabin", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.blog-card__meta-item svg {
+  color: var(--gcid-primary-color, #ffc342);
+  flex-shrink: 0;
+}
+
+.blog-card__title {
+  margin: 0;
+  color: var(--gcid-heading-color, #101932);
+  font-family: "Bitter", serif;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.blog-card__title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.blog-card__title a:hover {
+  color: var(--gcid-primary-color, #ffc342);
+}
+
+.blog-card__btn {
+  width: max-content;
+  margin-top: 6px;
+  padding: 12px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 999px;
+  background: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-heading-color, #101932);
+  font-family: "Cabin", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.blog-card__btn:hover {
+  transform: translateY(-2px);
+  background: var(--gcid-heading-color, #101932);
+  color: #ffffff;
+}
+
+.blog-card__btn span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ── Sidebar sticky ──────────────────────────────────── */
+.blog-sidebar {
+  align-self: stretch;
+}
+
+.blog-sidebar-inner {
+  position: sticky;
+  top: calc(var(--navbar-h, 80px) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Override shared title size for this page */
+.blog-section .sidebar-widget__title {
+  font-size: 24px;
+}
+
+/* ── Search widget (blog index only) ─────────────────── */
+.sidebar-search-widget {
+  padding: 18px;
+}
+
+.sidebar-search {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar-search input {
+  width: 100%;
+  height: 52px;
+  padding-inline: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 0;
+  border-radius: 10px 0 0 10px;
+  color: var(--gcid-heading-color, #101932);
+  font-family: "Cabin", sans-serif;
+  font-size: 15px;
+  outline: none;
+}
+
+.sidebar-search button {
+  width: 58px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 0 10px 10px 0;
+  background: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-heading-color, #101932);
+  cursor: pointer;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .blog-layout {
+    grid-template-columns: minmax(0, 1fr) 330px;
+    gap: 28px;
+  }
+
+  .blog-grid {
+    gap: 24px;
+  }
+
+  .blog-card__img-wrap img {
+    height: 240px;
+  }
+}
+
+@media (max-width: 980px) {
+  .blog-section {
+    padding: 60px 0;
+  }
+
+  .blog-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 767px) {
+  .blog-section {
+    padding: 40px 0;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .blog-card__img-wrap img {
+    height: 230px;
+  }
+
+  .blog-card__title {
+    font-size: 19px;
+  }
+
+  .blog-section .sidebar-widget__title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-card__img-wrap img {
+    height: 210px;
+  }
+
+  .blog-card__meta {
+    gap: 12px;
+  }
+
+  .sidebar-recent-list li {
+    grid-template-columns: 82px 1fr;
+  }
+
+  .sidebar-recent__img-wrap {
+    width: 82px;
+    height: 68px;
+  }
+}

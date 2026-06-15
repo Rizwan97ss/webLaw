@@ -1,0 +1,256 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+import FAQ from "../../components/home/FAQ.astro";
+import Clients from "../../components/home/Clients.astro";
+
+const testimonials = [
+  {
+    name: "Michael R",
+    role: "Personal Injury Client",
+    photo:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are true business partners.",
+  },
+  {
+    name: "Sarah L",
+    role: "Family Law Client",
+    photo:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are true business partners.",
+  },
+  {
+    name: "David K",
+    role: "Corporate Law Client",
+    photo:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/man-person-people-hair-white-boy-1046502-pxhere.com_.jpg",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are true business partners.",
+  },
+  {
+    name: "Michael R",
+    role: "Personal Injury Client",
+    photo:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are true business partners.",
+  },
+  {
+    name: "Sarah L",
+    role: "Family Law Client",
+    photo:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are true business partners.",
+  },
+  {
+    name: "David K",
+    role: "Corporate Law Client",
+    photo:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/man-person-people-hair-white-boy-1046502-pxhere.com_.jpg",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are true business partners.",
+  },
+];
+
+const rows = [
+  [testimonials[0], testimonials[1]],
+  [testimonials[2], testimonials[3]],
+  [testimonials[4], testimonials[5]],
+];
+---
+
+<MainLayout title="Testimonials Style 2 - Civitas Law">
+  <Header />
+  <PageHero title="Client Testimonials" />
+
+  <section class="ts2-section">
+    <div class="container">
+
+      <!-- ── Section header ──────────────────────────── -->
+      <div class="ts2-head">
+        <div class="contact-kicker">
+          <span>⚖</span>
+          <span>Testimonials</span>
+        </div>
+        <h2>What Our Client's Say</h2>
+      </div>
+
+      <!-- ── Testimonial grid ────────────────────────── -->
+      <div class="ts2-grid">
+        {rows.map((row) => (
+          <div class="ts2-row">
+            {row.map((t) => (
+              <div class="ts2-card">
+                <span class="ts2-quote">&ldquo;</span>
+                <div class="ts2-author">
+                  <img
+                    src={t.photo}
+                    alt={t.name}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="ts2-author-info">
+                    <h4>{t.name}</h4>
+                    <p>{t.role}</p>
+                  </div>
+                </div>
+                <p class="ts2-text">{t.quote}</p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+<FAQ/>
+<Clients/>
+  <Footer />
+</MainLayout>
+
+<style>
+  /* ── Section ─────────────────────────────────────────── */
+  .ts2-section {
+    padding: 80px 0;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 10%, white);
+  }
+
+  /* ── Header ──────────────────────────────────────────── */
+  .ts2-head {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 50px;
+  }
+
+  .ts2-head h2 {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+    line-height: 1.2;
+  }
+
+  /* ── Grid ────────────────────────────────────────────── */
+  .ts2-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .ts2-row {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  /* Alternating wide/narrow column sizes */
+  .ts2-row:nth-child(odd) .ts2-card:first-child  { flex: 3; }
+  .ts2-row:nth-child(odd) .ts2-card:last-child   { flex: 2; }
+  .ts2-row:nth-child(even) .ts2-card:first-child { flex: 2; }
+  .ts2-row:nth-child(even) .ts2-card:last-child  { flex: 3; }
+
+  /* ── Card ────────────────────────────────────────────── */
+  .ts2-card {
+    position: relative;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 20%, white);
+    border: 4px double color-mix(in srgb, var(--gcid-primary-color, #ffc342) 40%, white);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .ts2-card:hover {
+    border-color: var(--gcid-primary-color, #ffc342);
+    transform: translateY(-10px);
+  }
+
+  /* ── Quote icon ──────────────────────────────────────── */
+  .ts2-quote {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 40%, white);
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--gcid-heading-color, #101932);
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 900;
+    user-select: none;
+  }
+
+  /* ── Author ──────────────────────────────────────────── */
+  .ts2-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .ts2-author img {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .ts2-author-info h4 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+  }
+
+  .ts2-author-info p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  /* ── Quote text ──────────────────────────────────────── */
+  .ts2-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .ts2-row {
+      flex-direction: column;
+    }
+
+    .ts2-row:nth-child(odd) .ts2-card:first-child,
+    .ts2-row:nth-child(odd) .ts2-card:last-child,
+    .ts2-row:nth-child(even) .ts2-card:first-child,
+    .ts2-row:nth-child(even) .ts2-card:last-child {
+      flex: 1;
+    }
+
+    .ts2-author img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ts2-section {
+      padding: 40px 0;
+    }
+  }
+</style>
