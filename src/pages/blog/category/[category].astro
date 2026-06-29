@@ -1,111 +1,133 @@
 ---
 import { getCollection } from "astro:content";
-import MainLayout from "../../layouts/MainLayout.astro";
-import Header from "../../components/layout/Header.astro";
-import Footer from "../../components/layout/Footer.astro";
-import PageHero from "../../components/common/PageHero.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import Header from "../../../components/layout/Header.astro";
+import Footer from "../../../components/layout/Footer.astro";
+import PageHero from "../../../components/common/PageHero.astro";
 import { User, Tag, CalendarDays } from "lucide-astro";
-
-const allPosts = await getCollection("blog", ({ data }) => !data.draft);
-const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const categories = [...new Set(posts.map((p) => p.data.category))];
 
 const toSlug = (str: string) =>
   str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+
+export async function getStaticPaths() {
+  const toSlug = (str: string) =>
+    str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+
+  const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const categories = [...new Set(allPosts.map((p) => p.data.category))];
+
+  return categories.map((cat) => ({
+    params: { category: toSlug(cat) },
+    props: { categoryName: cat },
+  }));
+}
+
+const { categoryName } = Astro.props;
+const { category } = Astro.params;
+
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const allSorted = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const posts = allSorted.filter((p) => p.data.category === categoryName);
+const categories = [...new Set(allSorted.map((p) => p.data.category))];
 
 const fmt = (d: Date) =>
   d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 ---
 
-<MainLayout title="Blog - Civitas Law">
+<MainLayout title={`${categoryName} - Blog - Civitas Law`}>
   <Header />
-  <PageHero title="Our Blog" />
+  <PageHero title={categoryName} />
 
   <section class="blog-section">
     <div class="container">
       <div class="blog-layout">
+
+        <!-- Blog Grid -->
         <div class="blog-grid">
-          {posts.map((post) => (
-            <article class="blog-card">
-              <div class="blog-card__img-wrap">
-                <a href={`/blog/${post.id}`}>
-                  <img src={post.data.image} alt={post.data.title} loading="lazy" />
-                </a>
-
-                <span class="blog-card__date">{fmt(post.data.pubDate)}</span>
-              </div>
-
-              <div class="blog-card__body">
-                <div class="blog-card__meta">
-                  <span class="blog-card__meta-item">
-                    <User size={15} strokeWidth={2.5} />
-                    {post.data.author}
-                  </span>
-
-                  <span class="blog-card__meta-item">
-                    <Tag size={15} strokeWidth={2.5} />
-                    {post.data.category}
-                  </span>
+          {posts.length === 0 ? (
+            <p class="no-posts">No posts found in this category.</p>
+          ) : (
+            posts.map((post) => (
+              <article class="blog-card">
+                <div class="blog-card__img-wrap">
+                  <a href={`/blog/${post.id}`}>
+                    <img src={post.data.image} alt={post.data.title} loading="lazy" />
+                  </a>
+                  <span class="blog-card__date">{fmt(post.data.pubDate)}</span>
                 </div>
 
-                <h2 class="blog-card__title">
-                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
-                </h2>
+                <div class="blog-card__body">
+                  <div class="blog-card__meta">
+                    <span class="blog-card__meta-item">
+                      <User size={15} strokeWidth={2.5} />
+                      {post.data.author}
+                    </span>
+                    <span class="blog-card__meta-item">
+                      <Tag size={15} strokeWidth={2.5} />
+                      {post.data.category}
+                    </span>
+                  </div>
 
-                <a href={`/blog/${post.id}`} class="blog-card__btn">
-                  Read More
-                  <span>→</span>
-                </a>
-              </div>
-            </article>
-          ))}
+                  <h2 class="blog-card__title">
+                    <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                  </h2>
+
+                  <a href={`/blog/${post.id}`} class="blog-card__btn">
+                    Read More
+                    <span>→</span>
+                  </a>
+                </div>
+              </article>
+            ))
+          )}
         </div>
 
+        <!-- Sidebar -->
         <aside class="blog-sidebar">
           <div class="blog-sidebar-inner">
 
-          <div class="sidebar-widget">
-            <h3 class="sidebar-widget__title">Brows Categories</h3>
-
-            <ul class="sidebar-cat-list">
-              {categories.map((cat) => (
-                <li>
-                  <a href={`/blog/category/${toSlug(cat)}`}>
-                    <span class="cat-arrow">→</span>
-                    {cat}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div class="sidebar-widget">
-            <h3 class="sidebar-widget__title">Recent Post</h3>
-
-            <ul class="sidebar-recent-list">
-              {posts.map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}`} class="sidebar-recent__img-wrap">
-                    <img src={post.data.image} alt={post.data.title} loading="lazy" />
-                  </a>
-
-                  <div class="sidebar-recent__info">
-                    <a href={`/blog/${post.id}`} class="sidebar-recent__title">
-                      {post.data.title}
+            <!-- Browse Categories -->
+            <div class="sidebar-widget">
+              <h3 class="sidebar-widget__title">Browse Categories</h3>
+              <ul class="sidebar-cat-list">
+                {categories.map((cat) => (
+                  <li class={cat === categoryName ? "active" : ""}>
+                    <a href={`/blog/category/${toSlug(cat)}`}>
+                      <span class="cat-arrow">→</span>
+                      {cat}
                     </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-                    <span class="sidebar-recent__date">
-                      <CalendarDays size={13} strokeWidth={2} />
-                      {fmt(post.data.pubDate)}
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <!-- Recent Posts -->
+            <div class="sidebar-widget">
+              <h3 class="sidebar-widget__title">Recent Post</h3>
+              <ul class="sidebar-recent-list">
+                {allSorted.map((post) => (
+                  <li>
+                    <a href={`/blog/${post.id}`} class="sidebar-recent__img-wrap">
+                      <img src={post.data.image} alt={post.data.title} loading="lazy" />
+                    </a>
+                    <div class="sidebar-recent__info">
+                      <a href={`/blog/${post.id}`} class="sidebar-recent__title">
+                        {post.data.title}
+                      </a>
+                      <span class="sidebar-recent__date">
+                        <CalendarDays size={13} strokeWidth={2} />
+                        {fmt(post.data.pubDate)}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
           </div><!-- /blog-sidebar-inner -->
         </aside>
+
       </div>
     </div>
   </section>
@@ -117,7 +139,7 @@ const fmt = (d: Date) =>
   .blog-section {
     padding: 80px 0;
     background: #ffffff;
-    overflow: visible; /* components.css sets overflow:hidden on .blog-section for the home slider — override it here */
+    overflow: visible;
   }
 
   .blog-layout {
@@ -133,12 +155,19 @@ const fmt = (d: Date) =>
     gap: 32px;
   }
 
+  .no-posts {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 0;
+    color: var(--gcid-body-color, #505658);
+    font-size: 18px;
+  }
+
   .blog-card {
     background: #fff8e8;
     border: 1px solid rgba(255, 196, 66, 0.15);
     border-radius: 16px;
     overflow: hidden;
-
     transition:
       transform 0.35s ease,
       box-shadow 0.35s ease;
@@ -166,14 +195,10 @@ const fmt = (d: Date) =>
   .blog-card__img-wrap img {
     width: 100%;
     height: 280px;
-
     display: block;
-
     object-fit: cover;
     object-position: center;
-
     border-radius: 12px;
-
     transition: transform 0.6s ease;
   }
 
@@ -185,25 +210,19 @@ const fmt = (d: Date) =>
     position: absolute;
     top: 24px;
     right: 24px;
-
     padding: 10px 16px;
-
     border-radius: 8px;
-
     background: var(--gcid-primary-color, #ffc342);
     color: var(--gcid-heading-color, #101932);
-
     font-family: var(--font-cabin);
     font-size: 14px;
     font-weight: 700;
     line-height: 1;
-
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
 
   .blog-card__body {
     padding: 20px 22px 24px;
-
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -220,9 +239,7 @@ const fmt = (d: Date) =>
     display: flex;
     align-items: center;
     gap: 6px;
-
     color: var(--gcid-body-color, #505658);
-
     font-family: var(--font-cabin);
     font-size: 14px;
     font-weight: 500;
@@ -236,9 +253,7 @@ const fmt = (d: Date) =>
 
   .blog-card__title {
     margin: 0;
-
     color: var(--gcid-heading-color, #101932);
-
     font-family: var(--font-heading);
     font-size: 21px;
     font-weight: 600;
@@ -248,7 +263,6 @@ const fmt = (d: Date) =>
   .blog-card__title a {
     color: inherit;
     text-decoration: none;
-
     transition: color 0.3s ease;
   }
 
@@ -258,26 +272,19 @@ const fmt = (d: Date) =>
 
   .blog-card__btn {
     width: max-content;
-
     margin-top: 6px;
     padding: 12px 24px;
-
     display: inline-flex;
     align-items: center;
     gap: 10px;
-
     border-radius: 999px;
-
     background: var(--gcid-primary-color, #ffc342);
     color: var(--gcid-heading-color, #101932);
-
     font-family: var(--font-cabin);
     font-size: 14px;
     font-weight: 700;
     line-height: 1;
-
     text-decoration: none;
-
     transition:
       transform 0.3s ease,
       background-color 0.3s ease,
@@ -295,16 +302,14 @@ const fmt = (d: Date) =>
     line-height: 1;
   }
 
-  /* Stretch the sidebar to match the blog-grid height so sticky has room to travel */
+  /* Sidebar */
   .blog-sidebar {
     align-self: stretch;
   }
 
-  /* Inner wrapper = what actually sticks */
   .blog-sidebar-inner {
     position: sticky;
     top: calc(var(--navbar-h, 80px) + 24px);
-
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -315,59 +320,14 @@ const fmt = (d: Date) =>
     border: 1px solid rgba(255, 196, 66, 0.15);
     border-radius: 16px;
     overflow: hidden;
-
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
-  }
-
-  .sidebar-search-widget {
-    padding: 18px;
-  }
-
-  .sidebar-search {
-    display: flex;
-    width: 100%;
-  }
-
-  .sidebar-search input {
-    width: 100%;
-    height: 52px;
-
-    padding-inline: 16px;
-
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-right: 0;
-    border-radius: 10px 0 0 10px;
-
-    color: var(--gcid-heading-color, #101932);
-    font-family: var(--font-cabin);
-    font-size: 15px;
-
-    outline: none;
-  }
-
-  .sidebar-search button {
-    width: 58px;
-    height: 52px;
-
-    display: grid;
-    place-items: center;
-
-    border: 0;
-    border-radius: 0 10px 10px 0;
-
-    background: var(--gcid-primary-color, #ffc342);
-    color: var(--gcid-heading-color, #101932);
-
-    cursor: pointer;
   }
 
   .sidebar-widget__title {
     margin: 0;
     padding: 20px 24px;
-
     background: var(--gcid-primary-color, #ffc342);
     color: var(--gcid-heading-color, #101932);
-
     font-family: var(--font-heading);
     font-size: 24px;
     font-weight: 600;
@@ -377,13 +337,11 @@ const fmt = (d: Date) =>
   .sidebar-cat-list {
     margin: 0;
     padding: 12px 20px 16px;
-
     list-style: none;
   }
 
   .sidebar-cat-list li {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
     transition: background-color 0.3s ease;
   }
 
@@ -393,25 +351,21 @@ const fmt = (d: Date) =>
 
   .sidebar-cat-list li a {
     padding: 18px 0;
-
     display: flex;
     align-items: center;
     gap: 10px;
-
     color: var(--gcid-heading-color, #101932);
-
     font-family: var(--font-cabin);
     font-size: 16px;
     font-weight: 500;
-
     text-decoration: none;
-
     transition:
       color 0.3s ease,
       padding-left 0.3s ease;
   }
 
-  .sidebar-cat-list li:hover a {
+  .sidebar-cat-list li:hover a,
+  .sidebar-cat-list li.active a {
     padding-left: 8px;
     color: var(--gcid-primary-color, #ffc342);
   }
@@ -426,11 +380,9 @@ const fmt = (d: Date) =>
   .sidebar-recent-list {
     margin: 0;
     padding: 20px;
-
     display: flex;
     flex-direction: column;
     gap: 22px;
-
     list-style: none;
   }
 
@@ -444,22 +396,17 @@ const fmt = (d: Date) =>
   .sidebar-recent__img-wrap {
     width: 95px;
     height: 75px;
-
     display: block;
     overflow: hidden;
-
     border-radius: 10px;
   }
 
   .sidebar-recent__img-wrap img {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
     object-position: center;
-
     transition: transform 0.4s ease;
   }
 
@@ -469,7 +416,6 @@ const fmt = (d: Date) =>
 
   .sidebar-recent__info {
     min-width: 0;
-
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -477,20 +423,15 @@ const fmt = (d: Date) =>
 
   .sidebar-recent__title {
     color: var(--gcid-heading-color, #101932);
-
     display: -webkit-box;
     overflow: hidden;
-
     font-family: var(--font-heading);
     font-size: 15px;
     font-weight: 600;
     line-height: 1.35;
-
     text-decoration: none;
-
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-
     transition: color 0.3s ease;
   }
 
@@ -502,9 +443,7 @@ const fmt = (d: Date) =>
     display: flex;
     align-items: center;
     gap: 6px;
-
     color: var(--gcid-primary-color, #ffc342);
-
     font-family: var(--font-cabin);
     font-size: 13px;
     font-weight: 600;

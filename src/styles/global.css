@@ -6,6 +6,7 @@
 @import "./pages.css";
 @import "./cards.css";
 @import "./components.css";
+@import "./pages/attorney-profile.css";
 body {
   font-family: var(--font-body);
   color: var(--color-text);
@@ -14,14 +15,18 @@ body {
   margin: 0;
 }
 
-/* h1,
+h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   font-family: var(--font-heading);
-  color: var(--color-text);
-  line-height: 1.1;
-} */
+  font-weight: 600;
+}
+
+p {
+  font-family: var(--font-cabin);
+}
 
 /* .container {
   width: min(100% - 2rem, var(--container));

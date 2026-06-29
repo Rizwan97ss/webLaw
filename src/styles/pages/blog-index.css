@@ -172,7 +172,7 @@
 
 .blog-sidebar-inner {
   position: sticky;
-  top: calc(var(--navbar-h, 80px) + 24px);
+  top: 0px;
   display: flex;
   flex-direction: column;
   gap: 32px;

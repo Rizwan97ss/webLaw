@@ -25,6 +25,10 @@ const recentPosts = allPosts
 
 const categories = [...new Set(allPosts.map((p) => p.data.category))];
 
+// used in template for category href
+const toSlug = (str: string) =>
+  str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+
 const fmt = (d: Date) =>
   d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 ---
@@ -55,10 +59,10 @@ const fmt = (d: Date) =>
               <User size={14} strokeWidth={2.5} />
               {post.data.author}
             </span>
-            <span class="bd-meta__item">
+            <a href={`/blog/category/${toSlug(post.data.category)}`} class="bd-meta__item bd-meta__item--link">
               <Tag size={14} strokeWidth={2.5} />
               {post.data.category}
-            </span>
+            </a>
           </div>
 
           <!-- Title -->
@@ -80,8 +84,8 @@ const fmt = (d: Date) =>
               <h3 class="sidebar-widget__title">Browse Categories</h3>
               <ul class="sidebar-cat-list">
                 {categories.map((cat) => (
-                  <li>
-                    <a href="/blog">
+                  <li class={cat === post.data.category ? "active" : ""}>
+                    <a href={`/blog/category/${toSlug(cat)}`}>
                       <span class="cat-arrow">→</span>
                       {cat}
                     </a>
@@ -180,6 +184,15 @@ const fmt = (d: Date) =>
   .bd-meta__item :global(svg) {
     color: var(--gcid-primary-color, #ffc342);
     flex-shrink: 0;
+  }
+
+  .bd-meta__item--link {
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .bd-meta__item--link:hover {
+    color: var(--gcid-primary-color, #ffc342);
   }
 
   /* Title */
@@ -305,7 +318,7 @@ const fmt = (d: Date) =>
     padding: 20px 24px;
     background: var(--gcid-primary-color, #ffc342);
     color: var(--gcid-heading-color, #101932);
-    font-family: "Bitter", serif;
+    font-family: var(--font-heading);
     font-size: 22px;
     font-weight: 600;
     line-height: 1.2;
@@ -333,7 +346,7 @@ const fmt = (d: Date) =>
     align-items: center;
     gap: 10px;
     color: var(--gcid-heading-color, #101932);
-    font-family: "Cabin", sans-serif;
+    font-family: var(--font-cabin);
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
@@ -401,7 +414,7 @@ const fmt = (d: Date) =>
     color: var(--gcid-heading-color, #101932);
     display: -webkit-box;
     overflow: hidden;
-    font-family: "Bitter", serif;
+    font-family: var(--font-heading);
     font-size: 15px;
     font-weight: 600;
     line-height: 1.35;
@@ -420,7 +433,7 @@ const fmt = (d: Date) =>
     align-items: center;
     gap: 6px;
     color: var(--gcid-primary-color, #ffc342);
-    font-family: "Cabin", sans-serif;
+    font-family: var(--font-cabin);
     font-size: 13px;
     font-weight: 600;
     line-height: 1.2;

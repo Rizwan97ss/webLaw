@@ -11,36 +11,42 @@ import {
 const areas = [
   {
     number: "01",
+    slug: "corporate-and-business-law",
     title: "Corporate & Business Law",
     text: "Navigating the complexities of entity formation, contract negotiations, and regulatory compliance to protect your commercial interests.",
     icon: Building2,
   },
   {
     number: "02",
+    slug: "family-law-and-mediation",
     title: "Family Law & Mediation",
     text: "Providing compassionate yet firm representation for divorce, child custody, and asset division during life’s most difficult transitions.",
     icon: Handshake,
   },
   {
     number: "03",
+    slug: "personal-injury-litigation",
     title: "Personal Injury Litigation",
     text: "Fighting for the compensation you deserve following accidents, ensuring that insurance companies and negligent parties are held accountable.",
     icon: UserRoundCheck,
   },
   {
     number: "04",
+    slug: "estate-planning-and-probate",
     title: "Estate Planning & Probate",
     text: "Securing your legacy through meticulous drafting of wills, trusts, and comprehensive wealth preservation strategies.",
     icon: Home,
   },
   {
     number: "05",
+    slug: "criminal-defense",
     title: "Criminal Defense",
     text: "Protecting your constitutional rights and your freedom with an aggressive, detail-oriented defense against state and federal charges.",
     icon: UserCog,
   },
   {
     number: "06",
+    slug: "real-estate-law",
     title: "Real Estate Law",
     text: "Facilitating seamless transactions and resolving complex disputes for residential and commercial property owners and developers.",
     icon: Landmark,
@@ -77,7 +83,7 @@ const areas = [
               <h3>{area.title}</h3>
               <p>{area.text}</p>
 
-              <a href="/practice-areas" class="practice-btn">
+              <a href={`/practice-areas/${area.slug}`} class="practice-btn">
                 Read More <span>→</span>
               </a>
             </div>

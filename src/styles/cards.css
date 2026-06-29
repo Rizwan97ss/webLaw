@@ -36,8 +36,10 @@
   position: relative;
   overflow: hidden;
 
-  width: 139px;
+  /* width: 139px; */
   height: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-bottom: 18px;
 
   border-radius: 999px;

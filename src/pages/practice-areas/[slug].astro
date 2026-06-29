@@ -1,0 +1,371 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+
+export function getStaticPaths() {
+  const areas = [
+    {
+      slug: "corporate-and-business-law",
+      title: "Corporate & Business Law",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+      caseImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+      description: [
+        "In the landscape of modern commerce, Corporate & Business Law serves as the essential framework that allows enterprises to grow, innovate, and compete fairly.",
+        "We provide comprehensive support for mergers and acquisitions, contract negotiations, and intellectual property protection, acting as a dedicated shield for your most valuable assets.",
+      ],
+      casePoints: [
+        "Full service corporate commercial law",
+        "Team building and leadership counsel",
+        "24/7 availability across time zones",
+        "Reliable and innovative legal solutions",
+        "Multilingual content capabilities",
+        "Workflows, reporting & content organization",
+      ],
+      faqs: [
+        {
+          question: "How much will my legal representation cost?",
+          answer:
+            "Our fee structures are transparent and tailored to your specific case, ranging from hourly rates and flat fees to contingency-based arrangements where you only pay if we win.",
+        },
+        {
+          question: "How long will it take to resolve my case?",
+          answer:
+            "Timeline varies based on complexity and the court's schedule, but our priority is always to achieve a favorable resolution as efficiently as possible without sacrificing quality.",
+        },
+        {
+          question: "Will I work directly with an attorney?",
+          answer:
+            "Yes. You will have a dedicated lead attorney managing your strategy and providing direct communication throughout.",
+        },
+      ],
+    },
+    {
+      slug: "family-law-and-mediation",
+      title: "Family Law & Mediation",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+      caseImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+      description: [
+        "Family Law & Mediation addresses the most personal and sensitive legal matters — from divorce and child custody to adoption and domestic agreements. Our attorneys approach each case with empathy and precision.",
+        "We believe that resolving family disputes through skilled mediation, whenever possible, reduces emotional and financial strain. When litigation is necessary, we are formidable advocates in the courtroom.",
+      ],
+      casePoints: [
+        "Divorce and legal separation proceedings",
+        "Child custody and visitation agreements",
+        "Child and spousal support negotiations",
+        "Adoption and guardianship matters",
+        "Domestic violence protective orders",
+        "Prenuptial and postnuptial agreements",
+      ],
+      faqs: [
+        {
+          question: "What is the difference between mediation and litigation?",
+          answer:
+            "Mediation is a collaborative process where both parties work with a neutral mediator to reach a mutual agreement, often faster and less expensive than court. Litigation is a formal court process where a judge decides the outcome.",
+        },
+        {
+          question: "How is child custody determined?",
+          answer:
+            "Courts prioritize the best interests of the child, considering factors such as each parent's living situation, relationship with the child, and ability to provide stability. Our attorneys advocate strongly for your parental rights.",
+        },
+        {
+          question: "How long does a divorce take?",
+          answer:
+            "An uncontested divorce can be finalized in as little as a few months, while contested divorces involving property disputes or custody battles may take a year or more. We work to resolve matters as efficiently as possible.",
+        },
+      ],
+    },
+    {
+      slug: "personal-injury-litigation",
+      title: "Personal Injury Litigation",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+      caseImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+      description: [
+        "When you or a loved one suffers an injury due to someone else's negligence, you deserve aggressive legal representation to secure the compensation you need to recover. Our personal injury team has a proven track record of winning.",
+        "From vehicle accidents and slip-and-fall incidents to medical malpractice and product liability, we handle every case with meticulous preparation, ensuring insurance companies cannot undervalue your claim.",
+      ],
+      casePoints: [
+        "Motor vehicle and truck accident claims",
+        "Slip and fall and premises liability",
+        "Medical malpractice and negligence",
+        "Product liability and defective goods",
+        "Workplace injuries and OSHA violations",
+        "Wrongful death representation",
+      ],
+      faqs: [
+        {
+          question: "How much is my personal injury claim worth?",
+          answer:
+            "Compensation depends on medical expenses, lost wages, pain and suffering, and long-term impact. We conduct a thorough case evaluation to calculate the full extent of your damages before negotiating with any insurer.",
+        },
+        {
+          question: "What if I was partly at fault for my accident?",
+          answer:
+            "Under comparative negligence rules, you may still recover damages even if you were partly responsible. The amount may be reduced proportionally — our attorneys work to minimize your assigned fault percentage.",
+        },
+        {
+          question: "Do I need to go to court for a personal injury case?",
+          answer:
+            "Most personal injury cases settle out of court. However, we prepare every case as if it will go to trial, which positions us to negotiate from strength and, when needed, win in the courtroom.",
+        },
+      ],
+    },
+    {
+      slug: "estate-planning-and-probate",
+      title: "Estate Planning & Probate",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+      caseImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+      description: [
+        "Estate Planning & Probate ensures that your legacy is preserved and your loved ones are protected according to your exact wishes. A well-crafted estate plan removes ambiguity and prevents costly family disputes.",
+        "Our attorneys guide you through every stage — from drafting wills and establishing trusts to navigating the probate process and minimizing estate tax exposure — giving you confidence that your future is secure.",
+      ],
+      casePoints: [
+        "Will drafting and periodic updates",
+        "Revocable and irrevocable trust formation",
+        "Power of attorney and healthcare directives",
+        "Estate and gift tax minimization strategies",
+        "Probate court representation",
+        "Trust administration and asset distribution",
+      ],
+      faqs: [
+        {
+          question: "Do I need a will if I already have a trust?",
+          answer:
+            "Yes. A 'pour-over' will ensures that any assets not transferred to your trust during your lifetime are captured by it upon your death. Both documents work together for comprehensive coverage.",
+        },
+        {
+          question: "What happens if someone dies without a will?",
+          answer:
+            "Dying intestate means the state's default laws dictate who inherits your assets, which may not reflect your wishes. The probate process can become lengthy and expensive for your family without a proper estate plan.",
+        },
+        {
+          question: "How often should I update my estate plan?",
+          answer:
+            "We recommend reviewing your plan after any major life event — marriage, divorce, birth of a child, significant asset acquisition, or a change in tax laws. Typically, a review every 3–5 years is prudent.",
+        },
+      ],
+    },
+    {
+      slug: "criminal-defense",
+      title: "Criminal Defense",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+      caseImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+      description: [
+        "Facing criminal charges is one of the most stressful experiences a person can endure. Our criminal defense attorneys bring relentless preparation, courtroom experience, and an unwavering commitment to protecting your constitutional rights.",
+        "Whether you are facing misdemeanor charges or serious felony indictments at the state or federal level, we craft individualized defense strategies aimed at dismissal, acquittal, or the most favorable possible outcome.",
+      ],
+      casePoints: [
+        "DUI, DWI, and traffic-related offenses",
+        "Drug possession and trafficking charges",
+        "Assault, battery, and violent crimes",
+        "White-collar and financial crimes",
+        "Federal criminal defense",
+        "Expungements and record sealing",
+      ],
+      faqs: [
+        {
+          question: "Should I speak to the police before hiring an attorney?",
+          answer:
+            "No. You have the right to remain silent and the right to counsel. Any statement made before speaking with an attorney can be used against you. Contact us immediately — our attorneys are available 24/7 for emergencies.",
+        },
+        {
+          question:
+            "What is the difference between a misdemeanor and a felony?",
+          answer:
+            "Misdemeanors are less serious offenses typically punishable by fines or jail time under one year. Felonies carry heavier penalties, including state or federal prison sentences, and can affect your rights for life.",
+        },
+        {
+          question: "Can criminal charges be expunged from my record?",
+          answer:
+            "In many cases, yes — depending on the charge, disposition, and time elapsed. Our attorneys will evaluate your eligibility and guide you through the expungement or record-sealing process to clear your name.",
+        },
+      ],
+    },
+    {
+      slug: "real-estate-law",
+      title: "Real Estate Law",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+      caseImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+      description: [
+        "Real Estate Law encompasses every legal dimension of buying, selling, developing, and managing property. Whether you are a first-time homebuyer or a large commercial developer, transactions involve significant legal risk that demands expert guidance.",
+        "Our real estate attorneys provide end-to-end support — from title review and contract drafting to zoning disputes and landlord-tenant litigation — ensuring every transaction protects your investment and closes on time.",
+      ],
+      casePoints: [
+        "Residential and commercial purchase agreements",
+        "Title search, review, and title insurance",
+        "Lease drafting and landlord-tenant disputes",
+        "Zoning, land use, and permit issues",
+        "Foreclosure defense and short sales",
+        "Construction contracts and dispute resolution",
+      ],
+      faqs: [
+        {
+          question: "Do I need a real estate attorney for a home purchase?",
+          answer:
+            "While not always legally required, having an attorney review your purchase agreement and closing documents protects you from hidden liabilities, unclear title issues, and unfavorable contract terms that a real estate agent cannot advise on.",
+        },
+        {
+          question: "What is a title search and why does it matter?",
+          answer:
+            "A title search examines public records to confirm the seller's legal right to sell the property and identify any liens, encumbrances, or disputes. Unresolved title issues can cloud ownership and prevent financing.",
+        },
+        {
+          question: "How do you handle landlord-tenant disputes?",
+          answer:
+            "We represent both landlords and tenants in lease disputes, eviction proceedings, security deposit disagreements, and habitability claims. We aim for fast resolution through negotiation, and litigate assertively when necessary.",
+        },
+      ],
+    },
+  ];
+
+  return areas.map((area) => ({
+    params: { slug: area.slug },
+    props: {
+      area,
+      services: areas.map((a) => ({ label: a.title, slug: a.slug })),
+    },
+  }));
+}
+
+const { area, services } = Astro.props;
+---
+
+<MainLayout title={`${area.title} - Civitas Law`}>
+  <Header />
+  <PageHero title={area.title} />
+
+  <section class="practice-details">
+    <div class="container practice-details__grid">
+      <main class="practice-details__main">
+        <div class="shine-image practice-details__hero-image">
+          <img src={area.heroImage} alt={area.title} />
+        </div>
+
+        <div class="content-box">
+          <h2>{area.title}</h2>
+          {area.description.map((p) => <p>{p}</p>)}
+        </div>
+
+        <div class="case-row">
+          <div class="shine-image case-row__image">
+            <img src={area.caseImage} alt="Case overview" />
+          </div>
+
+          <div class="case-row__content">
+            <h3>Case To The Court</h3>
+            <ul>
+              {area.casePoints.map((point) => <li>{point}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2
+            style="margin: 0 0 20px; font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 700; color: var(--gcid-heading-color, #101932);"
+          >
+            Answers To Your Legal Questions
+          </h2>
+
+          <div class="faq-right">
+            {
+              area.faqs.map((faq, index) => (
+                <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
+                  <button class="faq-question" type="button">
+                    <span>{faq.question}</span>
+                    <strong>{index === 0 ? "−" : "+"}</strong>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>{faq.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </main>
+
+      <aside class="practice-sidebar">
+        <div class="sidebar-card">
+          <h3>What we provide ?</h3>
+          <ul class="service-list">
+            {
+              services.map((s) => (
+                <li class={s.slug === area.slug ? "active" : ""}>
+                  <a href={`/practice-areas/${s.slug}`}>{s.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Downloads</h3>
+          <a href="#" class="download-card">
+            <span>📄 Service Report</span>
+            <span>⬇</span>
+          </a>
+          <a href="#" class="download-card download-card--dark">
+            <span>📄 Service Report</span>
+            <span>⬇</span>
+          </a>
+        </div>
+
+        <div class="sidebar-cta">
+          <div class="sidebar-cta__icon">☎</div>
+          <h4>Call Us 24/7 For Help!</h4>
+          <a href="tel:+0123456789">+01 23456789</a>
+          <a href="/contact-style-1" class="sidebar-cta__button">
+            Get In Touch
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  .service-list li.active a {
+    background: var(--gcid-primary-color, #ffc64a);
+    color: #242424;
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+  faqItems.forEach((item) => {
+    item.querySelector(".faq-question")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      faqItems.forEach((other) => {
+        other.classList.remove("is-open");
+        const icon = other.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "+";
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        const icon = item.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "−";
+      }
+    });
+  });
+</script>
