@@ -154,11 +154,14 @@ const locations = [
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     gap: 50px;
-    align-items: start;
+    align-items: stretch;
   }
 
   /* ── Left column ─────────────────────────────────── */
   .c2-form-col {
+        background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+        padding: 20px;
+        border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -188,6 +191,9 @@ const locations = [
   .c2-info-col {
     display: flex;
     flex-direction: column;
+     background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1);
+        padding: 20px;
+        border-radius: 10px;
     gap: 24px;
   }
 
@@ -246,12 +252,13 @@ const locations = [
   }
 
   .c2-blurb {
+    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.2);
+    border: 1.5px solid #ffc64a66;
     display: flex;
     align-items: center;
     gap: 16px;
     padding: 16px 18px;
     border-radius: 10px;
-    background: color-mix(in srgb, #ffc342 10%, white);
   }
 
   .c2-blurb__icon {

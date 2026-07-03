@@ -12,7 +12,9 @@ body {
   color: var(--color-text);
   background: var(--color-white);
   -webkit-font-smoothing: antialiased;
-  margin: 0;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+      margin: 0;
 }
 
 h1,

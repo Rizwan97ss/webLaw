@@ -8,6 +8,8 @@ import react from '@astrojs/react';
 
 import vercel from '@astrojs/vercel';
 
+import netlify from '@astrojs/netlify';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
@@ -38,5 +40,5 @@ export default defineConfig({
       },
   ],
 
-  adapter: vercel(),
+  adapter: netlify(),
 });
