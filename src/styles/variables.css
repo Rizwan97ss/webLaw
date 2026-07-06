@@ -30,7 +30,7 @@
   --gcid-qdtr7s3apr:       #242424;
 
   /* ── Font Families ────────────────────────────────────── */
-  --font-heading: "Bitter", Georgia, serif;
+  --font-heading: "Bitter";
   --font-body:    'Cabin';
   --font-cabin:   "Cabin", Helvetica, Arial, Lucida, sans-serif;
   --font-arial:   Arial, Helvetica, sans-serif;
