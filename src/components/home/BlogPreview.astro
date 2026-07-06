@@ -1,6 +1,5 @@
 ---
-import { ChevronRight } from 'lucide-react';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Scale } from 'lucide-react';
 
 const posts = [
   {
@@ -46,11 +45,11 @@ const posts = [
 ];
 ---
 
-<section class="blog-section">
+<section class="home-blog-section">
   <div class="container">
     <div class="blog-head">
       <div>
-        <p class="blog-kicker">⚖ News & Blog</p>
+        <p class="blog-kicker"><Scale size={16} className="kicker-icon" /> News & Blog</p>
         <h2>Latest News & Update</h2>
       </div>
  <a href="/blog" class="practice-view-btn btn-fill-hover">

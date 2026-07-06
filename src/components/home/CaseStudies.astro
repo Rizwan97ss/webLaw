@@ -1,4 +1,5 @@
 ---
+import { Scale } from "lucide-react";
 const cases = [
   {
     slug: "the-2-4m-settlement",
@@ -34,12 +35,12 @@ const cases = [
 <section class="case-section">
   <div class="container">
     <div class="case-heading">
-      <p class="case-kicker">⚖ Case Study</p>
+      <p class="case-kicker"><Scale size={16} className="kicker-icon" /> Case Study</p>
       <h2>Our Success Stories</h2>
     </div>
 
     <div class="case-grid">
-      {cases.map((item) => (
+      {cases.map((item, i) => (
         <article class="case-card">
           <div class="case-card__inner">
             <img src={item.image} alt={item.title} />

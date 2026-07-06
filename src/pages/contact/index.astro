@@ -1,0 +1,153 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+// import ContactCTA from "../../components/home/ContactCTA.astro";
+import { Phone, Mail, Clock, MapPin, Gavel } from "lucide-astro";
+
+const services = [
+  "Corporate & Business Law",
+  "Family Law & Mediation",
+  "Personal Injury Litigation",
+  "Estate Planning & Probate",
+  "Criminal Defense",
+  "Real Estate Law",
+];
+---
+
+<MainLayout title="Contact Us - Civitas Law">
+  <Header />
+  <PageHero title="Schedule Your Consultation" />
+
+  <section class="contact-page">
+    <div class="container">
+      <div class="contact-card">
+        <div class="contact-info">
+          <div class="contact-kicker">
+            <Gavel size={16} />
+            <span>Have Any Question?</span>
+          </div>
+
+          <h2>Contact Us For More <br> Information</h2>
+
+          <div class="contact-list">
+            <a href="tel:+0123456789" class="contact-item">
+              <span><Phone size={20} /></span>
+              <p>+01 23456789</p>
+            </a>
+
+            <a href="mailto:contact@example.com" class="contact-item">
+              <span><Mail size={20} /></span>
+              <p>contact@example.com</p>
+            </a>
+
+            <div class="contact-item">
+              <span><Clock size={20} /></span>
+              <p>Open Hours: Mon-Sat: 9am - 6pm</p>
+            </div>
+
+            <div class="contact-item">
+              <span><MapPin size={20} /></span>
+              <p>9976 Reynalda Ways, UK</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="c1-form" novalidate>
+          <div class="form-row">
+            <div class="field-wrap">
+              <input type="text" name="name" placeholder="Name" />
+              <span class="field-error"></span>
+            </div>
+            <div class="field-wrap">
+              <input type="tel" name="phone" placeholder="Phone Number" />
+              <span class="field-error"></span>
+            </div>
+          </div>
+
+          <div class="field-wrap">
+            <input type="email" name="email" placeholder="Email Address" />
+            <span class="field-error"></span>
+          </div>
+
+          <div class="field-wrap">
+            <select name="service">
+              <option value="">Select Service</option>
+              {services.map((service) => (
+                <option value={service}>{service}</option>
+              ))}
+            </select>
+            <span class="field-error"></span>
+          </div>
+
+          <div class="field-wrap">
+            <textarea name="message" placeholder="Your Message"></textarea>
+            <span class="field-error"></span>
+          </div>
+
+          <div class="form-action">
+            <button type="submit" class="btn-fill-hover">
+              Book Appointment <span>→</span>
+            </button>
+          </div>
+          <p class="form-success" style="display:none;color:#22c55e;font-weight:600;">
+            Thank you! We'll be in touch shortly.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="container contact-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d37912432.365362324!2d-4.473772!3d54.55128!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x25a3b1142c791a9%3A0xc4f8a0433288257a!2sUnited%20Kingdom!5e0!3m2!1sen!2sbd!4v1774210451357!5m2!1sen!2sbd"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+  <!-- <ContactCTA /> -->
+  <Footer />
+</MainLayout>
+
+<script>
+  const form = document.getElementById("c1-form") as HTMLFormElement | null;
+  if (form) {
+    function showErr(el: HTMLElement, msg: string) {
+      el.classList.add("invalid");
+      const span = el.nextElementSibling as HTMLElement;
+      if (span) span.textContent = msg;
+    }
+    function clearErr(el: HTMLElement) {
+      el.classList.remove("invalid");
+      const span = el.nextElementSibling as HTMLElement;
+      if (span) span.textContent = "";
+    }
+    form.querySelectorAll("input,select,textarea").forEach((el) => {
+      el.addEventListener("input", () => clearErr(el as HTMLElement));
+      el.addEventListener("change", () => clearErr(el as HTMLElement));
+    });
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let ok = true;
+      const name = form.querySelector<HTMLInputElement>('[name="name"]')!;
+      const phone = form.querySelector<HTMLInputElement>('[name="phone"]')!;
+      const email = form.querySelector<HTMLInputElement>('[name="email"]')!;
+      const service = form.querySelector<HTMLSelectElement>('[name="service"]')!;
+      const message = form.querySelector<HTMLTextAreaElement>('[name="message"]')!;
+
+      if (name.value.trim().length < 2) { showErr(name, "Name must be at least 2 characters."); ok = false; }
+      if (!/^[\d\s\-\+\(\)]{7,}$/.test(phone.value.trim())) { showErr(phone, "Enter a valid phone number (digits, min 7)."); ok = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showErr(email, "Enter a valid email address."); ok = false; }
+      if (!service.value) { showErr(service, "Please select a service."); ok = false; }
+      if (message.value.trim().length < 10) { showErr(message, "Message must be at least 10 characters."); ok = false; }
+
+      if (ok) {
+        const success = form.querySelector<HTMLElement>(".form-success")!;
+        form.reset();
+        success.style.display = "block";
+        setTimeout(() => { success.style.display = "none"; }, 5000);
+      }
+    });
+  }
+</script>

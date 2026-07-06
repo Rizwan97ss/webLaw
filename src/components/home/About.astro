@@ -1,4 +1,5 @@
 ---
+import { Scale } from "lucide-react";
 const isHomePage = Astro.url.pathname === "/";
 ---
 <section class="about-section">
@@ -21,7 +22,7 @@ const isHomePage = Astro.url.pathname === "/";
       </div>
 
       <div class="about-content" data-reveal="right">
-        <p class="about-kicker">⚖ About Civitas</p>
+        <p class="about-kicker"><Scale size={16} className="kicker-icon" /> About Civitas</p>
 
         <h2>
           Committed to Excellence in

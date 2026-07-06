@@ -6,6 +6,7 @@ import {
   Home,
   UserCog,
   Landmark,
+  Scale,
 } from "lucide-react";
 const isHomePage = Astro.url.pathname === "/";
 const areas = [
@@ -58,7 +59,7 @@ const areas = [
   <div class="container">
     <div class="practice-head">
       <div>
-        <p class="section-kicker">What We Do</p>
+        <p class="section-kicker"><Scale size={16} className="kicker-icon" /> What We Do</p>
         <h2>Practice Areas</h2>
       </div>
 
@@ -72,11 +73,11 @@ const areas = [
     </div>
 
     <div class="practice-grid">
-      {areas.map((area) => {
+      {areas.map((area, i) => {
         const Icon = area.icon;
 
         return (
-          <article class="practice-card">
+          <article class="practice-card" data-reveal style={`--reveal-delay: ${i * 80}ms`}>
           <div class="practice-number">  <h2>{area.number}</h2> </div>
 
             <div class="practice-icon">

@@ -82,6 +82,26 @@
   --gutter:           clamp(24px, 8vw, 154px);
   --horizontal-gap-parent: 3%;
 
+  /* ── Spacing Scale ────────────────────────────────────── */
+  --sp-2:  0.5rem;    /* 8px  */
+  --sp-3:  0.75rem;   /* 12px */
+  --sp-4:  1rem;      /* 16px */
+  --sp-5:  1.25rem;   /* 20px */
+  --sp-6:  1.5rem;    /* 24px */
+  --sp-7:  1.75rem;   /* 28px */
+  --sp-8:  2rem;      /* 32px */
+  --sp-9:  2.25rem;   /* 36px */
+  --sp-10: 2.5rem;    /* 40px */
+  --sp-12: 3rem;      /* 48px */
+  --sp-14: 3.5rem;    /* 56px */
+  --sp-16: 4rem;      /* 64px */
+
+  /* ── Component Layout ─────────────────────────────────── */
+  --pad-card:    var(--sp-5);    /* 20px - standard card inner padding */
+  --gap-grid:    var(--sp-7);    /* 28px - standard grid / flex gap    */
+  --gap-section: var(--sp-12);   /* 48px - wide layout gap             */
+  --mb-kicker:   1.125rem;       /* 18px - margin below kicker labels  */
+
   /* ── Border Radius ────────────────────────────────────── */
   --radius-sm:      10px;              /* standard card / input */
   --radius-md:      18px;

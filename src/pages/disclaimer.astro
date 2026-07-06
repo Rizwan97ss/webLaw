@@ -1,0 +1,70 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import PageHero from "../components/common/PageHero.astro";
+
+const sections = [
+  {
+    heading: "Disclaimer 1",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+  },
+  {
+    heading: "Disclaimer 2",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+  },
+  {
+    heading: "Disclaimer 3",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+  },
+  {
+    heading: "Disclaimer 4",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec rutrum velit. Morbi mattis tellus ante. Fusce auctor, purus in semper lacinia, urna velit ullamcorper ipsum, sit amet efficitur purus orci id urna. Duis lobortis ornare urna, id volutpat mi mollis molestie. Nam sapien dolor, tincidunt eleifend posuere eget, commodo vehicula neque. Donec turpis urna, fringilla id viverra eget, sodales ac nisl. Aliquam eu libero commodo enim ullamcorper ornare ut ac arcu. Suspendisse vulputate auctor quam in sagittis. Etiam eu sem eget risus elementum convallis eleifend vitae ante. Aenean hendrerit sodales diam vitae faucibus. Vivamus elementum ac ligula at semper.",
+    ],
+    list: [
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+      "Lorem Ipsum is simply dummy text.",
+    ],
+  },
+];
+---
+
+<MainLayout title="Disclaimer - Civitas Law">
+  <Header />
+  <PageHero title="Disclaimer" />
+
+  <section class="policy-section">
+    <div class="container">
+      <div class="policy-stack">
+        {sections.map((s) => (
+          <div class="policy-block">
+            <h2>{s.heading}</h2>
+            {s.paragraphs.map((p) => (
+              <p>{p}</p>
+            ))}
+            {s.list && (
+              <ul class="policy-list">
+                {s.list.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</MainLayout>

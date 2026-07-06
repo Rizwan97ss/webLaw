@@ -1,5 +1,5 @@
 ---
-import { CalendarDays, TrendingUp, Handshake } from "lucide-react";
+import { CalendarDays, TrendingUp, Handshake, Scale } from "lucide-react";
 
 const steps = [
   {
@@ -26,12 +26,12 @@ const steps = [
 <section class="process-section">
   <div class="container">
     <div class="process-heading">
-      <p class="process-kicker">⚖ How It Works</p>
+      <p class="process-kicker"><Scale size={16} className="kicker-icon" /> How It Works</p>
       <h2>Schedule A Free Consultation</h2>
     </div>
 
     <div class="process-steps">
-      {steps.map((step) => {
+      {steps.map((step, i) => {
         const Icon = step.icon;
 
         return (

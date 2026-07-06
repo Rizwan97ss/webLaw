@@ -1,6 +1,5 @@
 ---
-import { ChevronRight } from "lucide-react";
-import { ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft, Scale } from "lucide-react";
 
 const isHomePage =
   Astro.url.pathname === "/" ||
@@ -67,7 +66,7 @@ const testimonials = [
   <div class="container">
     <div class="testimonial-head">
       <div>
-        <p class="testimonial-kicker">⚖ Testimonials</p>
+        <p class="testimonial-kicker"><Scale size={16} className="kicker-icon" /> Testimonials</p>
         <h2>What Our Client's Say</h2>
       </div>
 
@@ -86,7 +85,7 @@ const testimonials = [
     {
       isHomePage ? (
         <>
-          <div class="testimonial-slider">
+          <div class="testimonial-slider" data-reveal>
             <div class="testimonial-track">
               {testimonials.map((item) => (
                 <article class="testimonial-card">

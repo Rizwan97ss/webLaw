@@ -34,11 +34,11 @@ const stats = [
   <div class="container">
     <div class="stats-grid">
       {
-        stats.map((item) => {
+        stats.map((item, i) => {
           const Icon = item.icon;
 
           return (
-            <article class="stat-card">
+            <article class="stat-card" data-reveal style={`--reveal-delay: ${i * 110}ms`}>
               <div class="stat-icon">
                 <Icon size={38} strokeWidth={2.3} />
               </div>

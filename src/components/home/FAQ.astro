@@ -1,4 +1,5 @@
 ---
+import { Scale } from "lucide-react";
 const faqs = [
   {
     question: "How much will my legal representation cost?",
@@ -30,8 +31,8 @@ const faqs = [
 
 <section class="faq-section">
   <div class="container faq-layout">
-    <div class="faq-left">
-      <p class="faq-kicker">⚖ FAQ's</p>
+    <div class="faq-left" data-reveal="left">
+      <p class="faq-kicker"><Scale size={16} className="kicker-icon" /> FAQ's</p>
 
       <h2>Frequently Asked Questions</h2>
 
@@ -48,7 +49,7 @@ const faqs = [
     
     </div>
 
-    <div class="faq-right">
+    <div class="faq-right" data-reveal="right">
       {faqs.map((faq, index) => (
         <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
           <button class="faq-question" type="button">
