@@ -1,13 +1,15 @@
 ---
-import { ChevronRight } from 'lucide-react';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronRight } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 
-
+const isHomePage =
+  Astro.url.pathname === "/" ||
+  Astro.url.pathname === "/case-study";
 const testimonials = [
   {
     logo: "BRAND LOGO",
     quote:
-      "During the most difficult time of my life, their team provided both empathy and a brilliant legal defense. I couldn’t have asked.",
+      "During the most difficult time of my life, their team provided both empathy and a brilliant legal defense. I couldn't have asked.",
     name: "Sarah L",
     role: "Family Law Client",
     image:
@@ -49,6 +51,15 @@ const testimonials = [
     image:
       "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
   },
+  {
+    logo: "BRAND LOGO",
+    quote:
+      "Their communication was consistent and honest. I always knew exactly.",
+    name: "Robert M",
+    role: "Real Estate Client",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+  },
 ];
 ---
 
@@ -60,52 +71,188 @@ const testimonials = [
         <h2>What Our Client's Say</h2>
       </div>
 
-      <a class="practice-view-btn btn-fill-hover">
-        View More <span>→</span>
-      </a>
+      {
+        isHomePage && (
+          <a
+            href="/testimonials/testimonial_1"
+            class="practice-view-btn btn-fill-hover"
+          >
+            View More <span>→</span>
+          </a>
+        )
+      }
     </div>
 
-    <div class="testimonial-slider">
-      <div class="testimonial-track">
-        {
-          testimonials.map((item) => (
-            <article class="testimonial-card">
-              <div class="testimonial-card__inner">
-                <div class="testimonial-box">
-                  <div class="testimonial-top">
-                    <strong>{item.logo}</strong>
-                    <span>★★★★★</span>
+    {
+      isHomePage ? (
+        <>
+          <div class="testimonial-slider">
+            <div class="testimonial-track">
+              {testimonials.map((item) => (
+                <article class="testimonial-card">
+                  <div class="testimonial-card__inner">
+                    <div class="testimonial-box">
+                      <div class="testimonial-top">
+                        <strong>{item.logo}</strong>
+                        <span>★★★★★</span>
+                      </div>
+
+                      <div class="testimonial-line" />
+
+                      <p>{item.quote}</p>
+                    </div>
+
+                    <div class="testimonial-author">
+                      <img src={item.image} alt={item.name} />
+
+                      <div>
+                        <h3>{item.name}</h3>
+                        <span>{item.role}</span>
+                      </div>
+                    </div>
                   </div>
+                </article>
+              ))}
+            </div>
+          </div>
 
-                  <div class="testimonial-line" />
-
-                  <p>{item.quote}</p>
-                </div>
-
-                <div class="testimonial-author">
-                  <img src={item.image} alt={item.name} />
-
-                  <div>
-                    <h3>{item.name}</h3>
-                    <span>{item.role}</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-
+           {
+  isHomePage ? (
     <div class="testimonial-arrows">
-      <button class="testimonial-arrow testimonial-prev" type="button"><ChevronLeft/></button
-      >
-      <button class="testimonial-arrow testimonial-next" type="button"><ChevronRight /></button
-      >
+      <button class="testimonial-arrow testimonial-prev" type="button">
+        <ChevronLeft />
+      </button>
+
+      <button class="testimonial-arrow testimonial-next" type="button">
+        <ChevronRight />
+      </button>
     </div>
+  ) : null
+}
+        </>
+      ) : (
+    <div class="testimonial-grid-page">
+      {testimonials.slice(0, 6).map((item) => (
+        <article class="testimonial-card-page">
+          <div class="testimonial-box">
+            <div class="testimonial-top">
+              <strong>{item.logo}</strong>
+              <span>★★★★★</span>
+            </div>
+
+            <div class="testimonial-line"></div>
+
+            <p>{item.quote}</p>
+          </div>
+
+          <div class="testimonial-author">
+            <img src={item.image} alt={item.name} />
+
+            <div>
+              <h3>{item.name}</h3>
+              <span>{item.role}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  )
+}
+
+
   </div>
 </section>
+<style>
+ .testimonial-grid-page {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
 
+.testimonial-card-page {
+  min-width: 0;
+  background: #ffe7a6;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.testimonial-card-page .testimonial-box {
+  background: #fffaf0;
+  border-radius: 10px;
+  padding: 28px 24px;
+}
+
+.testimonial-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.testimonial-top strong {
+  font-family: "Comic Sans MS", cursive;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.testimonial-top span {
+  color: #ffc342;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.testimonial-line {
+  width: 64px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.15);
+  margin: 22px 0;
+}
+
+.testimonial-box p {
+  margin: 0;
+  color: #505658;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.testimonial-author img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonial-author h3 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.testimonial-author span {
+  color: #505658;
+  font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .testimonial-grid-page {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonial-grid-page {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 <script>
   const track = document.querySelector(".testimonial-track");
   const cards = document.querySelectorAll(".testimonial-card");

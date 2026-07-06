@@ -6,15 +6,21 @@ import PageHero from "../components/common/PageHero.astro";
 import About from "../components/home/About.astro";
 import Stats from "../components/home/Stats.astro";
 import WhyChooseUs from "../components/home/WhyChooseUs.astro";
-import Process from "../components/home/Process.astro";
+import Team from "../components/home/Team.astro";
+import CTABanner from "../components/home/CTABanner.astro";
+import OurApproach from "../components/home/OurApproach.astro";
+import Clients from "../components/home/Clients.astro";
 ---
 
 <MainLayout title="About Us - Civitas Law">
   <Header />
   <PageHero title="About Us" />
   <About />
+    <OurApproach />
   <Stats />
-  <WhyChooseUs />
-  <Process />
+  <!-- <WhyChooseUs /> -->
+  <Team />
+  <CTABanner />
+  <Clients />
   <Footer />
 </MainLayout>

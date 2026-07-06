@@ -1,0 +1,566 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import PageHero from "../../components/common/PageHero.astro";
+import { FileText, Calendar, User, Clock, Phone } from "lucide-astro";
+
+export function getStaticPaths() {
+  const cases = [
+    {
+      slug: "the-2-4m-settlement",
+      title: "The $2.4M Settlement",
+      category: "Personal Injury",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/lawyer-eyewear-clothing-glasses-head-vision-care-1701078-pxhere.com-1.jpg",
+      galleryImages: [
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-pencil-pen-red-paper-lip-1363790-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-table-book-light-wood-vintage-959354-pxhere.com-1-scaled.jpg",
+      ],
+      caseInfo: [
+        { label: "Case Name",     value: "The $2.4M Settlement" },
+        { label: "Start Date",    value: "04 Feb, 2025" },
+        { label: "Client Name",   value: "Daniel Carter" },
+        { label: "Case Duration", value: "8 Months" },
+      ],
+      summary: [
+        "Our firm represented Daniel Carter, a construction worker who sustained life-altering injuries following a multi-vehicle accident caused by a commercial truck driver operating beyond federally mandated hours.",
+        "Through rigorous expert testimony, accident reconstruction, and relentless negotiation, we secured a $2.4 million settlement — one of the largest personal injury awards in the region that year.",
+      ],
+      strategy: [
+        "We built the case from the ground up, starting with an immediate scene investigation and black-box data retrieval. A team of medical and economic experts quantified the long-term impact of the injuries.",
+        "Our approach centered on proving gross negligence, not just ordinary negligence, which unlocked additional punitive damages and significantly strengthened our negotiating position.",
+      ],
+      strategyPoints: [
+        "Immediate post-accident investigation and evidence preservation",
+        "Expert medical testimony on long-term disability impact",
+        "Federal Hours-of-Service violation documentation",
+      ],
+      outcome:
+        "The defendant's insurer initially offered $180,000. After 8 months of litigation preparation and two days of mediation, we achieved the full $2.4M settlement — covering medical costs, lost future earnings, and pain and suffering.",
+      achievements: [
+        { title: "Financial Impact", desc: "$2.4M secured — 13× the initial offer." },
+        { title: "Client Peace of Mind", desc: "Lifetime medical coverage funded through structured settlement." },
+      ],
+      faqs: [
+        {
+          question: "How much will my legal representation cost?",
+          answer:
+            "Personal injury cases are handled on a contingency basis — you pay nothing unless we win. Our fee is a percentage of the final recovery, so we are fully motivated to maximize your outcome.",
+        },
+        {
+          question: "How long will it take to resolve my case?",
+          answer:
+            "Most cases resolve within 6–18 months. Complex cases involving severe injuries, disputed liability, or large insurers typically take longer, but we prepare from day one as if the case will go to trial.",
+        },
+        {
+          question: "Will I work directly with an attorney?",
+          answer:
+            "Yes. You will have a dedicated lead attorney managing your strategy and providing direct communication throughout — not a case manager or paralegal.",
+        },
+      ],
+    },
+    {
+      slug: "corporate-merger-victory",
+      title: "Corporate Merger Victory",
+      category: "Business Law",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg",
+      galleryImages: [
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-pencil-pen-red-paper-lip-1363790-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-table-book-light-wood-vintage-959354-pxhere.com-1-scaled.jpg",
+      ],
+      caseInfo: [
+        { label: "Case Name",     value: "Corporate Merger Victory" },
+        { label: "Start Date",    value: "12 Jan, 2025" },
+        { label: "Client Name",   value: "Nexora Technologies" },
+        { label: "Case Duration", value: "5 Months" },
+      ],
+      summary: [
+        "Nexora Technologies, a fast-growing SaaS firm, engaged our corporate practice group to defend against a hostile acquisition attempt by a larger competitor that sought to leverage a disputed IP licensing agreement.",
+        "Our team successfully challenged the competitor's legal standing, voided the contested license clause, and guided Nexora through a clean merger with a strategic partner of their choosing — at a 34% valuation premium.",
+      ],
+      strategy: [
+        "We conducted an immediate IP audit and identified that the original license agreement contained an improperly witnessed clause, rendering its assignability provisions unenforceable under state law.",
+        "Simultaneously, we initiated injunctive proceedings to pause the hostile acquisition timeline, buying the client critical negotiating runway to engage with preferred acquisition partners.",
+      ],
+      strategyPoints: [
+        "IP licensing agreement audit and enforceability challenge",
+        "Emergency injunctive relief to halt hostile timeline",
+        "Facilitated parallel M&A process with strategic partner",
+      ],
+      outcome:
+        "The hostile acquisition attempt was abandoned within 90 days of our engagement. Nexora subsequently closed a voluntary merger at a $148M valuation — 34% above the hostile offer — with full founder continuity terms intact.",
+      achievements: [
+        { title: "Valuation Impact", desc: "34% premium over hostile offer — $38M in additional client value." },
+        { title: "Founder Protection", desc: "Retained leadership team and secured 3-year employment protections." },
+      ],
+      faqs: [
+        {
+          question: "What constitutes a hostile takeover attempt?",
+          answer:
+            "A hostile acquisition occurs when a buyer pursues ownership of a company without board approval, typically by going directly to shareholders or exploiting contractual vulnerabilities. Early legal intervention is critical.",
+        },
+        {
+          question: "How quickly can you respond to an urgent corporate threat?",
+          answer:
+            "Our corporate team maintains 24/7 availability for urgent matters. We can have an injunction drafted and filed within 24 hours of engagement when time-sensitive legal action is required.",
+        },
+        {
+          question: "Do you handle post-merger integration disputes?",
+          answer:
+            "Yes. We advise on integration agreements, earn-out disputes, representations and warranties claims, and all post-closing matters that arise after a transaction closes.",
+        },
+      ],
+    },
+    {
+      slug: "asset-protection-success",
+      title: "Asset Protection Success",
+      category: "Family Law",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/red-hammer-product-justice-books-court-477132-pxhere.com-1-scaled.jpg",
+      galleryImages: [
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-pencil-pen-red-paper-lip-1363790-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-table-book-light-wood-vintage-959354-pxhere.com-1-scaled.jpg",
+      ],
+      caseInfo: [
+        { label: "Case Name",     value: "Asset Protection Success" },
+        { label: "Start Date",    value: "22 Mar, 2025" },
+        { label: "Client Name",   value: "Margaret S." },
+        { label: "Case Duration", value: "11 Months" },
+      ],
+      summary: [
+        "Margaret S. came to us mid-divorce facing an aggressive claim against her separately-held family business worth over $3.2 million, which her spouse argued was marital property subject to equal division.",
+        "Through meticulous financial forensics and a strong legal argument tracing the business's separate-property lineage, we protected the entire business from division — a decisive victory that preserved our client's livelihood.",
+      ],
+      strategy: [
+        "We retained a forensic accountant to reconstruct the business's financial history going back 14 years, establishing a clear chain of separate property contributions. This directly rebutted the commingling argument the opposing party relied upon.",
+        "Our legal team filed a declaratory motion early in the proceedings, placing the burden of proof on the opposing party to demonstrate marital contribution — a tactical shift that dramatically altered the litigation's trajectory.",
+      ],
+      strategyPoints: [
+        "14-year financial forensic reconstruction of business assets",
+        "Declaratory motion shifting burden of proof",
+        "Expert testimony from certified business valuation specialist",
+      ],
+      outcome:
+        "After 11 months of proceedings, the court ruled the business entirely separate property. Margaret retained 100% ownership. A fair and equitable division of genuinely marital assets was agreed upon through mediation.",
+      achievements: [
+        { title: "Assets Protected", desc: "$3.2M family business preserved as separate property." },
+        { title: "Client Continuity", desc: "Business operations were uninterrupted throughout proceedings." },
+      ],
+      faqs: [
+        {
+          question: "How is separate property distinguished from marital property?",
+          answer:
+            "Separate property is generally assets owned before marriage, or received as gifts or inheritance during marriage. Commingling these with marital funds can blur the line — forensic documentation is often essential to defend separate-property claims.",
+        },
+        {
+          question: "Can a business started before marriage be claimed by a spouse?",
+          answer:
+            "The appreciation in value of a separate-property business can be subject to division if marital effort or funds contributed to its growth. We conduct detailed analyses to isolate and protect the separate-property portion.",
+        },
+        {
+          question: "What does the mediation process involve in a divorce?",
+          answer:
+            "Mediation brings both parties before a neutral third party to negotiate settlement terms on assets, support, and custody. It is typically faster and less expensive than trial, while giving both parties more control over the outcome.",
+        },
+      ],
+    },
+    {
+      slug: "criminal-charges-dismissal",
+      title: "Criminal Charges Dismissal",
+      category: "Defense",
+      heroImage:
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/lawyer-eyewear-clothing-glasses-head-vision-care-1701078-pxhere.com-1.jpg",
+      galleryImages: [
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-pencil-pen-red-paper-lip-1363790-pxhere.com-1-scaled.jpg",
+        "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-table-book-light-wood-vintage-959354-pxhere.com-1-scaled.jpg",
+      ],
+      caseInfo: [
+        { label: "Case Name",     value: "Criminal Charges Dismissal" },
+        { label: "Start Date",    value: "15 Sep, 2024" },
+        { label: "Client Name",   value: "James R." },
+        { label: "Case Duration", value: "6 Months" },
+      ],
+      summary: [
+        "James R., a small business owner with no prior criminal record, was charged with two counts of financial fraud based on transaction records that had been selectively excerpted and misrepresented by the prosecution.",
+        "Our criminal defense team conducted an independent forensic accounting review, uncovered the full transaction context, and successfully moved for dismissal of all charges — preserving our client's freedom and reputation.",
+      ],
+      strategy: [
+        "Within 72 hours of engagement, we identified that the prosecution's key exhibit — a series of bank transfers — omitted the corresponding incoming payments that would have demonstrated the transactions were legitimate business reimbursements.",
+        "We filed a Brady violation motion, arguing the prosecution had a constitutional obligation to disclose the exculpatory records it possessed. The motion forced discovery of the complete financial record set.",
+      ],
+      strategyPoints: [
+        "Independent forensic accounting review of all transaction records",
+        "Brady violation motion to compel exculpatory disclosure",
+        "Pre-trial motion for dismissal with prejudice",
+      ],
+      outcome:
+        "The judge granted our motion to dismiss all charges with prejudice after reviewing the complete financial record — meaning the charges cannot be refiled. James R. returned to his business with no criminal record and full vindication.",
+      achievements: [
+        { title: "Complete Vindication", desc: "All charges dismissed with prejudice — no retrial possible." },
+        { title: "Reputation Preserved", desc: "Client's professional licenses and business standing remain intact." },
+      ],
+      faqs: [
+        {
+          question: "What does 'dismissed with prejudice' mean?",
+          answer:
+            "A dismissal with prejudice is permanent — the prosecution cannot refile the same charges. It is the strongest possible outcome short of an acquittal at trial, and it fully clears the charges from the defendant's record.",
+        },
+        {
+          question: "What is a Brady violation?",
+          answer:
+            "A Brady violation occurs when the prosecution fails to disclose evidence that is favorable to the defendant and material to guilt or sentencing. It is a serious constitutional breach that can result in case dismissal.",
+        },
+        {
+          question: "Can I expunge my record after charges are dismissed?",
+          answer:
+            "In most jurisdictions, dismissed charges are eligible for expungement or record sealing, which removes the arrest and charge from public-facing records. We advise every client on this step after a favorable outcome.",
+        },
+      ],
+    },
+  ];
+
+  return cases.map((c) => ({
+    params: { slug: c.slug },
+    props: {
+      caseData: c,
+      recentCases: cases.map((r) => ({ label: r.title, slug: r.slug })),
+    },
+  }));
+}
+
+const { caseData, recentCases } = Astro.props;
+
+const caseInfoIcons = [FileText, Calendar, User, Clock];
+---
+
+<MainLayout title={`${caseData.title} - Civitas Law`}>
+  <Header />
+  <PageHero title={caseData.title} />
+
+  <section class="practice-details">
+    <div class="container">
+      <div class="practice-details__grid">
+
+        <!-- ── Main content ──────────────────────────────── -->
+        <div class="practice-details__main">
+
+          <div class="shine-image practice-details__hero-image">
+            <img
+              src={caseData.heroImage}
+              alt={caseData.title}
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+
+          <div class="cs-section">
+            <h2>{caseData.title}</h2>
+            {caseData.summary.map((p) => <p>{p}</p>)}
+          </div>
+
+          <div class="cs-section">
+            <h2>Our Strategy</h2>
+            {caseData.strategy.map((p) => <p>{p}</p>)}
+            <ul class="cs-bullet-list">
+              {caseData.strategyPoints.map((point) => <li>{point}</li>)}
+            </ul>
+          </div>
+
+          <div class="cs-gallery">
+            <div class="cs-gallery__row">
+              <div class="shine-image cs-gallery__small">
+                <img src={caseData.galleryImages[0]} alt="Gallery image 1" loading="lazy" decoding="async" />
+              </div>
+              <div class="shine-image cs-gallery__small">
+                <img src={caseData.galleryImages[1]} alt="Gallery image 2" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="shine-image cs-gallery__wide">
+              <img src={caseData.galleryImages[2]} alt="Gallery image 3" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <div class="cs-section">
+            <h2>The Outcome</h2>
+            <p>{caseData.outcome}</p>
+          </div>
+
+          <div class="cs-achieve-grid">
+            {caseData.achievements.map((a) => (
+              <div class="cs-achieve-blurb">
+                <h4>{a.title}</h4>
+                <p>{a.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="cs-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-right">
+              {caseData.faqs.map((faq, index) => (
+                <div class={`faq-item ${index === 0 ? "is-open" : ""}`}>
+                  <button class="faq-question" type="button">
+                    <span>{faq.question}</span>
+                    <strong>{index === 0 ? "−" : "+"}</strong>
+                  </button>
+                  <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                      <p>{faq.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── Sidebar ──────────────────────────────────── -->
+        <aside class="practice-sidebar">
+
+          <div class="sidebar-card">
+            <h3>Case Information</h3>
+            <div class="cs-info-list">
+              {caseData.caseInfo.map(({ label, value }, i) => {
+                const Icon = caseInfoIcons[i];
+                return (
+                  <div class="cs-info-item">
+                    <span class="cs-info-item__icon">
+                      <Icon size={20} />
+                    </span>
+                    <div>
+                      <h4>{label}</h4>
+                      <p>{value}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Recent Cases</h3>
+            <ul class="service-list">
+              {recentCases.map((c) => (
+                <li class={c.slug === caseData.slug ? "active" : ""}>
+                  <a href={`/case-study/${c.slug}`}>{c.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="sidebar-cta">
+            <div class="sidebar-cta__icon">
+              <Phone size={28} />
+            </div>
+            <h4>Call Us 24/7 For Help!</h4>
+            <a href="tel:+0123456789">+01 23456789</a>
+            <a href="/contact/contact_1" class="sidebar-cta__button btn-fill-hover">Get In Touch</a>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  .cs-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cs-section h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: var(--gcid-heading-color, #101932);
+    line-height: 1.2;
+  }
+
+  .cs-section p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  .cs-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cs-bullet-list li {
+    position: relative;
+    padding-left: 34px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  .cs-bullet-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gcid-primary-color, #ffc342);
+    color: #101932;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .cs-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .cs-gallery__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .cs-gallery__small img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  .cs-gallery__wide img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  .cs-achieve-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .cs-achieve-blurb {
+    padding: 24px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 12%, white);
+    border-left: 4px solid var(--gcid-primary-color, #ffc342);
+  }
+
+  .cs-achieve-blurb h4 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gcid-heading-color, #101932);
+  }
+
+  .cs-achieve-blurb p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gcid-body-color, #505658);
+  }
+
+  .cs-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+  }
+
+  .cs-info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 15%, white);
+  }
+
+  .cs-info-item__icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gcid-primary-color, #ffc342);
+    color: #101932;
+  }
+
+  .cs-info-item h4 {
+    margin: 0 0 2px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gcid-body-color, #505658);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .cs-info-item p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gcid-heading-color, #101932);
+  }
+
+  .service-list li.active a {
+    background: var(--gcid-primary-color, #ffc64a);
+    color: #242424;
+    font-weight: 700;
+  }
+
+  @media (max-width: 640px) {
+    .cs-achieve-grid,
+    .cs-gallery__row {
+      grid-template-columns: 1fr;
+    }
+
+    .cs-gallery__small img { height: 160px; }
+    .cs-gallery__wide img  { height: 200px; }
+  }
+</style>
+
+<script>
+  const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+  faqItems.forEach((item) => {
+    item.querySelector(".faq-question")?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("is-open");
+
+      faqItems.forEach((other) => {
+        other.classList.remove("is-open");
+        const icon = other.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "+";
+      });
+
+      if (!isOpen) {
+        item.classList.add("is-open");
+        const icon = item.querySelector<HTMLElement>(".faq-question strong");
+        if (icon) icon.textContent = "−";
+      }
+    });
+  });
+</script>

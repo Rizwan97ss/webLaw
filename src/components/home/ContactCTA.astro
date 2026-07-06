@@ -19,34 +19,109 @@
         </div>
       </div>
 
-      <form class="contact-form">
+      <form class="contact-form" id="home-contact-form" novalidate>
         <div class="contact-row">
-          <input type="text" placeholder="Name" />
-          <input type="tel" placeholder="Phone Number" />
+          <div class="field-wrap">
+            <input type="text" name="name" placeholder="Name" />
+            <span class="field-error"></span>
+          </div>
+          <div class="field-wrap">
+            <input type="tel" name="phone" placeholder="Phone Number" />
+            <span class="field-error"></span>
+          </div>
         </div>
 
-        <input type="email" placeholder="Email Address" />
+        <div class="field-wrap">
+          <input type="email" name="email" placeholder="Email Address" />
+          <span class="field-error"></span>
+        </div>
 
-        <select>
-          <option>Select Service</option>
-          <option>Corporate & Business Law</option>
-          <option>Family Law</option>
-          <option>Personal Injury Litigation</option>
-          <option>Real Estate Law</option>
-        </select>
+        <div class="field-wrap">
+          <select name="service">
+            <option value="">Select Service</option>
+            <option>Corporate &amp; Business Law</option>
+            <option>Family Law</option>
+            <option>Personal Injury Litigation</option>
+            <option>Real Estate Law</option>
+          </select>
+          <span class="field-error"></span>
+        </div>
 
-        <textarea placeholder="Your Message"></textarea>
+        <div class="field-wrap">
+          <textarea name="message" placeholder="Your Message"></textarea>
+          <span class="field-error"></span>
+        </div>
 
-        <button class="contact-btn">
-  Book Appointment
-  <span>→</span>
-</button>
+        <button type="submit" class="contact-btn">
+          Book Appointment <span>→</span>
+        </button>
+        <p class="form-success" style="display:none;color:#22c55e;font-weight:600;margin-top:8px;">
+          Thank you! We'll be in touch shortly.
+        </p>
       </form>
     </div>
   </div>
 </section>
 
+<style>
+  .field-wrap { display: flex; flex-direction: column; width: 100%; }
+  .field-error { color: #ef4444; font-size: 12px; margin-top: 4px; min-height: 16px; }
+  .field-wrap input.invalid,
+  .field-wrap select.invalid,
+  .field-wrap textarea.invalid { border-color: #ef4444 !important; }
+</style>
+
 <script>
+  // ── Home contact form validation ──────────────────────
+  const homeForm = document.getElementById("home-contact-form") as HTMLFormElement | null;
+  if (homeForm) {
+    function showError(field: HTMLElement, msg: string) {
+      field.classList.add("invalid");
+      const err = field.nextElementSibling as HTMLElement;
+      if (err) err.textContent = msg;
+    }
+    function clearError(field: HTMLElement) {
+      field.classList.remove("invalid");
+      const err = field.nextElementSibling as HTMLElement;
+      if (err) err.textContent = "";
+    }
+    homeForm.querySelectorAll("input,select,textarea").forEach((el) => {
+      el.addEventListener("input", () => clearError(el as HTMLElement));
+      el.addEventListener("change", () => clearError(el as HTMLElement));
+    });
+    homeForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let valid = true;
+      const name = homeForm.querySelector<HTMLInputElement>('[name="name"]')!;
+      const phone = homeForm.querySelector<HTMLInputElement>('[name="phone"]')!;
+      const email = homeForm.querySelector<HTMLInputElement>('[name="email"]')!;
+      const service = homeForm.querySelector<HTMLSelectElement>('[name="service"]')!;
+      const message = homeForm.querySelector<HTMLTextAreaElement>('[name="message"]')!;
+
+      if (!name.value.trim() || name.value.trim().length < 2) {
+        showError(name, "Name must be at least 2 characters."); valid = false;
+      }
+      if (!/^[\d\s\-\+\(\)]{7,}$/.test(phone.value.trim())) {
+        showError(phone, "Enter a valid phone number (digits only, min 7)."); valid = false;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showError(email, "Enter a valid email address."); valid = false;
+      }
+      if (!service.value) {
+        showError(service, "Please select a service."); valid = false;
+      }
+      if (message.value.trim().length < 10) {
+        showError(message, "Message must be at least 10 characters."); valid = false;
+      }
+      if (valid) {
+        const success = homeForm.querySelector<HTMLElement>(".form-success")!;
+        homeForm.reset();
+        success.style.display = "block";
+        setTimeout(() => { success.style.display = "none"; }, 5000);
+      }
+    });
+  }
+
   const contactCard = document.querySelector(".contact-animate");
 
   const contactObserver = new IntersectionObserver(

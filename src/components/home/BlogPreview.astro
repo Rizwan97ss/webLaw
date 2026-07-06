@@ -4,6 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 
 const posts = [
   {
+    slug: "protecting-your-rights-with-professional-legal-services",
     title: "Protecting Your Rights with Professional Legal Services",
     author: "Civitas Law",
     category: "Real Estate Law",
@@ -11,6 +12,7 @@ const posts = [
     image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=900&q=80",
   },
   {
+    slug: "expert-lawyer-guidance-for-business-and-personal-matters",
     title: "Expert Lawyer Guidance for Business and Personal Matters",
     author: "Civitas Law",
     category: "Criminal Law",
@@ -18,6 +20,7 @@ const posts = [
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=900&q=80",
   },
   {
+    slug: "trusted-legal-solutions-for-your-complex-cases",
     title: "Trusted Legal Solutions for Your Complex Cases",
     author: "Civitas Law",
     category: "Family Law",
@@ -25,6 +28,7 @@ const posts = [
     image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80",
   },
   {
+    slug: "smart-estate-planning-for-long-term-family-security",
     title: "Smart Estate Planning for Long-Term Family Security",
     author: "Civitas Law",
     category: "Estate Planning",
@@ -32,6 +36,7 @@ const posts = [
     image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80",
   },
   {
+    slug: "how-strong-contracts-protect-your-business",
     title: "How Strong Contracts Protect Your Business",
     author: "Civitas Law",
     category: "Business Law",
@@ -48,7 +53,7 @@ const posts = [
         <p class="blog-kicker">⚖ News & Blog</p>
         <h2>Latest News & Update</h2>
       </div>
- <a class="practice-view-btn btn-fill-hover">
+ <a href="/blog" class="practice-view-btn btn-fill-hover">
   View More <span>→</span>
 </a>
       
@@ -71,7 +76,7 @@ const posts = [
 
               <h3>{post.title}</h3>
 
-              <a href="/blog" class="blog-btn btn-fill-hover">
+              <a href={`/blog/${post.slug}`} class="blog-btn btn-fill-hover">
                 Read More <span>→</span>
               </a>
 
@@ -111,7 +116,7 @@ const posts = [
     if (blogIndex > maxIndex) blogIndex = maxIndex;
 
     const slideWidth = blogSlides[0].getBoundingClientRect().width;
-    blogTrack.style.transform = `translateX(-${blogIndex * slideWidth}px)`;
+    (blogTrack as HTMLElement).style.transform = `translateX(-${blogIndex * slideWidth}px)`;
   }
 
   blogNext?.addEventListener("click", () => {

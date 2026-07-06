@@ -1,0 +1,192 @@
+---
+import { Heart, TrendingUp, Target } from "lucide-react";
+---
+
+<section class="approach-section">
+  <div class="container">
+    <div class="approach-head">
+      <p class="section-kicker">Our Approach</p>
+      <h2>Our Valuable Guiding Purpose</h2>
+    </div>
+
+    <div class="approach-grid">
+
+      <!-- Values — photo card: icon TOP, text BOTTOM -->
+      <article class="approach-card approach-card--photo">
+        <div class="approach-card__inner">
+          <div class="approach-icon">
+            <Heart size={28} strokeWidth={2} />
+          </div>
+          <div class="approach-text">
+            <h4>Our Values</h4>
+            <p style="color: #ffffff;">Uncompromising integrity and dedicated advocacy in every case we handle.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mission — light card with exact Divi mask shape -->
+      <article class="approach-card approach-card--light">
+        <svg class="approach-mask" viewBox="0 0 1920 1440" preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1568,776.06,1164.83,0H1920V98.49Zm352-469L1331.44,1440H1920Z" fill="rgba(255,198,74,0.35)"/>
+        </svg>
+        <div class="approach-card__inner">
+          <div class="approach-icon">
+            <TrendingUp size={28} strokeWidth={2} />
+          </div>
+          <div class="approach-text">
+            <h4>Our Mission</h4>
+            <p>To provide strategic legal solutions that empower our clients.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Vision — light card with exact Divi mask shape -->
+      <article class="approach-card approach-card--light">
+        <svg class="approach-mask" viewBox="0 0 1920 1440" preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1568,776.06,1164.83,0H1920V98.49Zm352-469L1331.44,1440H1920Z" fill="rgba(255,198,74,0.35)"/>
+        </svg>
+        <div class="approach-card__inner">
+          <div class="approach-icon">
+            <Target size={28} strokeWidth={2} />
+          </div>
+          <div class="approach-text">
+            <h4>Our Vision</h4>
+            <p>To be the definitive standard for legal excellence and client success.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .approach-section {
+    padding: var(--section-padding) 0;
+    background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1) !important;  }
+
+  .approach-head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .approach-head h2 {
+    margin: 0.5rem 0 0;
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--gcid-heading-color, #242424);
+  }
+
+  /* ── Grid ─────────────────────────────────────────────── */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  /* ── Base card ─────────────────────────────────────────── */
+  .approach-card {
+    border-radius: 10px;
+    padding: 30px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── Photo card (Values) ───────────────────────────────── */
+  .approach-card--photo {
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 55%, rgba(0,0,0,0.8) 100%),
+      url("https://civitas.divigurus.com/wp-content/uploads/2026/04/adult-business-business-person-businessman-caucasian-ethnicity-client-1700924-pxhere.com_11zon-1-scaled.jpg");
+    background-size: cover;
+    background-position: center top;
+  }
+
+  .approach-card--photo .approach-card__inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  /* h4 → 10px → p in all cards */
+  .approach-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .approach-text h4 {
+    font-family: var(--et_global_heading_font);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gcid-secondary-color) !important;
+    margin: 0;
+  }
+
+  .approach-text p {
+    color: var(--gcid-ns9vhla8ew);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.6em;
+    margin: 0;
+  }
+
+  /* ── Light cards (Mission, Vision) ────────────────────── */
+  .approach-card--light {
+    background: color-mix(in srgb, var(--color-primary, #ffc64a) 40%, #ffffff);
+  }
+
+  .approach-card--light .approach-text h4 {
+    color: var(--gcid-heading-color) !important;
+  }
+
+  .approach-card--light .approach-card__inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+
+  /* ── Divi mask SVG (exact path, right-aligned, cover) ─── */
+  .approach-mask {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Icon circle ───────────────────────────────────────── */
+  .approach-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: var(--color-primary, #ffc64a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #101932;
+    flex-shrink: 0;
+  }
+
+
+  /* ── Responsive ────────────────────────────────────────── */
+
+
+  @media (max-width: 640px) {
+    .approach-grid {
+      grid-template-columns: 1fr;
+    }
+    .approach-card--photo {
+      grid-column: 1;
+      /* min-height: 260px; */
+    }
+  }
+</style>

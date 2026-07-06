@@ -1,0 +1,84 @@
+---
+
+---
+
+<section class="cta-banner">
+  <div class="cta-banner__bg"></div>
+  <div class="cta-banner__content">
+    <h2>Contact Us For A Free Case Evaluation</h2>
+    <p>
+      Founded on the principles of integrity and relentless pursuit of justice,
+      our firm provides sophisticated legal counsel tailored to the unique needs
+      of every client. We don't just practice law; we solve problems.
+    </p>
+    <a href="/contact/contact_1" class="cta-banner__btn btn-fill-hover">
+      Book Appointment →
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta-banner {
+    position: relative;
+    padding: clamp(5rem, 10vw, 8rem) 2rem;
+    background-image: url("https://civitas.divigurus.com/wp-content/uploads/2026/04/Hukuk-lawyer-varnish-court-wood-stain-1699294-pxhere.com-2-1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .cta-banner__bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+  }
+
+  .cta-banner__content {
+    position: relative;
+    z-index: 1;
+    /* max-width: 760px; */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .cta-banner__content h2 {
+    margin: 0;
+    font-family: var(--et_global_heading_font);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.2em;
+    text-align: center;
+  }
+
+  .cta-banner__content p {
+    margin: 0;
+    font-family: var(--et_global_body_font);
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 740px;
+  }
+
+  /* ── Button ────────────────────────────────────────── */
+  .cta-banner__btn {
+    display: inline-block;
+    padding: 14px 34px;
+    background: var(--color-primary, #ffc64a);
+    color: #101932;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-top: 0.5rem;
+  }
+</style>

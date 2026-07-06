@@ -1,5 +1,7 @@
 /* ── Page Hero Banner ─────────────────────────────────── */
 .page-hero {
+  position: relative;
+  overflow: hidden;
   padding-top: 90px;
   padding-bottom: 90px;
   background-repeat: no-repeat !important;
@@ -33,11 +35,11 @@
 .page-hero__title {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: 60px;
   font-weight: 700;
   color: #fff;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  /* letter-spacing: -0.02em; */
 }
 
 /* Gold underline accent */
@@ -964,5 +966,108 @@ line-height: 1.2em;
 
   .contact-map iframe {
     height: 300px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE PAGE HERO & INNER PAGES
+   Tablet (1024px) and Mobile (640px / 480px)
+========================================== */
+
+@media (max-width: 1024px) {
+  /* Page hero banner */
+  .page-hero {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .page-hero__title {
+    font-size: 44px;
+  }
+
+  /* Blog hero */
+  .blog-hero {
+    padding: 64px 0;
+  }
+
+  .blog-hero h1 {
+    font-size: 44px;
+  }
+
+  /* Contact page */
+  .contact-page {
+    padding: 56px 0;
+  }
+
+  /* Practice details */
+  .practice-details {
+    padding: 56px 0;
+  }
+
+  /* Blog details */
+  .blog-details {
+    padding: 56px 0;
+  }
+
+  /* Contact info heading */
+  .contact-info h2 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Page hero banner */
+  .page-hero {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .page-hero__title {
+    font-size: 32px;
+  }
+
+  /* Blog hero */
+  .blog-hero {
+    padding: 48px 0;
+  }
+
+  .blog-hero h1 {
+    font-size: 30px;
+  }
+
+  /* Contact page form row already goes 1-col at 767px */
+  .contact-page {
+    padding: 36px 0;
+  }
+
+  /* Blog & practice details pages */
+  .blog-details,
+  .practice-details {
+    padding: 36px 0;
+  }
+
+  /* Content box heading */
+  .content-box h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-hero__title {
+    font-size: 28px;
+  }
+
+  .blog-hero h1 {
+    font-size: 26px;
+  }
+
+  /* Contact info heading */
+  .contact-info h2 {
+    font-size: 24px;
+  }
+
+  /* Contact page */
+  .contact-page {
+    padding: 28px 0;
   }
 }

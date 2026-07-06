@@ -7,7 +7,7 @@ import {
   UserCog,
   Landmark,
 } from "lucide-react";
-
+const isHomePage = Astro.url.pathname === "/";
 const areas = [
   {
     number: "01",
@@ -62,9 +62,13 @@ const areas = [
         <h2>Practice Areas</h2>
       </div>
 
-      <a class="practice-view-btn btn-fill-hover">
-  View More <span>→</span>
-</a>
+     {
+  isHomePage && (
+    <a href="/practice-areas" class="practice-view-btn btn-fill-hover">
+      View More <span>→</span>
+    </a>
+  )
+}
     </div>
 
     <div class="practice-grid">

@@ -54,36 +54,46 @@ const services = [
           </div>
         </div>
 
-        <form class="contact-form">
+        <form class="contact-form" id="c1-form" novalidate>
           <div class="form-row">
-            <input type="text" placeholder="Name" required />
-            <input
-              type="tel"
-              placeholder="Phone Number"
-              pattern="[0-9\s\-]*"
-              required
-            />
+            <div class="field-wrap">
+              <input type="text" name="name" placeholder="Name" />
+              <span class="field-error"></span>
+            </div>
+            <div class="field-wrap">
+              <input type="tel" name="phone" placeholder="Phone Number" />
+              <span class="field-error"></span>
+            </div>
           </div>
 
-          <input type="email" placeholder="Email Address" required />
+          <div class="field-wrap">
+            <input type="email" name="email" placeholder="Email Address" />
+            <span class="field-error"></span>
+          </div>
 
-          <select required>
-            <option value="">Select Service</option>
-            {
-              services.map((service) => (
+          <div class="field-wrap">
+            <select name="service">
+              <option value="">Select Service</option>
+              {services.map((service) => (
                 <option value={service}>{service}</option>
-              ))
-            }
-          </select>
+              ))}
+            </select>
+            <span class="field-error"></span>
+          </div>
 
-          <textarea placeholder="Your Message" required></textarea>
+          <div class="field-wrap">
+            <textarea name="message" placeholder="Your Message"></textarea>
+            <span class="field-error"></span>
+          </div>
 
           <div class="form-action">
             <button type="submit" class="btn-fill-hover">
-              Book Appointment
-              <span>→</span>
+              Book Appointment <span>→</span>
             </button>
           </div>
+          <p class="form-success" style="display:none;color:#22c55e;font-weight:600;">
+            Thank you! We'll be in touch shortly.
+          </p>
         </form>
       </div>
     </div>
@@ -100,7 +110,54 @@ const services = [
   <Footer />
 </MainLayout>
 
+<script>
+  const form = document.getElementById("c1-form") as HTMLFormElement | null;
+  if (form) {
+    function showErr(el: HTMLElement, msg: string) {
+      el.classList.add("invalid");
+      const span = el.nextElementSibling as HTMLElement;
+      if (span) span.textContent = msg;
+    }
+    function clearErr(el: HTMLElement) {
+      el.classList.remove("invalid");
+      const span = el.nextElementSibling as HTMLElement;
+      if (span) span.textContent = "";
+    }
+    form.querySelectorAll("input,select,textarea").forEach((el) => {
+      el.addEventListener("input", () => clearErr(el as HTMLElement));
+      el.addEventListener("change", () => clearErr(el as HTMLElement));
+    });
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let ok = true;
+      const name = form.querySelector<HTMLInputElement>('[name="name"]')!;
+      const phone = form.querySelector<HTMLInputElement>('[name="phone"]')!;
+      const email = form.querySelector<HTMLInputElement>('[name="email"]')!;
+      const service = form.querySelector<HTMLSelectElement>('[name="service"]')!;
+      const message = form.querySelector<HTMLTextAreaElement>('[name="message"]')!;
+
+      if (name.value.trim().length < 2) { showErr(name, "Name must be at least 2 characters."); ok = false; }
+      if (!/^[\d\s\-\+\(\)]{7,}$/.test(phone.value.trim())) { showErr(phone, "Enter a valid phone number (digits, min 7)."); ok = false; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { showErr(email, "Enter a valid email address."); ok = false; }
+      if (!service.value) { showErr(service, "Please select a service."); ok = false; }
+      if (message.value.trim().length < 10) { showErr(message, "Message must be at least 10 characters."); ok = false; }
+
+      if (ok) {
+        const success = form.querySelector<HTMLElement>(".form-success")!;
+        form.reset();
+        success.style.display = "block";
+        setTimeout(() => { success.style.display = "none"; }, 5000);
+      }
+    });
+  }
+</script>
+
 <style>
+  .field-wrap { display: flex; flex-direction: column; width: 100%; }
+  .field-error { color: #ef4444; font-size: 12px; margin-top: 4px; min-height: 16px; }
+  .field-wrap input.invalid,
+  .field-wrap select.invalid,
+  .field-wrap textarea.invalid { border-color: #ef4444 !important; outline-color: #ef4444; }
   /* Reset the components.css slide-in animation — this page has no IntersectionObserver */
   .contact-form {
     opacity: 1;

@@ -1,0 +1,404 @@
+---
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const attorneys = [
+  {
+    name: "Jonathan R.",
+    role: "Business Attorney",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+    social: { fb: "#", x: "#", ig: "#", wa: "#" },
+  },
+  {
+    name: "Sarah Jenkins",
+    role: "Family Attorney",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
+    social: { fb: "#", x: "#", ig: "#", wa: "#" },
+  },
+  {
+    name: "Marcus Thorne",
+    role: "Defense Attorney",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/lawyer-eyewear-clothing-glasses-head-vision-care-1701078-pxhere.com-1.jpg",
+    social: { fb: "#", x: "#", ig: "#", wa: "#" },
+  },
+  {
+    name: "Elena M.",
+    role: "Personal Attorney",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/man-person-people-hair-white-boy-1046502-pxhere.com_.jpg",
+    social: { fb: "#", x: "#", ig: "#", wa: "#" },
+  },
+  {
+    name: "David K.",
+    role: "Corporate Attorney",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg",
+    social: { fb: "#", x: "#", ig: "#", wa: "#" },
+  },
+];
+---
+
+<section class="team-section">
+  <div class="container">
+    <div class="team-head">
+      <p class="section-kicker">Our Attorneys</p>
+      <h2>Trusted Legal Experts</h2>
+    </div>
+
+    <div class="team-carousel-wrap">
+      <div class="team-track-outer">
+        <div class="team-track">
+          {
+            attorneys.map((attorney) => (
+              <article class="team-card">
+                <div class="team-card__inner">
+                  <img
+                    src={attorney.image}
+                    alt={attorney.name}
+                    loading="lazy"
+                    decoding="async"
+                  />
+
+                  <div class="team-overlay" />
+
+                  <div class="team-social">
+                    <a href={attorney.social.fb} aria-label="Facebook">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href={attorney.social.x} aria-label="X">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href={attorney.social.ig} aria-label="Instagram">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href={attorney.social.wa} aria-label="WhatsApp">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.857L.057 23.571a.562.562 0 0 0 .693.693l5.714-1.476A11.936 11.936 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 0 1-5.001-1.368l-.358-.214-3.715.959.98-3.622-.234-.374A9.797 9.797 0 0 1 2.182 12C2.182 6.568 6.568 2.182 12 2.182S21.818 6.568 21.818 12 17.432 21.818 12 21.818z"/></svg>
+                    </a>
+                  </div>
+
+                  <div class="team-name-tag">
+                    <h4>{attorney.name}</h4>
+                    <p>{attorney.role}</p>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="team-arrows">
+        <button class="team-arrow team-prev" type="button" aria-label="Previous">
+          <ChevronLeft size={22} />
+        </button>
+        <button class="team-arrow team-next" type="button" aria-label="Next">
+          <ChevronRight size={22} />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-section {
+    padding: var(--section-padding) 0;
+    background: #ffffff;
+  }
+
+  .team-head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .team-head h2 {
+    margin: 0.5rem 0 0;
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--gcid-heading-color, #242424);
+  }
+
+  /* ── Carousel Wrap ─────────────────────────────────── */
+  .team-carousel-wrap {
+    position: relative;
+    padding-bottom: 52px;
+  }
+
+  .team-track-outer {
+    overflow: hidden;
+  }
+
+  .team-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
+  }
+
+  /* ── Card ──────────────────────────────────────────── */
+  .team-card {
+    flex: 0 0 calc(25% - 15px);
+    min-width: 0;
+  }
+
+  .team-card__inner {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .team-card__inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .team-card:hover .team-card__inner img {
+    transform: scale(1.04);
+  }
+
+  /* ── Yellow overlay ────────────────────────────────── */
+  .team-overlay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-primary, #ffc64a);
+    opacity: 1;
+    pointer-events: none;
+    transition:
+      width 0.4s ease,
+      height 0.4s ease,
+      border-radius 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  .team-card:hover .team-overlay {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    opacity: 0.55;
+  }
+
+  /* ── Social icons ──────────────────────────────────── */
+  .team-social {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    transition:
+      left 0.35s ease,
+      opacity 0.35s ease;
+    z-index: 2;
+  }
+
+  .team-card:hover .team-social {
+    left: 20px;
+    opacity: 1;
+  }
+
+  .team-social a {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-primary, #ffc64a);
+    color: #101932;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .team-social a:hover {
+    background: #101932;
+    color: #ffc64a;
+    transform: scale(1.1);
+  }
+
+  /* ── Name tag ──────────────────────────────────────── */
+  .team-name-tag {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--color-primary, #ffc64a);
+    padding: 12px 18px;
+    border-radius: 10px 0 0 0;
+    z-index: 2;
+  }
+
+  .team-name-tag h4 {
+    margin: 0 0 2px;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    font-weight: 700;
+    color: #101932;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .team-name-tag p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: #101932;
+    font-family: var(--font-body);
+    opacity: 0.8;
+  }
+
+  /* ── Arrows ────────────────────────────────────────── */
+  .team-arrows {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+  }
+
+  .team-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--color-primary, #ffc64a) 50%, transparent);
+    background: color-mix(in srgb, var(--color-primary, #ffc64a) 30%, transparent);
+    color: #101932;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .team-arrow:hover {
+    background: var(--color-primary, #ffc64a);
+    border-color: var(--color-primary, #ffc64a);
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .team-card {
+      flex: 0 0 calc(50% - 10px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .team-card {
+      flex: 0 0 calc(100%);
+    }
+
+    .team-card__inner {
+      height: 260px;
+    }
+  }
+</style>
+
+<script>
+  const track = document.querySelector<HTMLElement>(".team-track");
+  const origCards = Array.from(document.querySelectorAll<HTMLElement>(".team-card"));
+  const prevBtn = document.querySelector<HTMLElement>(".team-prev");
+  const nextBtn = document.querySelector<HTMLElement>(".team-next");
+  const wrap = document.querySelector<HTMLElement>(".team-track-outer");
+
+  if (!track || !origCards.length || !wrap) throw new Error("Team carousel missing");
+
+  const total = origCards.length;
+
+  // Clone all slides and append — creates [real...real, clone...clone]
+  origCards.forEach((card) => {
+    const clone = card.cloneNode(true) as HTMLElement;
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
+  });
+
+  let current = 0;
+  let isAnimating = false;
+  let autoTimer: ReturnType<typeof setInterval> | null = null;
+
+  const GAP = 20;
+  const DURATION = 420; // ms slide animation
+
+  function getVisible(): number {
+    if (window.innerWidth <= 640) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 4;
+  }
+
+  function stepSize(): number {
+    return (wrap!.clientWidth - GAP * (getVisible() - 1)) / getVisible() + GAP;
+  }
+
+  function moveTo(index: number, animate: boolean): void {
+    track!.style.transition = animate
+      ? `transform ${DURATION}ms cubic-bezier(0.22, 0.61, 0.36, 1)`
+      : "none";
+    track!.style.transform = `translateX(-${index * stepSize()}px)`;
+  }
+
+  function next(): void {
+    if (isAnimating) return;
+    isAnimating = true;
+    current++;
+    moveTo(current, true);
+
+    setTimeout(() => {
+      if (current >= total) {
+        // Silently jump back to the matching real slide
+        current -= total;
+        moveTo(current, false);
+      }
+      isAnimating = false;
+    }, DURATION + 20);
+  }
+
+  function prev(): void {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    if (current <= 0) {
+      // Jump silently to the matching clone position, then animate back
+      current = total;
+      moveTo(current, false);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          current--;
+          moveTo(current, true);
+          setTimeout(() => { isAnimating = false; }, DURATION + 20);
+        });
+      });
+    } else {
+      current--;
+      moveTo(current, true);
+      setTimeout(() => { isAnimating = false; }, DURATION + 20);
+    }
+  }
+
+  function startAuto(): void {
+    stopAuto();
+    autoTimer = setInterval(next, 1000);
+  }
+
+  function stopAuto(): void {
+    if (autoTimer !== null) { clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  nextBtn?.addEventListener("click", () => { next(); stopAuto(); startAuto(); });
+  prevBtn?.addEventListener("click", () => { prev(); stopAuto(); startAuto(); });
+  wrap?.addEventListener("mouseenter", stopAuto);
+  wrap?.addEventListener("mouseleave", startAuto);
+  window.addEventListener("resize", () => moveTo(current, false));
+
+  moveTo(0, false);
+  startAuto();
+</script>

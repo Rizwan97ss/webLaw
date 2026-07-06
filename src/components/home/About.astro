@@ -1,12 +1,17 @@
+---
+const isHomePage = Astro.url.pathname === "/";
+---
 <section class="about-section">
   <div class="container">
     <div class="about-card">
       <div class="about-image-wrap" data-reveal="left">
-        <img
-  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80"
-  alt="Court room"
-  class="about-image"
-/>
+        <div class="shine-image about-image-shine">
+          <img
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80"
+            alt="Court room"
+            class="about-image"
+          />
+        </div>
 
         <div class="experience-badge">
           <strong>10+</strong>
@@ -37,8 +42,12 @@
           <li>Real Estate Law</li>
         </ul>
 
-         <a class="practice-view-btn btn-fill-hover">
-  Read More <span>→</span>
+         <a
+  href={isHomePage ? "/about" : "/contact/contact_1"}
+  class="practice-view-btn btn-fill-hover"
+>
+  {isHomePage ? "Read More" : "Contact Us"}
+  <span>→</span>
 </a>
       </div>
     </div>

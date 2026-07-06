@@ -1,24 +1,28 @@
 ---
 const cases = [
   {
+    slug: "the-2-4m-settlement",
     title: "The $2.4M Settlement",
     category: "Personal Injury",
     image:
       "https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=900&q=80",
   },
   {
+    slug: "corporate-merger-victory",
     title: "Corporate Merger Victory",
     category: "Business Law",
     image:
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
   },
   {
+    slug: "asset-protection-success",
     title: "Asset Protection Success",
     category: "Family Law",
     image:
       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=80",
   },
   {
+    slug: "criminal-charges-dismissal",
     title: "Criminal Charges Dismissal",
     category: "Defense",
     image:
@@ -47,7 +51,7 @@ const cases = [
             <div class="case-content">
               <h3>{item.title}</h3>
 
-              <a href="/case-study">
+              <a href={`/case-study/${item.slug}`}>
                 View Details <span>→</span>
               </a>
             </div>
@@ -57,10 +61,9 @@ const cases = [
     </div>
 
     <div class="case-action">
-      
-       <a class="practice-view-btn btn-fill-hover">
-  View More <span>→</span>
-</a>
+      <a href="/case-study" class="practice-view-btn btn-fill-hover">
+        View More <span>→</span>
+      </a>
     </div>
   </div>
 </section>
