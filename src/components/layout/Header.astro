@@ -1,6 +1,6 @@
 ---
 import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-astro';
-import { label } from 'motion/react-client';
+
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -90,10 +90,11 @@ const currentPath = Astro.url.pathname;
               href={link.href}
               class={
                 currentPath === link.href ||
-                (link.href !== "/" && link.href !== "#" && currentPath.startsWith(link.href))
+                (link.href !== "/" && link.href !== "#" && currentPath.startsWith(link.href)) ||
+                (link.children?.some((child) => currentPath === child.href))
                   ? "active" : ""
               }
-              role="menuitem" 
+              role="menuitem"
             >
               {link.label}
               {link.children && (
@@ -107,7 +108,11 @@ const currentPath = Astro.url.pathname;
               <ul class="sub-menu" role="menu" aria-label={link.label + " submenu"}>
                 {link.children.map((child) => (
                   <li role="none">
-                    <a href={child.href} role="menuitem">{child.label}</a>
+                    <a
+                      href={child.href}
+                      role="menuitem"
+                      class={currentPath === child.href ? "active" : ""}
+                    >{child.label}</a>
                   </li>
                 ))}
               </ul>

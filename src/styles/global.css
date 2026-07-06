@@ -1,27 +1,47 @@
-/* src/styles/global.css */
-
-/* @import "./reset.css"; */
+/* src/styles/global.css — central CSS entry point */
 @import "./variables.css";
 @import "./animations.css";
-@import "./pages.css";
 @import "./cards.css";
 @import "./components.css";
+@import "./pages.css";
+
+/* ── Component styles ───────────────────────────── */
+@import "./components/sidebar-widgets.css";
+@import "./components/team.css";
+@import "./components/approach.css";
+@import "./components/cta-banner.css";
+@import "./components/form-validation.css";
+@import "./components/testimonials-grid.css";
+@import "./components/page-hero-deco.css";
+
+/* ── Page-specific styles ───────────────────────── */
 @import "./pages/attorney-profile.css";
+@import "./pages/blog-index.css";
+@import "./pages/blog-details.css";
+@import "./pages/faq-page.css";
+@import "./pages/gallery.css";
+@import "./pages/error.css";
+@import "./pages/privacy.css";
+@import "./pages/disclaimer.css";
+@import "./pages/testimonials-2.css";
+@import "./pages/contact-page.css";
+@import "./pages/contact-page-2.css";
+@import "./pages/practice-slug.css";
+@import "./pages/case-study-details.css";
+@import "./pages/blog-category.css";
+@import "./pages/blog-page-details.css";
+
 body {
   font-family: var(--font-body);
   color: var(--color-text);
   background: var(--color-white);
   -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-      margin: 0;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
+h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
   font-weight: 600;
 }
@@ -30,10 +50,6 @@ p {
   font-family: var(--font-cabin);
 }
 
-/* .container {
-  width: min(100% - 2rem, var(--container));
-  margin-inline: auto;
-} */
 .container,
 .header-container,
 .hero-container {

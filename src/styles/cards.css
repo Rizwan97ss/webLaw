@@ -3,7 +3,7 @@
 
 .practice-section {
   padding: 60px 0 60px;
-  background: #fff9e8;
+  background: var(--color-cream-warm);
 }
 
 .practice-head {
@@ -16,7 +16,7 @@
 
 .section-kicker {
   margin: 0 0 18px;
-  color: #ffc342;
+  color: var(--color-primary);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-weight: 800;
@@ -24,7 +24,7 @@
 
 .practice-head h2 {
   margin: 0;
-  color: #242424;
+  color: var(--color-text);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 48px;
   font-weight: 800;
@@ -42,14 +42,14 @@
   padding-right: 20px;
   margin-bottom: 18px;
 
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 
-  background: #ffc342;
+  background: var(--color-primary);
   color: var(--gcid-qdtr7s3apr) !important;
 
   font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
@@ -76,7 +76,7 @@
   left: 50%;
   width: 0;
 
-  background: #101932;
+  background: var(--color-primary-dark);
 
   border-radius: inherit;
 
@@ -111,7 +111,7 @@
   position: relative;
   padding: 118px 20px 20px;
   border-radius: 9px;
-  background: #feefcf;
+  background: var(--color-practice-card);
       /* width: calc(33.3333% - var(--horizontal-gap-parent, 5.5%) * 2 / 3); */
   overflow: hidden;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -121,7 +121,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: #ffc342;
+  background: var(--color-primary);
 
   clip-path: polygon(100% 0, 100% 0, 100% 0, 100% 0);
 
@@ -186,8 +186,8 @@
   border-radius: 0 9px 0 9px;
   display: grid;
   place-items: center;
-  background: #ffc342;
-  color: #202020;
+  background: var(--color-primary);
+  color: var(--color-text);
   transition:
     background 0.35s ease,
     color 0.35s ease;
@@ -214,7 +214,7 @@
 
 .practice-card p {
   /* margin: 0 0 24px; */
-  color: #242424;
+  color: var(--color-text);
   font-family: 'Cabin';
   font-size: 16px;
   font-weight: 500;
@@ -224,13 +224,13 @@
 .practice-btn {
   width: 119px;
   height: 39px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
-  background: #ffc342;
-  color: #10182f;
+  background: var(--color-primary);
+  color: var(--color-primary-dark);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -241,7 +241,7 @@
 }
 
 .practice-card:hover .practice-btn {
-  background: #10182f;
+  background: var(--color-primary-dark);
   color: #ffffff;
 }
 

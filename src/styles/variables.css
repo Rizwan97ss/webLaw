@@ -2,52 +2,64 @@
 
 :root {
   /* ── Brand Colors ─────────────────────────────────────── */
-  --color-primary:      #ffc64a;
-  --color-primary-soft: #fff1b8;
-  --color-primary-dark: #101932;   /* dark navy – used on buttons, backgrounds */
+  --color-primary:       #ffc342;     /* golden yellow — CTA, buttons, accents */
+  --color-primary-soft:  #fff1b8;
+  --color-primary-dark:  #101932;     /* dark navy — button bg, icon bg */
+  --color-primary-bg:    #ffeecc;     /* brand strip / banner bg */
+  --color-card-hover:    #ffe3a3;     /* testimonial card bg */
+  --color-arrow-bg:      #ffeab3;     /* carousel arrow bg */
+  --color-practice-card: #feefcf;     /* practice area card bg */
+  --color-error:         #ef4444;     /* form validation */
 
-  --color-dark:   #0f1a34;
-  --color-dark-2: #1d2947;
+  --color-dark:    #0f1a34;           /* deep navy — hero / section bg */
+  --color-dark-2:  #1d2947;
 
-  --color-text:  #242424;
-  --color-muted: #6b6b6b;
-  --color-white: #ffffff;
+  --color-text:    #242424;
+  --color-muted:   #6b6b6b;
+  --color-white:   #ffffff;
+  --color-text-on-dark: rgba(255, 255, 255, 0.75);
 
   /* Background tones */
   --color-cream:      #fff9df;
-  --color-cream-warm: #fff9e8;   /* section / card bg */
-  --color-cream-soft: #fff1cf;   /* lighter card / faq bg */
-  --color-primary-bg: #ffeecc;   /* clients strip */
-  --color-card-hover: #ffe3a3;   /* testimonial card */
+  --color-cream-warm: #fff9e8;        /* warm cream — section / card bg */
+  --color-cream-soft: #fff1cf;        /* soft cream — faq / blog card bg */
 
-  /* Aliases kept for backward-compatibility */
-  --gcid-primary-color:    #ffc64a;
-  --gcid-secondary-color:  #ffffff;
-  --gcid-heading-color:    #242424;
-  --gcid-body-color:       #6b6b6b;
-  --gcid-bah6l7jb1n:       #242424;
-  --gcid-36p6h9qc3l:       #0f1a34;
-  --gcid-qdtr7s3apr:       #242424;
+  /* Neutral / UI */
+  --color-black:    #111111;          /* near-black text */
+  --color-muted-alt: #505658;         /* secondary muted — blue-grey */
+  --color-border:   #eeeeee;          /* light divider / skeleton */
+  --color-grey-dark: #333333;         /* dark grey text / code */
+  --color-footer-muted: #70778d;      /* blue-grey — footer / tag muted */
+  --color-dark-3:   #273351;          /* darkest navy — step / breadcrumb bg */
+  --color-triangle: #ffe1a6;          /* decorative triangle / arrow shape */
+
+  /* ── gcid aliases — mapped to brand tokens ─────────────── */
+  --gcid-primary-color:  var(--color-primary);
+  --gcid-secondary-color: var(--color-white);
+  --gcid-heading-color:  var(--color-text);
+  --gcid-body-color:     var(--color-muted);
+  --gcid-bah6l7jb1n:    var(--color-text);
+  --gcid-36p6h9qc3l:    var(--color-dark);
+  --gcid-qdtr7s3apr:    var(--color-text);
 
   /* ── Font Families ────────────────────────────────────── */
-  --font-heading: "Bitter";
+  --font-heading: "Bitter", Georgia, serif;
   --font-body:    'Cabin';
   --font-cabin:   "Cabin", Helvetica, Arial, Lucida, sans-serif;
   --font-arial:   Arial, Helvetica, sans-serif;
 
-  /* Aliases kept for existing components */
   --et_global_heading_font: 'Bitter';
   --et_global_body_font:    'Cabin';
 
   /* ── Font Size Scale ──────────────────────────────────── */
   --fs-xs:   13px;
-  --fs-sm:   14px;
-  --fs-base: 16px;   /* body text */
-  --fs-md:   17px;   /* kickers, nav links */
-  --fs-h4:   20px;   /* card headings */
-  --fs-h3:   24px;   /* sub-headings */
-  --fs-h2:   38px;   /* section headings */
-  --fs-h1:   50px;   /* hero */
+  --fs-sm:   14px;             /* metadata, badges */
+  --fs-base: 16px;             /* body copy */
+  --fs-md:   17px;             /* kickers, nav links */
+  --fs-h4:   20px;             /* card titles */
+  --fs-h3:   24px;             /* sub-headings */
+  --fs-h2:   38px;             /* section headings */
+  --fs-h1:   50px;             /* hero headline */
 
   /* ── Font Weights ─────────────────────────────────────── */
   --fw-normal:   400;
@@ -65,16 +77,17 @@
 
   /* ── Layout ───────────────────────────────────────────── */
   --container-max:    1280px;
-  --container-gutter: 2rem;      /* side padding on smaller screens */
-  --container:        1320px;    /* legacy alias */
+  --container-gutter: 2rem;
+  --container:        1320px;          /* legacy alias */
   --gutter:           clamp(24px, 8vw, 154px);
   --horizontal-gap-parent: 3%;
 
   /* ── Border Radius ────────────────────────────────────── */
-  --radius-sm:   10px;
-  --radius-md:   18px;
-  --radius-lg:   28px;
-  --radius-pill: 999px;
+  --radius-sm:      10px;              /* standard card / input */
+  --radius-md:      18px;
+  --radius-lg:      28px;
+  --radius-section: 22px;             /* large section cards */
+  --radius-pill:    999px;            /* button / tag pill */
 
   /* ── Shadows ──────────────────────────────────────────── */
   --shadow-card:  0 20px 50px rgba(16, 26, 54, 0.08);
@@ -84,42 +97,30 @@
   --section-padding: clamp(4rem, 8vw, 7rem);
 
   /* ── Transitions ──────────────────────────────────────── */
-  --transition:       0.3s ease;
-  --transition-slow:  0.45s cubic-bezier(.22, .61, .36, 1);
+  --transition:      0.3s ease;
+  --transition-slow: 0.45s cubic-bezier(.22, .61, .36, 1);
 }
+
+/* ── Hover-fill button pattern ───────────────────────── */
 .btn-fill-hover {
   position: relative;
   overflow: hidden;
   z-index: 1;
-
-  transition:
-    color .4s ease,
-    transform .3s ease;
+  transition: color .4s ease, transform .3s ease;
 }
 
 .btn-fill-hover::before {
   content: "";
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 0; bottom: 0;
   left: 50%;
   width: 0;
-
-  background: #242424;
+  background: var(--color-text);
   border-radius: inherit;
-
   transform: translateX(-50%);
-
-  transition:
-    width .45s cubic-bezier(.22,.61,.36,1);
-
+  transition: width .45s cubic-bezier(.22,.61,.36,1);
   z-index: -1;
 }
 
-.btn-fill-hover:hover::before {
-  width: 100%;
-}
-
-.btn-fill-hover:hover {
-  color: #fff !important;
-}
+.btn-fill-hover:hover::before { width: 100%; }
+.btn-fill-hover:hover { color: var(--color-white) !important; }

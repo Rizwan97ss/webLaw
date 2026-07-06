@@ -1,0 +1,141 @@
+/* Styles for the Testimonials v2 page (two-column alternating-width card grid) */
+
+/* ── Section ─────────────────────────────────────────── */
+.ts2-section {
+  padding: 80px 0;
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.ts2-head {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.ts2-head h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--gcid-heading-color, var(--color-primary-dark));
+  line-height: 1.2;
+}
+
+/* ── Grid ────────────────────────────────────────────── */
+.ts2-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ts2-row {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Alternating wide/narrow column sizes */
+.ts2-row:nth-child(odd) .ts2-card:first-child  { flex: 3; }
+.ts2-row:nth-child(odd) .ts2-card:last-child   { flex: 2; }
+.ts2-row:nth-child(even) .ts2-card:first-child { flex: 2; }
+.ts2-row:nth-child(even) .ts2-card:last-child  { flex: 3; }
+
+/* ── Card ────────────────────────────────────────────── */
+.ts2-card {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 20%, white);
+  border: 4px double color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 40%, white);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.ts2-card:hover {
+  border-color: var(--gcid-primary-color, var(--color-primary));
+  transform: translateY(-10px);
+}
+
+/* ── Quote icon ──────────────────────────────────────── */
+.ts2-quote {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 40%, white);
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--gcid-heading-color, var(--color-primary-dark));
+  font-family: var(--font-heading);
+  font-weight: 900;
+  user-select: none;
+}
+
+/* ── Author ──────────────────────────────────────────── */
+.ts2-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ts2-author img {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.ts2-author-info h4 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gcid-heading-color, var(--color-primary-dark));
+}
+
+.ts2-author-info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--gcid-body-color, #505658);
+}
+
+/* ── Quote text ──────────────────────────────────────── */
+.ts2-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--gcid-body-color, #505658);
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ts2-row {
+    flex-direction: column;
+  }
+
+  .ts2-row:nth-child(odd) .ts2-card:first-child,
+  .ts2-row:nth-child(odd) .ts2-card:last-child,
+  .ts2-row:nth-child(even) .ts2-card:first-child,
+  .ts2-row:nth-child(even) .ts2-card:last-child {
+    flex: 1;
+  }
+
+  .ts2-author img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ts2-section {
+    padding: 40px 0;
+  }
+}

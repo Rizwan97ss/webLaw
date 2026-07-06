@@ -329,9 +329,7 @@ const { area, services } = Astro.props;
           <div class="sidebar-cta__icon">☎</div>
           <h4>Call Us 24/7 For Help!</h4>
           <a href="tel:+0123456789">+01 23456789</a>
-          <a href="/contact-style-1" class="sidebar-cta__button">
-            Get In Touch
-          </a>
+          <a href="/contact/contact_1" class="sidebar-cta__button btn-fill-hover">Get In Touch</a>
         </div>
       </aside>
     </div>
@@ -339,14 +337,6 @@ const { area, services } = Astro.props;
 
   <Footer />
 </MainLayout>
-
-<style>
-  .service-list li.active a {
-    background: var(--gcid-primary-color, #ffc64a);
-    color: #242424;
-    font-weight: 700;
-  }
-</style>
 
 <script>
   const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");

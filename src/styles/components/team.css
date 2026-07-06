@@ -1,0 +1,202 @@
+/* Styles for the Team carousel section component */
+
+.team-section {
+  padding: var(--section-padding) 0;
+  background: #ffffff;
+}
+
+.team-head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.team-head h2 {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--gcid-heading-color, var(--color-text));
+}
+
+/* ── Carousel Wrap ─────────────────────────────────── */
+.team-carousel-wrap {
+  position: relative;
+  padding-bottom: 52px;
+}
+
+.team-track-outer {
+  overflow: hidden;
+}
+
+.team-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+
+/* ── Card ──────────────────────────────────────────── */
+.team-card {
+  flex: 0 0 calc(25% - 15px);
+  min-width: 0;
+}
+
+.team-card__inner {
+  position: relative;
+  height: 350px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.team-card__inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-card__inner img {
+  transform: scale(1.04);
+}
+
+/* ── Yellow overlay ────────────────────────────────── */
+.team-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary, var(--color-primary));
+  opacity: 1;
+  pointer-events: none;
+  transition:
+    width 0.4s ease,
+    height 0.4s ease,
+    border-radius 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.team-card:hover .team-overlay {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  opacity: 0.55;
+}
+
+/* ── Social icons ──────────────────────────────────── */
+.team-social {
+  position: absolute;
+  top: 20px;
+  left: -10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transition:
+    left 0.35s ease,
+    opacity 0.35s ease;
+  z-index: 2;
+}
+
+.team-card:hover .team-social {
+  left: 20px;
+  opacity: 1;
+}
+
+.team-social a {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-primary, var(--color-primary));
+  color: var(--color-primary-dark);
+  text-decoration: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.team-social a:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+/* ── Name tag ──────────────────────────────────────── */
+.team-name-tag {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--color-primary, var(--color-primary));
+  padding: 12px 18px;
+  border-radius: var(--radius-sm) 0 0 0;
+  z-index: 2;
+}
+
+.team-name-tag h4 {
+  margin: 0 0 2px;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.team-name-tag p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-primary-dark);
+  font-family: var(--font-body);
+  opacity: 0.8;
+}
+
+/* ── Arrows ────────────────────────────────────────── */
+.team-arrows {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.team-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--color-primary, var(--color-primary)) 50%, transparent);
+  background: color-mix(in srgb, var(--color-primary, var(--color-primary)) 30%, transparent);
+  color: var(--color-primary-dark);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.team-arrow:hover {
+  background: var(--color-primary, var(--color-primary));
+  border-color: var(--color-primary, var(--color-primary));
+}
+
+/* ── Responsive ────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .team-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 640px) {
+  .team-card {
+    flex: 0 0 calc(100%);
+  }
+
+  .team-card__inner {
+    height: 260px;
+  }
+}

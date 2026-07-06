@@ -1,16 +1,11 @@
-/* ============================================================
-   BLOG INDEX PAGE — src/pages/blog/index.astro
-   Shared sidebar styles live in: components/sidebar-widgets.css
-   Usage: @import "../components/sidebar-widgets.css";
-   ============================================================ */
+/* Styles for the Blog Category listing page */
 
-/* ── Section ─────────────────────────────────────────── */
 .blog-section {
   padding: 80px 0;
   background: #ffffff;
+  overflow: visible;
 }
 
-/* ── 2-column layout (blog-grid | sidebar) ──────────── */
 .blog-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
@@ -18,14 +13,20 @@
   align-items: start;
 }
 
-/* ── Blog card grid ──────────────────────────────────── */
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(320px, 1fr));
   gap: 32px;
 }
 
-/* ── Blog card ───────────────────────────────────────── */
+.no-posts {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 0;
+  color: var(--gcid-body-color, var(--color-muted-alt));
+  font-size: 18px;
+}
+
 .blog-card {
   background: var(--color-cream-warm);
   border: 1px solid rgba(255, 196, 66, 0.15);
@@ -77,7 +78,7 @@
   border-radius: 8px;
   background: var(--gcid-primary-color, var(--color-primary));
   color: var(--gcid-heading-color, var(--color-primary-dark));
-  font-family: "Cabin", sans-serif;
+  font-family: var(--font-cabin);
   font-size: 14px;
   font-weight: 700;
   line-height: 1;
@@ -103,7 +104,7 @@
   align-items: center;
   gap: 6px;
   color: var(--gcid-body-color, var(--color-muted-alt));
-  font-family: "Cabin", sans-serif;
+  font-family: var(--font-cabin);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
@@ -117,7 +118,7 @@
 .blog-card__title {
   margin: 0;
   color: var(--gcid-heading-color, var(--color-primary-dark));
-  font-family: "Bitter", serif;
+  font-family: var(--font-heading);
   font-size: 21px;
   font-weight: 600;
   line-height: 1.35;
@@ -143,7 +144,7 @@
   border-radius: var(--radius-pill);
   background: var(--gcid-primary-color, var(--color-primary));
   color: var(--gcid-heading-color, var(--color-primary-dark));
-  font-family: "Cabin", sans-serif;
+  font-family: var(--font-cabin);
   font-size: 14px;
   font-weight: 700;
   line-height: 1;
@@ -165,57 +166,23 @@
   line-height: 1;
 }
 
-/* ── Sidebar sticky ──────────────────────────────────── */
+/* Sidebar container (category page uses sticky with navbar offset) */
 .blog-sidebar {
   align-self: stretch;
 }
 
 .blog-sidebar-inner {
   position: sticky;
-  top: 0px;
+  top: calc(var(--navbar-h, 80px) + 24px);
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-/* Override shared title size for this page */
-.blog-section .sidebar-widget__title {
-  font-size: 24px;
-}
+/* sidebar-widget base styles are in components/sidebar-widgets.css */
 
-/* ── Search widget (blog index only) ─────────────────── */
-.sidebar-search-widget {
-  padding: 18px;
-}
-
-.sidebar-search {
-  display: flex;
-  width: 100%;
-}
-
-.sidebar-search input {
-  width: 100%;
-  height: 52px;
-  padding-inline: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-right: 0;
-  border-radius: var(--radius-sm) 0 0 10px;
-  color: var(--gcid-heading-color, var(--color-primary-dark));
-  font-family: "Cabin", sans-serif;
-  font-size: 15px;
-  outline: none;
-}
-
-.sidebar-search button {
-  width: 58px;
-  height: 52px;
-  display: grid;
-  place-items: center;
-  border: 0;
-  border-radius: 0 10px 10px 0;
-  background: var(--gcid-primary-color, var(--color-primary));
-  color: var(--gcid-heading-color, var(--color-primary-dark));
-  cursor: pointer;
+.sidebar-recent__date svg {
+  flex-shrink: 0;
 }
 
 /* ── Responsive ──────────────────────────────────────── */
@@ -266,7 +233,7 @@
     font-size: 19px;
   }
 
-  .blog-section .sidebar-widget__title {
+  .sidebar-widget__title {
     font-size: 22px;
   }
 }

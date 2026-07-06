@@ -1,0 +1,21 @@
+/* Styles for the Contact page */
+  .field-wrap { display: flex; flex-direction: column; width: 100%; }
+  .field-error { color: var(--color-error); font-size: 12px; margin-top: 4px; min-height: 16px; }
+  .field-wrap input.invalid,
+  .field-wrap select.invalid,
+  .field-wrap textarea.invalid { border-color: var(--color-error) !important; outline-color: var(--color-error); }
+  /* Reset the components.css slide-in animation — this page has no IntersectionObserver */
+  .contact-form {
+    opacity: 1;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+  }
+  .contact-card {
+    /* width: 100%; */
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5%;
+    padding: 30px;
+  }

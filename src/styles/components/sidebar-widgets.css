@@ -6,7 +6,7 @@
 
 /* Widget card */
 .sidebar-widget {
-  background: #fff8e8;
+  background: var(--color-cream-warm);
   border: 1px solid rgba(255, 196, 66, 0.15);
   border-radius: 16px;
   overflow: hidden;
@@ -16,8 +16,8 @@
 .sidebar-widget__title {
   margin: 0;
   padding: 20px 24px;
-  background: var(--gcid-primary-color, #ffc342);
-  color: var(--gcid-heading-color, #101932);
+  background: var(--gcid-primary-color, var(--color-primary));
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: "Bitter", serif;
   font-size: 22px;
   font-weight: 600;
@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: "Cabin", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -57,11 +57,11 @@
 
 .sidebar-cat-list li:hover a {
   padding-left: 8px;
-  color: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-primary-color, var(--color-primary));
 }
 
 .cat-arrow {
-  color: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-primary-color, var(--color-primary));
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
@@ -89,7 +89,7 @@
   height: 75px;
   display: block;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
 }
 
 .sidebar-recent__img-wrap img {
@@ -113,7 +113,7 @@
 }
 
 .sidebar-recent__title {
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   display: -webkit-box;
   overflow: hidden;
   font-family: "Bitter", serif;
@@ -127,14 +127,14 @@
 }
 
 .sidebar-recent__title:hover {
-  color: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-primary-color, var(--color-primary));
 }
 
 .sidebar-recent__date {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-primary-color, var(--color-primary));
   font-family: "Cabin", sans-serif;
   font-size: 13px;
   font-weight: 600;

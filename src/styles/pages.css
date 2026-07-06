@@ -111,7 +111,7 @@
 .shine-image {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
 }
 
 .shine-image::after {
@@ -145,8 +145,8 @@
 .content-box,
 .sidebar-card {
   padding: 20px;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 10%, white);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
 }
 
 .content-box h2 {
@@ -183,7 +183,7 @@ line-height: 1.2em;
   margin: 0 0 15px;
   font-size: 20px;
   line-height: 1.2;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
 }
 
 .case-row__content ul,
@@ -211,8 +211,8 @@ line-height: 1.2em;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: var(--gcid-primary-color, #ffc342);
-  color: #101932;
+  background: var(--gcid-primary-color, var(--color-primary));
+  color: var(--color-primary-dark);
   font-size: 13px;
   font-weight: 700;
 }
@@ -225,8 +225,8 @@ line-height: 1.2em;
 
 .faq-list-main details {
   overflow: hidden;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 30%, white);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 30%, white);
 }
 
 .faq-list-main summary {
@@ -234,12 +234,12 @@ line-height: 1.2em;
   padding: 20px 40px 20px 20px;
   font-size: 17px;
   font-weight: 600;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
 }
 
 .faq-list-main details[open] summary,
 .faq-list-main summary:hover {
-  background: var(--gcid-primary-color, #ffc342);
+  background: var(--gcid-primary-color, var(--color-primary));
 }
 
 .faq-list-main details p {
@@ -267,7 +267,7 @@ line-height: 1.2em;
   margin-bottom: 20px;
   padding: 10px 20px;
   border-radius: 5px;
-  background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 30%, white);
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 30%, white);
   color: #000;
   text-decoration: none;
   transition: 0.3s;
@@ -281,7 +281,7 @@ line-height: 1.2em;
 }
 
 .service-list a:hover {
-  background: var(--gcid-primary-color, #ffc342);
+  background: var(--gcid-primary-color, var(--color-primary));
 }
 
 .service-list a:hover::after {
@@ -295,8 +295,8 @@ line-height: 1.2em;
   padding: 15px;
   margin-top: 10px;
   border-radius: 5px;
-  background: var(--gcid-primary-color, #ffc342);
-  color: #101932;
+  background: var(--gcid-primary-color, var(--color-primary));
+  color: var(--color-primary-dark);
   text-decoration: none;
 }
 
@@ -307,7 +307,7 @@ line-height: 1.2em;
 
 .sidebar-cta {
   padding: 0 30px 30px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   text-align: center;
   color: #fff;
   background:
@@ -323,8 +323,8 @@ line-height: 1.2em;
   place-items: center;
   border: 6px solid #fff;
   border-radius: 50%;
-  background: var(--gcid-primary-color, #ffc342);
-  color: #101932;
+  background: var(--gcid-primary-color, var(--color-primary));
+  color: var(--color-primary-dark);
   animation: trin 1.5s infinite;
 }
 
@@ -344,8 +344,8 @@ line-height: 1.2em;
   margin-top: 20px;
   padding: 10px 22px;
   border-radius: 5px;
-  background: var(--gcid-primary-color, #ffc342);
-  color: #101932 !important;
+  background: var(--gcid-primary-color, var(--color-primary));
+  color: var(--color-primary-dark) !important;
 }
 
 @keyframes trin {
@@ -459,7 +459,7 @@ line-height: 1.2em;
 .shine-image {
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
 }
 
 .shine-image::after {
@@ -485,7 +485,7 @@ line-height: 1.2em;
   height: 480px;
   display: block;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
 }
 
 .blog-meta {
@@ -504,7 +504,7 @@ line-height: 1.2em;
 
 .blog-content h2 {
   margin: 0 0 20px;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
   font-size: 38px;
   font-weight: 600;
@@ -513,7 +513,7 @@ line-height: 1.2em;
 
 .blog-content h3 {
   margin: 30px 0 15px;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
   font-size: 26px;
   font-weight: 600;
@@ -552,13 +552,13 @@ line-height: 1.2em;
 
 .sidebar-card {
   padding: 20px;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 10%, white);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
 }
 
 .sidebar-card h3 {
   margin: 0 0 20px;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
   font-size: 20px;
   font-weight: 600;
@@ -577,8 +577,8 @@ line-height: 1.2em;
   margin-bottom: 15px;
   padding: 10px 20px;
   border-radius: 5px;
-  background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 30%, white);
-  color: #000000;
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 30%, white);
+  color: var(--color-text);
   font-family: "Cabin", sans-serif;
   text-decoration: none;
   transition: 0.3s;
@@ -592,7 +592,7 @@ line-height: 1.2em;
 }
 
 .category-list a:hover {
-  background: var(--gcid-primary-color, #ffc342);
+  background: var(--gcid-primary-color, var(--color-primary));
 }
 
 .category-list a:hover::after {
@@ -622,7 +622,7 @@ line-height: 1.2em;
 
 .recent-post h4 {
   margin: 0 0 8px;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 600;
@@ -733,7 +733,7 @@ line-height: 1.2em;
   overflow: hidden;
 
   background: color-mix(in srgb,
-      var(--gcid-primary-color, #ffc342) 10%,
+      var(--gcid-primary-color, var(--color-primary)) 10%,
       white);
 }
 
@@ -749,7 +749,7 @@ line-height: 1.2em;
   align-items: center;
   gap: 10px;
 
-  color: var(--gcid-primary-color, #ffc342);
+  color: var(--gcid-primary-color, var(--color-primary));
   font-family: "Cabin", sans-serif;
   font-size: 17px;
   font-weight: 600;
@@ -757,7 +757,7 @@ line-height: 1.2em;
 
 .contact-info h2 {
   margin: 0;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-size: 38px;
   font-weight: 600;
   line-height: 1.2;
@@ -774,7 +774,7 @@ line-height: 1.2em;
   align-items: center;
   gap: 30px;
 
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   text-decoration: none;
 }
 
@@ -787,15 +787,15 @@ line-height: 1.2em;
   justify-content: center;
 
   border-radius: 50%;
-  background: var(--gcid-primary-color, #ffc342);
-  color: #101932;
+  background: var(--gcid-primary-color, var(--color-primary));
+  color: var(--color-primary-dark);
 
   flex-shrink: 0;
 }
 
 .contact-item p {
   margin: 0;
-  color: var(--gcid-heading-color, #101932);
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: "Cabin", sans-serif;
   font-size: 16px;
   font-weight: 500;
@@ -808,11 +808,11 @@ line-height: 1.2em;
   gap: 20px;
 
   padding: 30px;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 
   background: color-mix(in srgb,
-      var(--gcid-primary-color, #ffc342) 15%,
+      var(--gcid-primary-color, var(--color-primary)) 15%,
       white);
 }
 
@@ -829,11 +829,11 @@ line-height: 1.2em;
 
   padding: 15px;
 
-  border: 1px solid var(--gcid-primary-color, #ffc342);
+  border: 1px solid var(--gcid-primary-color, var(--color-primary));
   border-radius: 5px;
 
   background: color-mix(in srgb,
-      var(--gcid-primary-color, #ffc342) 5%,
+      var(--gcid-primary-color, var(--color-primary)) 5%,
       white);
 
   color: var(--gcid-body-color, #505658);
@@ -874,8 +874,8 @@ line-height: 1.2em;
   border: 0;
   border-radius: 100px;
 
-  background: var(--gcid-primary-color, #ffc342);
-  color: var(--gcid-qdtr7s3apr, #101932);
+  background: var(--gcid-primary-color, var(--color-primary));
+  color: var(--gcid-qdtr7s3apr, var(--color-primary-dark));
 
   font-family: "Cabin", sans-serif;
   font-size: 16px;
@@ -899,7 +899,7 @@ line-height: 1.2em;
   display: block;
 
   border: 0;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   margin-bottom: -6px;
 }
 

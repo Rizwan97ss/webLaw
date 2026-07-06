@@ -1,10 +1,4 @@
-/* ============================================================
-   BLOG DETAILS PAGE — src/pages/blog/[...slug].astro
-   Shared sidebar styles live in: components/sidebar-widgets.css
-   Usage: @import "../components/sidebar-widgets.css";
-   Note: :global() wrappers from Astro scoped CSS are written
-         as plain selectors here since external CSS is unscoped.
-   ============================================================ */
+/* Styles for the Blog Post Detail page (static blog-details.astro with sidebar) */
 
 /* ── Section ─────────────────────────────────────────── */
 .bd-section {
@@ -12,15 +6,15 @@
   background: #fff;
 }
 
-/* ── 2-column layout (article | sidebar) ────────────── */
+/* ── 2-column layout ─────────────────────────────────── */
 .bd-layout {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr 300px;
   gap: 40px;
   align-items: start;
 }
 
-/* ── Main article column ─────────────────────────────── */
+/* ── Main ────────────────────────────────────────────── */
 .bd-main {
   display: flex;
   flex-direction: column;
@@ -29,13 +23,13 @@
 
 /* Hero image */
 .bd-img-wrap {
-  border-radius: 14px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
 .bd-img-wrap img {
   width: 100%;
-  height: 420px;
+  height: 400px;
   object-fit: cover;
   object-position: top;
   display: block;
@@ -54,7 +48,7 @@
   align-items: center;
   gap: 6px;
   font-size: 14px;
-  color: var(--gcid-body-color, #505658);
+  color: var(--gcid-body-color, var(--color-muted-alt));
 }
 
 .bd-meta__item svg {
@@ -71,7 +65,7 @@
   line-height: 1.25;
 }
 
-/* ── Article body (markdown content) ────────────────── */
+/* ── Article body ────────────────────────────────────── */
 .bd-body {
   display: flex;
   flex-direction: column;
@@ -82,10 +76,9 @@
   margin: 0;
   font-size: 16px;
   line-height: 1.8;
-  color: var(--gcid-body-color, #505658);
+  color: var(--gcid-body-color, var(--color-muted-alt));
 }
 
-.bd-body h2,
 .bd-body h3 {
   margin: 6px 0 0;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
@@ -107,20 +100,19 @@
 .bd-body ul li,
 .bd-body ol li {
   position: relative;
-  padding-left: 30px;
+  padding-left: 28px;
   font-size: 16px;
   line-height: 1.6;
-  color: var(--gcid-body-color, #505658);
+  color: var(--gcid-body-color, var(--color-muted-alt));
 }
 
-/* Gold checkmark bullets */
 .bd-body ul li::before {
   content: "✓";
   position: absolute;
   left: 0;
   top: 4px;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -130,7 +122,6 @@
   font-weight: 700;
 }
 
-/* Gold numbered counter bullets */
 .bd-body ol {
   counter-reset: ol-counter;
 }
@@ -156,14 +147,9 @@
   line-height: 1;
 }
 
-.bd-body strong {
-  color: var(--gcid-heading-color, var(--color-primary-dark));
-  font-weight: 700;
-}
-
-/* ── Sidebar sticky ──────────────────────────────────── */
+/* ── Sidebar ─────────────────────────────────────────── */
 .bd-sidebar {
-  align-self: stretch;
+  min-height: 100%;
 }
 
 .bd-sidebar-inner {
@@ -174,15 +160,17 @@
   gap: 32px;
 }
 
+/* Sidebar widget base styles are in components/sidebar-widgets.css */
+
 /* ── Responsive ──────────────────────────────────────── */
-@media (max-width: 1100px) {
+@media (max-width: 980px) {
   .bd-layout {
-    grid-template-columns: 1fr 300px;
+    grid-template-columns: 1fr 260px;
     gap: 28px;
   }
 
   .bd-img-wrap img {
-    height: 340px;
+    height: 320px;
   }
 }
 
@@ -195,11 +183,11 @@
     grid-template-columns: 1fr;
   }
 
-  .bd-sidebar-inner {
+  .bd-sidebar {
     position: static;
   }
 
   .bd-img-wrap img {
-    height: 260px;
+    height: 240px;
   }
 }
