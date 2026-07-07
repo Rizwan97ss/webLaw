@@ -37,43 +37,43 @@ const recentPosts = [
 ];
 ---
 
-<MainLayout title="Blog Details - Civitas Law">
+<MainLayout title="Blog Details" noIndex={true}>
   <Header />
   <PageHero title="Blog Details" />
 
-  <section class="bd-section">
+  <section class="bds-section">
     <div class="container">
-      <div class="bd-layout">
+      <div class="bds-layout">
 
         <!-- ── Main article ────────────────────────────────── -->
-        <main class="bd-main">
+        <main class="bds-main">
 
           <!-- Hero image -->
-          <div class="bd-img-wrap">
+          <div class="bds-img-wrap">
             <img src={post.image} alt={post.title} />
           </div>
 
           <!-- Meta row -->
-          <div class="bd-meta">
-            <span class="bd-meta__item">
+          <div class="bds-meta">
+            <span class="bds-meta__item">
               <Calendar size={14} strokeWidth={2.5} />
               {post.date}
             </span>
-            <span class="bd-meta__item">
+            <span class="bds-meta__item">
               <User size={14} strokeWidth={2.5} />
               {post.author}
             </span>
-            <span class="bd-meta__item">
+            <span class="bds-meta__item">
               <Tag size={14} strokeWidth={2.5} />
               {post.category}
             </span>
           </div>
 
           <!-- Title -->
-          <h1 class="bd-title">{post.title}</h1>
+          <h1 class="bds-title">{post.title}</h1>
 
           <!-- Article body -->
-          <div class="bd-body">
+          <div class="bds-body">
             <p>
               Navigating the legal landscape can often feel like walking through a labyrinth. When the stakes are low, a simple map might suffice. However, when you are faced with a complex case — one involving intricate financial structures, multi-party disputes, or high-stakes litigation — the margin for error disappears entirely.
             </p>
@@ -110,8 +110,8 @@ const recentPosts = [
         </main>
 
         <!-- ── Sidebar ─────────────────────────────────────── -->
-        <aside class="bd-sidebar">
-          <div class="bd-sidebar-inner">
+        <aside class="bds-sidebar">
+          <div class="bds-sidebar-inner">
 
           <!-- Browse Categories -->
           <div class="sidebar-widget">

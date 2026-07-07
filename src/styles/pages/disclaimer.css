@@ -1,20 +1,20 @@
 /* Styles for the Disclaimer / Privacy Policy page */
 
   /* ── Section ─────────────────────────────────────── */
-  .policy-section {
+  .dscl-section {
     padding: 80px 0;
     background: #fff;
   }
 
   /* ── Stack of blocks ──────────────────────────────── */
-  .policy-stack {
+  .dscl-stack {
     display: flex;
     flex-direction: column;
     gap: 30px;
   }
 
   /* ── Individual block ─────────────────────────────── */
-  .policy-block {
+  .dscl-block {
     background: color-mix(in srgb, var(--gcid-primary-color, #ffc342) 10%, white);
     border-radius: 10px;
     padding: 32px 36px;
@@ -23,7 +23,7 @@
     gap: 16px;
   }
 
-  .policy-block h2 {
+  .dscl-block h2 {
     margin: 0;
     font-size: clamp(1.4rem, 2vw, 1.9rem);
     font-weight: 600;
@@ -31,7 +31,7 @@
     line-height: 1.2;
   }
 
-  .policy-block p {
+  .dscl-block p {
     margin: 0;
     font-size: 16px;
     line-height: 1.7;
@@ -39,7 +39,7 @@
   }
 
   /* ── Bullet list ──────────────────────────────────── */
-  .policy-list {
+  .dscl-list {
     list-style: none;
     padding: 0;
     margin: 4px 0 0;
@@ -48,7 +48,7 @@
     gap: 10px;
   }
 
-  .policy-list li {
+  .dscl-list li {
     position: relative;
     padding-left: 30px;
     font-size: 16px;
@@ -56,7 +56,7 @@
     color: var(--gcid-body-color, var(--color-muted-alt));
   }
 
-  .policy-list li::before {
+  .dscl-list li::before {
     content: "✓";
     position: absolute;
     left: 0;
@@ -75,11 +75,11 @@
 
   /* ── Responsive ───────────────────────────────────── */
   @media (max-width: 767px) {
-    .policy-section {
+    .dscl-section {
       padding: 40px 0;
     }
 
-    .policy-block {
+    .dscl-block {
       padding: 24px 20px;
     }
   }

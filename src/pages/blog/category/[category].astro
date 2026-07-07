@@ -35,7 +35,10 @@ const fmt = (d: Date) =>
   d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 ---
 
-<MainLayout title={`${categoryName} - Blog - Civitas Law`}>
+<MainLayout
+  title={`${categoryName} — Legal Insights`}
+  description={`Read Civitas Law articles in the ${categoryName} category. Expert legal perspectives to help you understand your rights and options.`}
+>
   <Header />
   <PageHero title={categoryName} />
 

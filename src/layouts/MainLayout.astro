@@ -1,8 +1,72 @@
 ---
 // src/layouts/MainLayout.astro
 import "../styles/global.css";
+import CookieConsent from "../components/common/CookieConsent.astro";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_URL,
+  SITE_OG_IMAGE,
+  FIRM_NAME,
+  FIRM_PHONE,
+  FIRM_EMAIL,
+  FIRM_ADDRESS,
+} from "../consts";
 
-const { title = "Civitas Law" } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+  /** Absolute or root-relative path to OG image (1200×630) */
+  image?: string;
+  /** 'website' | 'article' */
+  type?: string;
+  /** Set true to prevent indexing (e.g. 404, thank-you pages) */
+  noIndex?: boolean;
+  /** ISO date string — used for og:article:published_time on blog posts */
+  pubDate?: string;
+  /** Pass true on the homepage to inject LegalService JSON-LD */
+  isHome?: boolean;
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  image = SITE_OG_IMAGE,
+  type = "website",
+  noIndex = false,
+  pubDate,
+  isHome = false,
+} = Astro.props;
+
+const pageTitle = title ? `${title} | ${SITE_TITLE}` : `${SITE_TITLE} — Justice Driven by Experience`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE_URL).href;
+const ogImage = image.startsWith("http") ? image : new URL(image, Astro.site ?? SITE_URL).href;
+
+const jsonLd = isHome
+  ? JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      name: FIRM_NAME,
+      url: Astro.site ?? SITE_URL,
+      logo: new URL("/favicon.svg", Astro.site ?? SITE_URL).href,
+      image: ogImage,
+      description: SITE_DESCRIPTION,
+      telephone: FIRM_PHONE,
+      email: FIRM_EMAIL,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: FIRM_ADDRESS,
+      },
+      sameAs: [],
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+      priceRange: "$$",
+    })
+  : null;
 ---
 
 <!doctype html>
@@ -10,30 +74,70 @@ const { title = "Civitas Law" } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=Bitter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic|Cabin:regular,500,600,700,italic,500italic,600italic,700italic|Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&amp;subset=latin,latin-ext&amp;display=swap" media="all">    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>{title}</title>
+
+    <!-- ── Favicon ──────────────────────────────────────── -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#10182f" />
+
+    <!-- ── Canonical ────────────────────────────────────── -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- ── Sitemap & RSS autodiscovery ──────────────────── -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${SITE_TITLE} Blog`}
+      href={new URL("rss.xml", Astro.site ?? SITE_URL).href}
+    />
+
+    <!-- ── Primary Meta ─────────────────────────────────── -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {!noIndex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
+    <meta name="author" content={FIRM_NAME} />
+
+    <!-- ── Open Graph ───────────────────────────────────── -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:locale" content="en_US" />
+    {pubDate && <meta property="article:published_time" content={pubDate} />}
+
+    <!-- ── Twitter Card ─────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- ── Fonts ────────────────────────────────────────── -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Bitter:400,600,700,800|Cabin:400,500,600,700|Inter:300,400,500,600,700&subset=latin,latin-ext&display=swap"
+      media="all"
+    />
+
+    <!-- ── JSON-LD Structured Data ──────────────────────── -->
+    {isHome && <script is:inline type="application/ld+json" set:html={jsonLd} />}
   </head>
 
   <body>
     <slot />
+    <CookieConsent />
 
     <script>
-      const items = document.querySelectorAll("[data-reveal]");
-
-      const observer = new IntersectionObserver(
-        entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-
-      items.forEach(item => observer.observe(item));
+      import { setupScrollReveal } from '../scripts/scrollReveal';
+      setupScrollReveal();
     </script>
   </body>
 </html>

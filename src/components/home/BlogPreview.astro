@@ -1,5 +1,5 @@
 ---
-import { ChevronRight, ChevronLeft, Scale } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Scale, User, Tag } from 'lucide-react';
 
 const posts = [
   {
@@ -65,19 +65,21 @@ const posts = [
             <div class="blog-card">
               <div class="blog-image">
                 <img src={post.image} alt={post.title} />
-                <span>{post.date}</span>
+                <span class="blog-badge">{post.date}</span>
               </div>
 
-              <div class="blog-meta">
-                <span>♟ By {post.author}</span>
-                <span>🏷 {post.category}</span>
+              <div class="blog-body">
+                <div class="blog-meta">
+                  <span><User size={13} /> By {post.author}</span>
+                  <span><Tag size={13} /> {post.category}</span>
+                </div>
+
+                <h3>{post.title}</h3>
+
+                <a href={`/blog/${post.slug}`} class="practice-view-btn btn-fill-hover">
+                  Read More <span>→</span>
+                </a>
               </div>
-
-              <h3>{post.title}</h3>
-
-              <a href={`/blog/${post.slug}`} class="blog-btn btn-fill-hover">
-                Read More <span>→</span>
-              </a>
 
             </div>
           </article>
@@ -93,43 +95,14 @@ const posts = [
 </section>
 
 <script>
-  const blogTrack = document.querySelector(".blog-track");
-  const blogSlides = document.querySelectorAll(".blog-slide");
-  const blogPrev = document.querySelector(".blog-prev");
-  const blogNext = document.querySelector(".blog-next");
-
-  let blogIndex = 0;
-
-  function visibleBlogCards() {
-    if (window.innerWidth <= 640) return 1;
-    if (window.innerWidth <= 1024) return 2;
-    return 3;
-  }
-
-  function updateBlogSlider() {
-    if (!blogTrack || !blogSlides.length) return;
-
-    const visible = visibleBlogCards();
-    const maxIndex = Math.max(blogSlides.length - visible, 0);
-
-    if (blogIndex > maxIndex) blogIndex = maxIndex;
-
-    const slideWidth = blogSlides[0].getBoundingClientRect().width;
-    (blogTrack as HTMLElement).style.transform = `translateX(-${blogIndex * slideWidth}px)`;
-  }
-
-  blogNext?.addEventListener("click", () => {
-    const maxIndex = Math.max(blogSlides.length - visibleBlogCards(), 0);
-    blogIndex = blogIndex >= maxIndex ? 0 : blogIndex + 1;
-    updateBlogSlider();
+  import { createSlider } from '../../scripts/slider';
+  import { siteConfig } from '../../config/site.config';
+  createSlider({
+    trackSelector: '.blog-track',
+    slideSelector: '.blog-slide',
+    prevSelector:  '.blog-prev',
+    nextSelector:  '.blog-next',
+    visibleCards:  siteConfig.blog.visibleCards,
+    breakpoints:   siteConfig.blog.breakpoints,
   });
-
-  blogPrev?.addEventListener("click", () => {
-    const maxIndex = Math.max(blogSlides.length - visibleBlogCards(), 0);
-    blogIndex = blogIndex <= 0 ? maxIndex : blogIndex - 1;
-    updateBlogSlider();
-  });
-
-  window.addEventListener("resize", updateBlogSlider);
-  updateBlogSlider();
 </script>

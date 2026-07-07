@@ -243,7 +243,10 @@ export function getStaticPaths() {
 const { area, services } = Astro.props;
 ---
 
-<MainLayout title={`${area.title} - Civitas Law`}>
+<MainLayout
+  title={area.title}
+  description={typeof area.description === 'string' ? area.description : area.description[0]}
+>
   <Header />
   <PageHero title={area.title} />
 
@@ -339,23 +342,6 @@ const { area, services } = Astro.props;
 </MainLayout>
 
 <script>
-  const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
-
-  faqItems.forEach((item) => {
-    item.querySelector(".faq-question")?.addEventListener("click", () => {
-      const isOpen = item.classList.contains("is-open");
-
-      faqItems.forEach((other) => {
-        other.classList.remove("is-open");
-        const icon = other.querySelector<HTMLElement>(".faq-question strong");
-        if (icon) icon.textContent = "+";
-      });
-
-      if (!isOpen) {
-        item.classList.add("is-open");
-        const icon = item.querySelector<HTMLElement>(".faq-question strong");
-        if (icon) icon.textContent = "−";
-      }
-    });
-  });
+  import { createAccordion } from '../../scripts/accordion';
+  createAccordion();
 </script>

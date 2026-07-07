@@ -239,7 +239,10 @@ const { caseData, recentCases } = Astro.props;
 const caseInfoIcons = [FileText, Calendar, User, Clock];
 ---
 
-<MainLayout title={`${caseData.title} - Civitas Law`}>
+<MainLayout
+  title={caseData.title}
+  description={caseData.summary[0]}
+>
   <Header />
   <PageHero title={caseData.title} />
 
@@ -373,23 +376,6 @@ const caseInfoIcons = [FileText, Calendar, User, Clock];
 </MainLayout>
 
 <script>
-  const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
-
-  faqItems.forEach((item) => {
-    item.querySelector(".faq-question")?.addEventListener("click", () => {
-      const isOpen = item.classList.contains("is-open");
-
-      faqItems.forEach((other) => {
-        other.classList.remove("is-open");
-        const icon = other.querySelector<HTMLElement>(".faq-question strong");
-        if (icon) icon.textContent = "+";
-      });
-
-      if (!isOpen) {
-        item.classList.add("is-open");
-        const icon = item.querySelector<HTMLElement>(".faq-question strong");
-        if (icon) icon.textContent = "−";
-      }
-    });
-  });
+  import { createAccordion } from '../../scripts/accordion';
+  createAccordion();
 </script>

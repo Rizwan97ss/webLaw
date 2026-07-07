@@ -61,7 +61,10 @@ const socials = [
 ];
 ---
 
-<MainLayout title="Attorney Profile - Civitas Law">
+<MainLayout
+  title="Attorney Profile"
+  description="Meet the experienced attorneys at Civitas Law. Dedicated legal professionals with proven results in criminal defense, business law, and civil litigation."
+>
   <Header />
   <PageHero title="Attorney Profile" />
 
@@ -209,15 +212,17 @@ const socials = [
         </select>
         <textarea placeholder="Your Message" required></textarea>
         <div class="atty-form-action">
-          <a class="practice-view-btn btn-fill-hover">
+          <button type="submit" class="practice-view-btn btn-fill-hover">
             Book Appointment <span>→</span>
-          </a>
+          </button>
         </div>
       </form>
     </div>
   </section>
+  <div class="atty-testimonials">
+    <Testimonials />
+  </div>
 
-  <Testimonials />
   <Footer />
 </MainLayout>
 

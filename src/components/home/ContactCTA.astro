@@ -1,18 +1,18 @@
 ---
 import { Scale } from "lucide-react";
 ---
-<section class="contact-section">
+<section class="hcta-section">
   <div class="container">
-    <div class="contact-card contact-animate">
-      <div class="contact-image-box">
+    <div class="hcta-card hcta-animate">
+      <div class="hcta-image-box">
         <img
           src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1400&q=80"
           alt="Judge gavel"
         />
 
-        <div class="contact-overlay"></div>
+        <div class="hcta-overlay"></div>
 
-        <div class="contact-image-content">
+        <div class="hcta-image-content">
           <p><Scale size={16} className="kicker-icon" /> Have Any Question?</p>
           <h2>
             Contact Us For More
@@ -22,8 +22,8 @@ import { Scale } from "lucide-react";
         </div>
       </div>
 
-      <form class="contact-form" id="home-contact-form" novalidate>
-        <div class="contact-row">
+      <form class="hcta-form" id="home-contact-form" novalidate>
+        <div class="hcta-row">
           <div class="field-wrap">
             <input type="text" name="name" placeholder="Name" />
             <span class="field-error"></span>
@@ -55,7 +55,7 @@ import { Scale } from "lucide-react";
           <span class="field-error"></span>
         </div>
 
-        <button type="submit" class="contact-btn">
+        <button type="submit" class="hcta-btn">
           Book Appointment <span>→</span>
         </button>
         <p class="form-success" style="display:none;color:#22c55e;font-weight:600;margin-top:8px;">
@@ -117,7 +117,7 @@ import { Scale } from "lucide-react";
     });
   }
 
-  const contactCard = document.querySelector(".contact-animate");
+  const contactCard = document.querySelector(".hcta-animate");
 
   const contactObserver = new IntersectionObserver(
     (entries) => {

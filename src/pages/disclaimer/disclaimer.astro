@@ -40,21 +40,24 @@ const sections = [
 ];
 ---
 
-<MainLayout title="Disclaimer - Civitas Law">
+<MainLayout
+  title="Disclaimer"
+  description="Legal disclaimer for Civitas Law. Please read this disclaimer before using our website or relying on any information provided herein."
+>
   <Header />
   <PageHero title="Disclaimer" />
 
-  <section class="policy-section">
+  <section class="dscl-section">
     <div class="container">
-      <div class="policy-stack">
+      <div class="dscl-stack">
         {sections.map((s) => (
-          <div class="policy-block">
+          <div class="dscl-block">
             <h2>{s.heading}</h2>
             {s.paragraphs.map((p) => (
               <p>{p}</p>
             ))}
             {s.list && (
-              <ul class="policy-list">
+              <ul class="dscl-list">
                 {s.list.map((item) => (
                   <li>{item}</li>
                 ))}

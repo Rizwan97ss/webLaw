@@ -12,12 +12,12 @@
   --color-error:         #ef4444;     /* form validation */
 
   --color-dark:    #0f1a34;           /* deep navy — hero / section bg */
-  --color-dark-2:  #1d2947;
+  --color-dark-2:  #1d2947;           /* defined — available for dark card overlays */
+  --color-text-on-dark: rgba(255, 255, 255, 0.75); /* defined — available for body text on dark bg */
 
   --color-text:    #242424;
   --color-muted:   #6b6b6b;
   --color-white:   #ffffff;
-  --color-text-on-dark: rgba(255, 255, 255, 0.75);
 
   /* Background tones */
   --color-cream:      #fff9df;

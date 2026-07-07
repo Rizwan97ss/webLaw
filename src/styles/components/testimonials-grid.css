@@ -20,60 +20,60 @@
   padding: 28px 24px;
 }
 
-.testimonial-top {
+.testimonial-card-page .testimonial-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
 
-.testimonial-top strong {
+.testimonial-card-page .testimonial-top strong {
   font-family: "Comic Sans MS", cursive;
   font-size: 22px;
   line-height: 1;
 }
 
-.testimonial-top span {
+.testimonial-card-page .testimonial-top span {
   color: var(--color-primary);
   letter-spacing: 2px;
   white-space: nowrap;
 }
 
-.testimonial-line {
+.testimonial-card-page .testimonial-line {
   width: 64px;
   height: 1px;
   background: rgba(0, 0, 0, 0.15);
   margin: 22px 0;
 }
 
-.testimonial-box p {
+.testimonial-card-page .testimonial-box p {
   margin: 0;
   color: var(--color-muted-alt);
   font-size: 16px;
   line-height: 1.7;
 }
 
-.testimonial-author {
+.testimonial-card-page .testimonial-author {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-top: 22px;
 }
 
-.testimonial-author img {
+.testimonial-card-page .testimonial-author img {
   width: 58px;
   height: 58px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.testimonial-author h3 {
+.testimonial-card-page .testimonial-author h3 {
   margin: 0;
   font-size: 20px;
   line-height: 1.2;
 }
 
-.testimonial-author span {
+.testimonial-card-page .testimonial-author span {
   color: var(--color-muted-alt);
   font-size: 14px;
 }

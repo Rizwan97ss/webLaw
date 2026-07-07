@@ -1,12 +1,5 @@
 /* Styles for the Contact page (contact_1.astro) */
 
-/* ── Validation helpers (shared, unscoped) ──────────── */
-.field-wrap { display: flex; flex-direction: column; width: 100%; }
-.field-error { color: var(--color-error); font-size: 12px; margin-top: 4px; min-height: 16px; }
-.field-wrap input.invalid,
-.field-wrap select.invalid,
-.field-wrap textarea.invalid { border-color: var(--color-error) !important; outline-color: var(--color-error); }
-
 /* ── Section ─────────────────────────────────────────── */
 .contact-page {
   padding: 80px 0 60px;
@@ -17,7 +10,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   gap: 48px;
-  align-items: start;
+  align-items: center;
   padding: 48px;
   border-radius: var(--radius-sm);
   background: var(--color-cream-warm);
@@ -29,17 +22,6 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-}
-
-.contact-page .contact-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 1.2;
-  color: var(--gcid-primary-color, var(--color-primary));
 }
 
 .contact-page .contact-info h2 {
@@ -98,27 +80,54 @@
   border-radius: var(--radius-sm);
 }
 
-/* Tighter field sizing on this page vs home contact section */
+.contact-page .contact-form input,
+.contact-page .contact-form select,
+.contact-page .contact-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 60%, transparent);
+  border-radius: 6px;
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.05);
+  color: var(--color-text);
+  font-family: "Cabin", sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-page .contact-form input:focus,
+.contact-page .contact-form select:focus,
+.contact-page .contact-form textarea:focus {
+  border-color: var(--gcid-primary-color, var(--color-primary));
+}
+
 .contact-page .contact-form input,
 .contact-page .contact-form select {
-  height: 52px !important;
-  font-size: 15px !important;
+  height: 50px;
+  padding: 0 15px;
 }
 
 .contact-page .contact-form textarea {
-  min-height: 140px !important;
-  font-size: 15px !important;
+  padding: 12px 15px;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-page .contact-form input::placeholder,
+.contact-page .contact-form textarea::placeholder {
+  color: var(--color-text);
+  font-size: 15px;
+}
+
+.contact-page .contact-form select {
+  appearance: none;
+  cursor: pointer;
 }
 
 .contact-page .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 18px;
-}
-
-.contact-page .form-action {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .contact-page .form-action button {
@@ -155,6 +164,7 @@
   border: 0;
   border-radius: var(--radius-sm);
   display: block;
+  margin-bottom: -6px;
 }
 
 /* ── Responsive ──────────────────────────────────────── */
@@ -178,6 +188,18 @@
     grid-template-columns: 1fr;
     gap: 32px;
     padding: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-map iframe {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page {
+    padding: 28px 0;
   }
 }
 

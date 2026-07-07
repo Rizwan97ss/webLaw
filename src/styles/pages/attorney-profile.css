@@ -279,7 +279,7 @@
 .atty-bar-track {
   height: 10px;
   border-radius: 100px;
-  background: #var(--color-border);
+  background: var(--color-border);
   overflow: hidden;
 }
 
@@ -474,38 +474,25 @@
 
 .atty-contact-section {
   padding: 80px 0;
-  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.1) !important;
+  background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 10%, white);
 }
 
 .atty-contact-inner {
   max-width: 60%;
   margin: 0 auto;
   text-align: center;
-  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.15);
-  padding-top: 30px;
-  padding-right: 30px;
-  padding-bottom: 30px;
-  padding-left: 30px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  --vertical-gap: 20px;
+  background: var(--color-cream-soft);
+  padding: 30px;
+  border-radius: 10px;
   overflow: hidden;
-}
-
-.atty-contact-form input::placeholder,
-.atty-contact-form textarea::placeholder {
-  color: var(--gcid-bah6l7jb1n);
-  font-size: 15px;
 }
 
 .atty-contact-inner h2 {
   margin: 0 0 32px;
   font-weight: 600;
-  color: var(--gcid-heading-color) !important;
+  color: var(--gcid-heading-color, var(--color-primary-dark));
   font-size: 38px;
-  line-height: 1.2em;
+  line-height: 1.2;
   text-align: center;
 }
 
@@ -519,23 +506,45 @@
 .atty-contact-form input,
 .atty-contact-form select,
 .atty-contact-form textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-family: "Cabin", sans-serif;
-  border: none;
-  background: #fff;
-  outline: none;
-  transition: border-color 0.2s;
   box-sizing: border-box;
+  width: 100%;
+  border: 1px solid color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 60%, transparent);
+  border-radius: 6px;
+  background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.05);
+  color: var(--color-text);
+  font-family: "Cabin", sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
+.atty-contact-form input:focus,
+.atty-contact-form select:focus,
+.atty-contact-form textarea:focus {
+  border-color: var(--gcid-primary-color, var(--color-primary));
+}
 
+.atty-contact-form input,
+.atty-contact-form select {
+  height: 50px;
+  padding: 0 15px;
+}
 
 .atty-contact-form textarea {
-  height: 140px;
+  padding: 12px 15px;
+  min-height: 120px;
   resize: vertical;
+}
+
+.atty-contact-form input::placeholder,
+.atty-contact-form textarea::placeholder {
+  color: var(--color-text);
+  font-size: 15px;
+}
+
+.atty-contact-form select {
+  appearance: none;
+  cursor: pointer;
 }
 
 .atty-form-row {
@@ -619,4 +628,9 @@
   .atty-contact-form {
     padding: 24px 18px;
   }
+}
+
+/* ── Testimonial section: transparent bg on this page ─── */
+.atty-testimonials .testimonial-section {
+  background: transparent;
 }

@@ -1,5 +1,5 @@
 ---
-import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-astro';
+import { Menu, X, ChevronDown, Phone, Mail, Facebook, Instagram, Linkedin } from 'lucide-astro';
 
 
 const navLinks = [
@@ -66,10 +66,10 @@ const currentPath = Astro.url.pathname;
         </a>
       </div>
       <div class="topbar__social">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Instagram">◎</a>
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="WhatsApp">☏</a>
+        <a href="#" aria-label="Facebook"><Facebook size={15} strokeWidth={2} /></a>
+        <a href="#" aria-label="Instagram"><Instagram size={15} strokeWidth={2} /></a>
+        <a href="#" aria-label="LinkedIn"><Linkedin size={15} strokeWidth={2} /></a>
+        <a href="#" aria-label="Phone"><Phone size={15} strokeWidth={2} /></a>
       </div>
     </div>
   </div>

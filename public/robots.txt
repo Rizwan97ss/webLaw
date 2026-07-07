@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Exclude internal/demo pages
+Disallow: /error/
+Disallow: /blog/blog-details
+Disallow: /case-study/case_study_details
+Disallow: /practice-areas/practice-details
+
+Sitemap: https://example.com/sitemap-index.xml

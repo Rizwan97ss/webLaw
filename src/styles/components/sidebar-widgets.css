@@ -144,3 +144,10 @@
 .sidebar-recent__date svg {
   flex-shrink: 0;
 }
+
+@media (max-width: 480px) {
+  .sidebar-recent__img-wrap {
+    width: 82px;
+    height: 68px;
+  }
+}

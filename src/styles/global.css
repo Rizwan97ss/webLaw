@@ -31,6 +31,27 @@
 @import "./pages/blog-category.css";
 @import "./pages/blog-page-details.css";
 
+/* ── Global reset foundations ───────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+img, picture, video, canvas, svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+button, [type="button"], [type="submit"], [type="reset"],
+.btn, .btn-fill-hover, .practice-view-btn, .header-cta,
+.hcta-btn, .c2-tab {
+  cursor: pointer;
+  font-weight: var(--fw-normal);
+}
+
 body {
   font-family: var(--font-body);
   color: var(--color-text);
@@ -39,6 +60,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   margin: 0;
+  /* Prevent any element from causing horizontal scroll */
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5 {
@@ -57,10 +80,12 @@ p {
   margin-inline: auto;
 }
 
+/* ── Responsive container gutter ────────────────────── */
+@media (max-width: 768px) {
+  :root { --container-gutter: 2rem; }
+}
 @media (max-width: 480px) {
-  :root {
-    --container-gutter: 1.5rem;
-  }
+  :root { --container-gutter: 1.25rem; }
 }
 
 .section {

@@ -1,19 +1,17 @@
 /* ============================================================
-   BLOG DETAILS PAGE — src/pages/blog/[...slug].astro
-   Shared sidebar styles live in: components/sidebar-widgets.css
-   Usage: @import "../components/sidebar-widgets.css";
-   Note: :global() wrappers from Astro scoped CSS are written
-         as plain selectors here since external CSS is unscoped.
+   BLOG DETAILS DEMO PAGE — src/pages/blog/blog-details.astro
+   Classes use .bds-* prefix to avoid collision with
+   blog-page-details.css (.bd-* used by the dynamic slug page)
    ============================================================ */
 
 /* ── Section ─────────────────────────────────────────── */
-.bd-section {
+.bds-section {
   padding: 80px 0;
   background: #fff;
 }
 
 /* ── 2-column layout (article | sidebar) ────────────── */
-.bd-layout {
+.bds-layout {
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 40px;
@@ -21,19 +19,19 @@
 }
 
 /* ── Main article column ─────────────────────────────── */
-.bd-main {
+.bds-main {
   display: flex;
   flex-direction: column;
   gap: 22px;
 }
 
 /* Hero image */
-.bd-img-wrap {
+.bds-img-wrap {
   border-radius: 14px;
   overflow: hidden;
 }
 
-.bd-img-wrap img {
+.bds-img-wrap img {
   width: 100%;
   height: 420px;
   object-fit: cover;
@@ -42,14 +40,14 @@
 }
 
 /* Meta row */
-.bd-meta {
+.bds-meta {
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.bd-meta__item {
+.bds-meta__item {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -57,13 +55,13 @@
   color: var(--gcid-body-color, #505658);
 }
 
-.bd-meta__item svg {
+.bds-meta__item svg {
   color: var(--gcid-primary-color, var(--color-primary));
   flex-shrink: 0;
 }
 
 /* Title */
-.bd-title {
+.bds-title {
   margin: 0;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
@@ -72,21 +70,21 @@
 }
 
 /* ── Article body (markdown content) ────────────────── */
-.bd-body {
+.bds-body {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.bd-body p {
+.bds-body p {
   margin: 0;
   font-size: 16px;
   line-height: 1.8;
   color: var(--gcid-body-color, #505658);
 }
 
-.bd-body h2,
-.bd-body h3 {
+.bds-body h2,
+.bds-body h3 {
   margin: 6px 0 0;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 700;
@@ -94,8 +92,8 @@
   line-height: 1.3;
 }
 
-.bd-body ul,
-.bd-body ol {
+.bds-body ul,
+.bds-body ol {
   margin: 0;
   padding-left: 0;
   list-style: none;
@@ -104,8 +102,8 @@
   gap: 10px;
 }
 
-.bd-body ul li,
-.bd-body ol li {
+.bds-body ul li,
+.bds-body ol li {
   position: relative;
   padding-left: 30px;
   font-size: 16px;
@@ -114,7 +112,7 @@
 }
 
 /* Gold checkmark bullets */
-.bd-body ul li::before {
+.bds-body ul li::before {
   content: "✓";
   position: absolute;
   left: 0;
@@ -131,15 +129,15 @@
 }
 
 /* Gold numbered counter bullets */
-.bd-body ol {
+.bds-body ol {
   counter-reset: ol-counter;
 }
 
-.bd-body ol li {
+.bds-body ol li {
   counter-increment: ol-counter;
 }
 
-.bd-body ol li::before {
+.bds-body ol li::before {
   content: counter(ol-counter);
   position: absolute;
   left: 0;
@@ -156,17 +154,17 @@
   line-height: 1;
 }
 
-.bd-body strong {
+.bds-body strong {
   color: var(--gcid-heading-color, var(--color-primary-dark));
   font-weight: 700;
 }
 
 /* ── Sidebar sticky ──────────────────────────────────── */
-.bd-sidebar {
+.bds-sidebar {
   align-self: stretch;
 }
 
-.bd-sidebar-inner {
+.bds-sidebar-inner {
   position: sticky;
   top: calc(var(--navbar-h, 80px) + 24px);
   display: flex;
@@ -176,30 +174,30 @@
 
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 1100px) {
-  .bd-layout {
+  .bds-layout {
     grid-template-columns: 1fr 300px;
     gap: 28px;
   }
 
-  .bd-img-wrap img {
+  .bds-img-wrap img {
     height: 340px;
   }
 }
 
 @media (max-width: 767px) {
-  .bd-section {
+  .bds-section {
     padding: 40px 0;
   }
 
-  .bd-layout {
+  .bds-layout {
     grid-template-columns: 1fr;
   }
 
-  .bd-sidebar-inner {
+  .bds-sidebar-inner {
     position: static;
   }
 
-  .bd-img-wrap img {
+  .bds-img-wrap img {
     height: 260px;
   }
 }

@@ -1,0 +1,201 @@
+---
+// src/components/common/CookieConsent.astro
+---
+
+<div
+  class="ck"
+  id="cookieBanner"
+  role="dialog"
+  aria-modal="false"
+  aria-label="Cookie consent"
+>
+  <div class="ck__header">
+    <span class="ck__icon" aria-hidden="true">🍪</span>
+    <p class="ck__title">We use cookies</p>
+  </div>
+
+  <p class="ck__text">
+    We use cookies to improve your experience and analyse site traffic.
+    <a href="/privacy/privacy" class="ck__link">Privacy Policy</a>
+  </p>
+
+  <div class="ck__actions">
+    <button class="ck__btn ck__btn--reject" id="cookieReject" type="button">
+      Reject
+    </button>
+    <button class="ck__btn ck__btn--accept" id="cookieAccept" type="button">
+      Accept All
+    </button>
+  </div>
+</div>
+
+<style>
+  .ck {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    width: 320px;
+
+    padding: 24px;
+    background: var(--color-dark);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.28);
+    border-top: 3px solid var(--color-primary);
+
+    /* hidden state */
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition:
+      opacity 0.38s ease,
+      transform 0.38s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .ck.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* ── Header row ─────────────────────────────────── */
+  .ck__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .ck__icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .ck__title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-white);
+    line-height: 1.2;
+  }
+
+  /* ── Body text ──────────────────────────────────── */
+  .ck__text {
+    margin: 0 0 18px;
+    font-family: var(--font-cabin);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.55;
+  }
+
+  .ck__link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .ck__link:hover {
+    color: #fff;
+  }
+
+  /* ── Buttons ────────────────────────────────────── */
+  .ck__actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .ck__btn {
+    flex: 1;
+    height: 40px;
+    padding: 0 14px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-cabin);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .ck__btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .ck__btn--reject {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+  }
+
+  .ck__btn--reject:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.55);
+  }
+
+  .ck__btn--accept {
+    background: var(--color-primary);
+    color: var(--color-dark);
+    font-weight: 700;
+  }
+
+  .ck__btn--accept:hover {
+    opacity: 0.88;
+  }
+
+  /* ── Mobile: full-width bottom bar ─────────────── */
+  @media (max-width: 480px) {
+    .ck {
+      width: auto;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      padding: 18px 16px;
+    }
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'civitas_cookie_consent';
+  const banner    = document.getElementById('cookieBanner');
+  const acceptBtn = document.getElementById('cookieAccept');
+  const rejectBtn = document.getElementById('cookieReject');
+
+  function hideBanner() {
+    banner?.classList.remove('is-visible');
+  }
+
+  function showBanner() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        banner?.classList.add('is-visible');
+      });
+    });
+  }
+
+  function saveChoice(choice: 'accepted' | 'rejected') {
+    try { localStorage.setItem(STORAGE_KEY, choice); } catch (_) {}
+  }
+
+  function getChoice(): string | null {
+    try { return localStorage.getItem(STORAGE_KEY); } catch (_) { return null; }
+  }
+
+  if (!getChoice()) {
+    setTimeout(showBanner, 5000);
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    saveChoice('accepted');
+    hideBanner();
+    window.dispatchEvent(new CustomEvent('cookieConsent', { detail: { accepted: true } }));
+  });
+
+  rejectBtn?.addEventListener('click', () => {
+    saveChoice('rejected');
+    hideBanner();
+    window.dispatchEvent(new CustomEvent('cookieConsent', { detail: { accepted: false } }));
+  });
+</script>

@@ -15,7 +15,10 @@ Complete reference for the Civitas Law firm website.
 7. [Features](#features)
 8. [CSS Variables](#css-variables)
 9. [Animation System](#animation-system)
-10. [Going Live](#going-live)
+10. [Site Config — Behavior Settings](#site-config--behavior-settings)
+11. [TypeScript Script Modules](#typescript-script-modules)
+12. [Customization Guide — What You Can Change](#customization-guide--what-you-can-change)
+13. [Going Live](#going-live)
 
 ---
 
@@ -107,13 +110,22 @@ npm run astro     # run any Astro CLI command
 src/
 ├── assets/
 │   └── fonts/                  # local font files (Atkinson)
+├── config/
+│   └── site.config.ts          # ★ central behavior config — all user-tweakable values
+├── scripts/                    # ★ TypeScript modules — all interactive behavior
+│   ├── scrollReveal.ts         # IntersectionObserver scroll-reveal setup
+│   ├── counter.ts              # Stats count-up animation
+│   ├── slider.ts               # Shared slider factory (testimonials + blog)
+│   ├── accordion.ts            # FAQ accordion factory
+│   ├── scrollTop.ts            # Back-to-top button visibility + scroll
+│   └── infiniteCarousel.ts     # Team section infinite-loop carousel
 ├── components/
 │   ├── cards/                  # BlogCard, CaseStudyCard, FAQItem, PracticeAreaCard, TestimonialCard
 │   ├── common/                 # Breadcrumb, Button, CTASection, CardGrid, PageHero, Pagination, ScrollTop, SectionHeading
 │   ├── home/                   # all 15 home page section components
 │   └── layout/                 # Header.astro, Footer.astro
 ├── layouts/
-│   ├── MainLayout.astro        # root HTML shell, Google Fonts link, IntersectionObserver script
+│   ├── MainLayout.astro        # root HTML shell, Google Fonts, imports scrollReveal.ts
 │   ├── Header.astro
 │   ├── Footer.astro
 │   └── TopBar.astro
@@ -361,6 +373,544 @@ Both systems respect `prefers-reduced-motion` in `animations.css`. All transitio
 ### Where animations are NOT used
 
 Section heading containers (`.case-heading`, `.process-heading`, `.practice-head`, etc.) have no `data-reveal`. Only content blocks and cards animate — this prevents headings appearing late and causing visual flow issues.
+
+---
+
+## Site Config — Behavior Settings
+
+All interactive behavior is controlled from a single file: **`src/config/site.config.ts`**. Change a value here and it propagates to every component that uses it — no component code needs to be touched.
+
+```ts
+// src/config/site.config.ts
+export const siteConfig = { ... } as const;
+```
+
+### Scroll Reveal
+
+| Key | Default | What it does |
+|---|---|---|
+| `scrollReveal.threshold` | `0.15` | 0–1 fraction of element visible before animation fires |
+| `scrollReveal.enabled` | `true` | Set `false` to disable ALL `data-reveal` animations site-wide |
+
+### Hero Section
+
+| Key | Default | What it does |
+|---|---|---|
+| `hero.imageRotateInterval` | `3000` | ms between hero background image rotations. Set `0` to disable |
+
+### Stats Counter
+
+| Key | Default | What it does |
+|---|---|---|
+| `stats.animationDuration` | `2200` | ms — total duration of the count-up animation |
+| `stats.threshold` | `0.35` | 0–1 fraction of stat visible before counter starts |
+
+### Testimonials Slider
+
+| Key | Default | What it does |
+|---|---|---|
+| `testimonials.visibleCards.mobile` | `1` | Cards shown on screens ≤ 640px |
+| `testimonials.visibleCards.tablet` | `2` | Cards shown on screens ≤ 1024px |
+| `testimonials.visibleCards.desktop` | `3` | Cards shown on larger screens |
+| `testimonials.breakpoints.mobileMaxWidth` | `640` | px — upper bound for "mobile" count |
+| `testimonials.breakpoints.tabletMaxWidth` | `1024` | px — upper bound for "tablet" count |
+
+### Blog Slider
+
+Same structure as testimonials — controls the blog preview carousel cards per breakpoint.
+
+| Key | Default |
+|---|---|
+| `blog.visibleCards.mobile` | `1` |
+| `blog.visibleCards.tablet` | `2` |
+| `blog.visibleCards.desktop` | `3` |
+| `blog.breakpoints.mobileMaxWidth` | `640` |
+| `blog.breakpoints.tabletMaxWidth` | `1024` |
+
+### Team Carousel
+
+| Key | Default | What it does |
+|---|---|---|
+| `team.autoplayInterval` | `1000` | ms between auto-advances. Set `0` to disable autoplay |
+| `team.animationDuration` | `420` | ms — slide transition speed |
+| `team.cardGap` | `20` | px — gap between team cards |
+| `team.visibleCards.mobile` | `1` | Cards shown on mobile |
+| `team.visibleCards.tablet` | `2` | Cards shown on tablet |
+| `team.visibleCards.desktop` | `4` | Cards shown on desktop |
+| `team.breakpoints.mobileMaxWidth` | `640` | px |
+| `team.breakpoints.tabletMaxWidth` | `1024` | px |
+
+### FAQ Accordion
+
+| Key | Default | What it does |
+|---|---|---|
+| `faq.keepOneOpen` | `true` | `true` — closing the last open item re-opens the first (home FAQ). `false` — collapse fully (standalone FAQ page uses `false` directly) |
+
+### Scroll-to-top Button
+
+| Key | Default | What it does |
+|---|---|---|
+| `scrollTop.showAfterPx` | `500` | px scrolled before the back-to-top button becomes visible |
+
+### Contact
+
+| Key | Default | What it does |
+|---|---|---|
+| `contact.revealThreshold` | `0.25` | 0–1 fraction of contact card visible before it animates in |
+| `contact.successMessageDuration` | `5000` | ms — how long the form success message stays on screen |
+
+### Navigation
+
+| Key | Default | What it does |
+|---|---|---|
+| `nav.mobileBreakpoint` | `1024` | px — viewport width below which the hamburger menu activates |
+| `nav.stickyEnabled` | `true` | `true` — navbar sticks to top after scrolling past the topbar |
+
+---
+
+## TypeScript Script Modules
+
+All interactive JavaScript has been extracted from Astro `<script>` blocks into typed TypeScript modules in `src/scripts/`. Each Astro component's `<script>` block is now a thin 2–4 line import + call. This keeps logic centralized, typed, and testable.
+
+### `scrollReveal.ts`
+
+Watches all `[data-reveal]` elements with an IntersectionObserver and adds `.is-visible` when they enter the viewport. Reads `siteConfig.scrollReveal`.
+
+**Used by:** `MainLayout.astro`
+
+```ts
+import { setupScrollReveal } from '../scripts/scrollReveal';
+setupScrollReveal();
+```
+
+---
+
+### `counter.ts`
+
+Animates `.counter` elements from `0` to their target value using an `easeOutExpo` curve. Supports `+`, `%`, and decimal suffixes (e.g. `"98%"`, `"500+"`, `"4.9"`). Reads `siteConfig.stats`.
+
+**Used by:** `Stats.astro`
+
+```ts
+import { initCounters } from '../../scripts/counter';
+initCounters();
+```
+
+---
+
+### `slider.ts` — `createSlider(options)`
+
+Generic slider factory. Accepts a config object so the same function drives both the testimonials and blog preview carousels. Handles prev/next clicks, responsive visible-card count, and resize.
+
+**Options:**
+
+| Option | Type | Description |
+|---|---|---|
+| `trackSelector` | `string` | CSS selector for the slide track element |
+| `slideSelector` | `string` | CSS selector for individual slide elements |
+| `prevSelector` | `string` | CSS selector for the previous button |
+| `nextSelector` | `string` | CSS selector for the next button |
+| `visibleCards` | `{ mobile, tablet, desktop }` | Cards visible per breakpoint |
+| `breakpoints` | `{ mobileMaxWidth, tabletMaxWidth }` | px breakpoints |
+
+**Used by:** `Testimonials.astro`, `BlogPreview.astro`
+
+```ts
+import { createSlider } from '../../scripts/slider';
+import { siteConfig } from '../../config/site.config';
+createSlider({
+  trackSelector: '.testimonial-track',
+  slideSelector: '.testimonial-card',
+  prevSelector: '.testimonial-prev',
+  nextSelector: '.testimonial-next',
+  visibleCards: siteConfig.testimonials.visibleCards,
+  breakpoints: siteConfig.testimonials.breakpoints,
+});
+```
+
+---
+
+### `accordion.ts` — `createAccordion(options?)`
+
+Generic accordion factory. All selectors and behavior are configurable. The `keepOneOpen` flag controls whether collapsing all items is allowed.
+
+**Options (all optional):**
+
+| Option | Default | Description |
+|---|---|---|
+| `itemSelector` | `'.faq-item'` | Selector for accordion item containers |
+| `triggerSelector` | `'.faq-question'` | Selector for the clickable trigger button |
+| `iconSelector` | `'.faq-question strong'` | Selector for the `+` / `−` icon element |
+| `openClass` | `'is-open'` | Class added to open items |
+| `keepOneOpen` | `false` | `true` — always keep at least one item open |
+
+**Used by:** `FAQ.astro` (home), `faq/faq.astro`, `practice-areas/[slug].astro`, `case-study/[slug].astro`
+
+---
+
+### `scrollTop.ts`
+
+Shows/hides the `.scroll-top` button based on scroll position. Adds smooth scroll to top on click. Reads `siteConfig.scrollTop`.
+
+**Used by:** `ScrollTop.astro`
+
+```ts
+import { setupScrollTop } from '../../scripts/scrollTop';
+setupScrollTop();
+```
+
+---
+
+### `infiniteCarousel.ts`
+
+Full infinite-loop carousel for the Team section. Clones all cards and appends them — when the index reaches the end, it silently jumps back to the matching real position (no visible snap). Supports autoplay with pause-on-hover. Reads `siteConfig.team`.
+
+**Used by:** `Team.astro`
+
+```ts
+import { createInfiniteCarousel } from '../../scripts/infiniteCarousel';
+createInfiniteCarousel();
+```
+
+**Key behavior:**
+- Autoplay pauses when the mouse enters the carousel wrapper
+- Manual prev/next resets the autoplay timer
+- Resize recalculates card step size without animation
+
+---
+
+## Customization Guide — What You Can Change
+
+Everything a user or client might want to customize is controlled by exactly **two files**. You never need to touch any component code.
+
+| File | Controls |
+|---|---|
+| `src/styles/variables.css` | All visual appearance — colors, fonts, spacing, radii, shadows |
+| `src/config/site.config.ts` | All interactive behavior — animations, sliders, timings, breakpoints |
+
+---
+
+### Visual Changes → `src/styles/variables.css`
+
+#### Rebrand the Accent Color
+
+The golden yellow used across buttons, kickers, badges, icon backgrounds, and active states.
+
+```css
+--color-primary: #ffc342;   /* ← change this to your brand color */
+```
+
+Everything that uses the accent color — CTA buttons, kicker labels, practice area cards, arrow backgrounds, hover states — updates automatically.
+
+---
+
+#### Change the Dark / Navy Color
+
+Used in the hero background, dark section backgrounds, and button fills.
+
+```css
+--color-dark:         #0f1a34;   /* hero / dark section background */
+--color-primary-dark: #101932;   /* button bg, icon container fill */
+--color-dark-2:       #1d2947;   /* cards placed on dark backgrounds */
+```
+
+---
+
+#### Swap the Heading Font
+
+```css
+--font-heading: "Bitter", Georgia, serif;   /* ← replace "Bitter" with any font */
+```
+
+After changing, also update the Google Fonts `<link>` in `src/layouts/MainLayout.astro` to load the new font.
+
+---
+
+#### Swap the Body Font
+
+```css
+--font-body:  'Cabin';
+--font-cabin: "Cabin", Helvetica, Arial, Lucida, sans-serif;
+```
+
+Both variables must be updated together — `--font-body` is used in `global.css`, `--font-cabin` is used in component CSS with fallbacks.
+
+---
+
+#### Adjust the Type Scale
+
+| Variable | Value | Where it shows |
+|---|---|---|
+| `--fs-h1` | `50px` | Hero headline |
+| `--fs-h2` | `38px` | All section headings |
+| `--fs-h3` | `24px` | Card and sub-section headings |
+| `--fs-h4` | `20px` | Card titles |
+| `--fs-md` | `17px` | Kicker labels, nav links |
+| `--fs-base` | `16px` | Body copy |
+| `--fs-sm` | `14px` | Metadata, badges, fine print |
+| `--fs-xs` | `13px` | Extra-small labels |
+
+---
+
+#### Adjust Font Weights
+
+| Variable | Value | Where it shows |
+|---|---|---|
+| `--fw-heavy` | `800` | Stat counter numbers |
+| `--fw-bold` | `700` | Headings, strong emphasis |
+| `--fw-semibold` | `600` | Kickers, card titles, subheadings |
+| `--fw-medium` | `500` | Nav links, body emphasis |
+| `--fw-normal` | `400` | Body text |
+
+---
+
+#### Control Section Breathing Room
+
+```css
+--section-padding: clamp(4rem, 8vw, 7rem);   /* fluid 64px → 112px */
+```
+
+Increase both values to add more vertical space between sections. This applies to every section on every page.
+
+---
+
+#### Narrow or Widen the Content Column
+
+```css
+--container-max: 1280px;   /* max width of all .container elements */
+```
+
+---
+
+#### Card Padding and Grid Gaps
+
+```css
+--pad-card:    var(--sp-5);   /* 20px — inner padding on all cards */
+--gap-grid:    var(--sp-7);   /* 28px — gap between grid/flex items */
+--gap-section: var(--sp-12);  /* 48px — gap in wide two-column layouts */
+```
+
+---
+
+#### Border Radius (Corners)
+
+| Variable | Value | Used on |
+|---|---|---|
+| `--radius-sm` | `10px` | Standard cards, inputs, buttons |
+| `--radius-md` | `18px` | Larger cards |
+| `--radius-lg` | `28px` | Hero and feature cards |
+| `--radius-section` | `22px` | Large section-level cards |
+| `--radius-pill` | `999px` | Buttons, tags, pill shapes |
+
+To make the whole site feel more rectangular, lower all values. To make it rounder, increase them.
+
+---
+
+#### Shadows
+
+```css
+--shadow-card:  0 20px 50px rgba(16, 26, 54, 0.08);   /* resting card */
+--shadow-hover: 0 24px 60px rgba(16, 26, 54, 0.12);   /* card on hover */
+```
+
+Increase the alpha (`0.08` / `0.12`) for more dramatic shadows, or set to `none` for a flat look.
+
+---
+
+#### Hover and Transition Speed
+
+```css
+--transition:      0.3s ease;                            /* standard hover speed */
+--transition-slow: 0.45s cubic-bezier(.22, .61, .36, 1); /* larger transforms */
+```
+
+---
+
+#### Background Color Tones
+
+| Variable | Value | Used on |
+|---|---|---|
+| `--color-cream` | `#fff9df` | Alternating section backgrounds |
+| `--color-cream-warm` | `#fff9e8` | Card and section backgrounds |
+| `--color-cream-soft` | `#fff1cf` | FAQ and blog card backgrounds |
+| `--color-practice-card` | `#feefcf` | Practice area card background |
+| `--color-card-hover` | `#ffe3a3` | Testimonial card hover state |
+
+---
+
+#### Text Colors
+
+| Variable | Value | Used on |
+|---|---|---|
+| `--color-text` | `#242424` | Primary body text |
+| `--color-muted` | `#6b6b6b` | Supporting / secondary text |
+| `--color-text-on-dark` | `rgba(255,255,255,0.75)` | Body text on dark backgrounds |
+| `--color-white` | `#ffffff` | Text on dark backgrounds, card fills |
+
+---
+
+### Quick Visual Rebrand Checklist
+
+To fully rebrand the site visually, change only these tokens in `variables.css`:
+
+| # | What to change | Variable |
+|---|---|---|
+| 1 | Accent / brand color | `--color-primary` |
+| 2 | Hero / dark section background | `--color-dark` |
+| 3 | Heading typeface | `--font-heading` |
+| 4 | Body typeface | `--font-body` + `--font-cabin` |
+| 5 | Section vertical spacing | `--section-padding` |
+| 6 | Card corner roundness | `--radius-sm` |
+
+Everything else inherits from these six.
+
+---
+
+### Behavioral Changes → `src/config/site.config.ts`
+
+#### Turn Off All Scroll Animations
+
+```ts
+scrollReveal: {
+  enabled: false,   // no elements will animate on scroll
+}
+```
+
+---
+
+#### Slow Down or Speed Up Scroll Reveal Trigger
+
+```ts
+scrollReveal: {
+  threshold: 0.15,  // 0 = fires as soon as element touches screen edge
+                    // 1 = fires only when element is fully visible
+}
+```
+
+---
+
+#### Change Hero Image Rotation Speed
+
+```ts
+hero: {
+  imageRotateInterval: 3000,  // ms — lower = faster, 0 = stop rotation
+}
+```
+
+---
+
+#### Change Stats Counter Speed
+
+```ts
+stats: {
+  animationDuration: 2200,  // ms — total time to count from 0 to target
+  threshold: 0.35,          // how much of the counter must be visible before it starts
+}
+```
+
+---
+
+#### Change Slider Cards Per Screen Size
+
+For both Testimonials and Blog sliders:
+
+```ts
+testimonials: {
+  visibleCards: {
+    mobile:  1,   // cards on phone screens
+    tablet:  2,   // cards on tablet screens
+    desktop: 3,   // cards on desktop
+  },
+  breakpoints: {
+    mobileMaxWidth: 640,    // px — anything ≤ this is "mobile"
+    tabletMaxWidth: 1024,   // px — anything ≤ this is "tablet"
+  },
+}
+```
+
+Same structure applies to `blog: { visibleCards, breakpoints }`.
+
+---
+
+#### Control the Team Carousel
+
+```ts
+team: {
+  autoplayInterval:  1000,  // ms — set 0 to disable autoplay entirely
+  animationDuration: 420,   // ms — how fast the slide transition plays
+  cardGap:           20,    // px — gap between team member cards
+  visibleCards: { mobile: 1, tablet: 2, desktop: 4 },
+}
+```
+
+---
+
+#### Change FAQ Behavior
+
+```ts
+faq: {
+  keepOneOpen: true,   // true  = always one item stays open (home FAQ)
+                       // false = click to fully close all items
+}
+```
+
+The standalone FAQ page (`/faq/faq`) always uses `false` directly, regardless of this value.
+
+---
+
+#### Change When the Scroll-to-Top Button Appears
+
+```ts
+scrollTop: {
+  showAfterPx: 500,   // px scrolled before the ↑ button appears
+}
+```
+
+---
+
+#### Contact Form Behavior
+
+```ts
+contact: {
+  revealThreshold:        0.25,  // fraction of contact card visible before it animates in
+  successMessageDuration: 5000,  // ms — how long "message sent" stays on screen
+}
+```
+
+---
+
+#### Navigation
+
+```ts
+nav: {
+  mobileBreakpoint: 1024,   // px — below this width, hamburger menu activates
+  stickyEnabled:    true,   // false = nav scrolls with the page (not sticky)
+}
+```
+
+---
+
+### Complete One-Line Change Reference
+
+| Goal | File | What to edit |
+|---|---|---|
+| Change brand / accent color | `variables.css` | `--color-primary` |
+| Change hero / dark background | `variables.css` | `--color-dark` |
+| Swap heading font | `variables.css` | `--font-heading` |
+| Swap body font | `variables.css` | `--font-body` + `--font-cabin` |
+| More space between sections | `variables.css` | `--section-padding` |
+| Rounder or sharper card corners | `variables.css` | `--radius-sm` |
+| Faster or slower hover effects | `variables.css` | `--transition` |
+| Narrow or widen the page | `variables.css` | `--container-max` |
+| Disable all scroll animations | `site.config.ts` | `scrollReveal.enabled: false` |
+| Change when animations fire | `site.config.ts` | `scrollReveal.threshold` |
+| Speed up stats counters | `site.config.ts` | `stats.animationDuration` |
+| Show more cards in sliders | `site.config.ts` | `testimonials.visibleCards.desktop` |
+| Stop team carousel autoplay | `site.config.ts` | `team.autoplayInterval: 0` |
+| Make team slide faster | `site.config.ts` | `team.animationDuration` |
+| Stop hero image rotating | `site.config.ts` | `hero.imageRotateInterval: 0` |
+| Back-to-top button appears earlier | `site.config.ts` | `scrollTop.showAfterPx` |
+| Change mobile nav breakpoint | `site.config.ts` | `nav.mobileBreakpoint` |
 
 ---
 

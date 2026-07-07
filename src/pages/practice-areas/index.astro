@@ -7,16 +7,21 @@ import PracticeAreas from "../../components/home/PracticeAreas.astro";
 import CTASection from "../../components/common/CTASection.astro";
 import CaseStudies from "../../components/home/CaseStudies.astro";
 import Testimonials from "../../components/home/Testimonials.astro";
-import OurApproach from "../../components/home/OurApproach.astro";
+import CTAbanner from "../../components/home/CTABanner.astro";
+import Clients from "../../components/home/Clients.astro";
 ---
 
-<MainLayout title="Practice Areas - Civitas Law">
+<MainLayout
+  title="Practice Areas"
+  description="Civitas Law covers a wide range of legal disciplines — corporate and business law, criminal defense, family law, personal injury, real estate, and estate planning."
+>
   <Header />
   <PageHero title="Practice Areas" />
   <PracticeAreas />
   <CaseStudies />
   <Testimonials />
-  <OurApproach />
+  <CTAbanner />
+  <Clients />
   <CTASection />
   <Footer />
 </MainLayout>

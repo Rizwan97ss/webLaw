@@ -13,7 +13,21 @@ import netlify from '@astrojs/netlify';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [
+    mdx(),
+    sitemap({
+      // Exclude demo/test pages from the sitemap
+      filter: (page) =>
+        !page.includes('/error/') &&
+        !page.includes('/blog/blog-details') &&
+        !page.includes('/case-study/case_study_details') &&
+        !page.includes('/practice-areas/practice-details'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    react(),
+  ],
 
   fonts: [
       {
