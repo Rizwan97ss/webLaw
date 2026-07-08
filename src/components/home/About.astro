@@ -1,5 +1,5 @@
 ---
-import { Scale } from "lucide-react";
+import { Scale, MoveRight } from "lucide-react";
 const isHomePage = Astro.url.pathname === "/";
 ---
 <section class="about-section">
@@ -48,7 +48,7 @@ const isHomePage = Astro.url.pathname === "/";
   class="practice-view-btn btn-fill-hover"
 >
   {isHomePage ? "Read More" : "Contact Us"}
-  <span>→</span>
+  <MoveRight size={16} />
 </a>
       </div>
     </div>

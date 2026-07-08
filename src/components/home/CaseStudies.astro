@@ -1,5 +1,5 @@
 ---
-import { Scale } from "lucide-react";
+import { Scale, MoveRight } from "lucide-react";
 const cases = [
   {
     slug: "the-2-4m-settlement",
@@ -53,7 +53,7 @@ const cases = [
               <h3>{item.title}</h3>
 
               <a href={`/case-study/${item.slug}`}>
-                View Details <span>→</span>
+                View Details <MoveRight size={16} />
               </a>
             </div>
           </div>
@@ -63,7 +63,7 @@ const cases = [
 
     <div class="case-action">
       <a href="/case-study" class="practice-view-btn btn-fill-hover">
-        View More <span>→</span>
+        View More <MoveRight size={16} />
       </a>
     </div>
   </div>

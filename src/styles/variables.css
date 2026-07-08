@@ -2,9 +2,9 @@
 
 :root {
   /* ── Brand Colors ─────────────────────────────────────── */
-  --color-primary:       #ffc342;     /* golden yellow — CTA, buttons, accents */
+  --color-primary:       #ffc64a;     /* golden yellow — CTA, buttons, accents */
   --color-primary-soft:  #fff1b8;
-  --color-primary-dark:  #101932;     /* dark navy — button bg, icon bg */
+  --color-primary-dark:  #242424;     /* dark navy — button bg, icon bg */
   --color-primary-bg:    #ffeecc;     /* brand strip / banner bg */
   --color-card-hover:    #ffe3a3;     /* testimonial card bg */
   --color-arrow-bg:      #ffeab3;     /* carousel arrow bg */

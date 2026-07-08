@@ -7,6 +7,7 @@ import {
   UserCog,
   Landmark,
   Scale,
+  MoveRight,
 } from "lucide-react";
 const isHomePage = Astro.url.pathname === "/";
 const areas = [
@@ -66,7 +67,7 @@ const areas = [
      {
   isHomePage && (
     <a href="/practice-areas" class="practice-view-btn btn-fill-hover">
-      View More <span>→</span>
+      View More <MoveRight size={16} />
     </a>
   )
 }
@@ -88,8 +89,8 @@ const areas = [
               <h3>{area.title}</h3>
               <p>{area.text}</p>
 
-              <a href={`/practice-areas/${area.slug}`} class="practice-btn">
-                Read More <span>→</span>
+              <a href={`/practice-areas/${area.slug}`} class="practice-view-btn btn-fill-hover">
+                Read More <MoveRight size={16} />
               </a>
             </div>
           </article>

@@ -1,5 +1,5 @@
 ---
-import { ChevronRight, ChevronLeft, Scale } from "lucide-react";
+import { ChevronRight, ChevronLeft, Scale, MoveRight } from "lucide-react";
 
 const isHomePage =
   Astro.url.pathname === "/" ||
@@ -76,7 +76,7 @@ const testimonials = [
             href="/testimonials/testimonial_1"
             class="practice-view-btn btn-fill-hover"
           >
-            View More <span>→</span>
+            View More <MoveRight size={16} />
           </a>
         )
       }

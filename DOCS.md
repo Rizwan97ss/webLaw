@@ -13,12 +13,13 @@ Complete reference for the Civitas Law firm website.
 5. [Pages & Routes](#pages--routes)
 6. [Home Sections](#home-sections)
 7. [Features](#features)
-8. [CSS Variables](#css-variables)
-9. [Animation System](#animation-system)
-10. [Site Config — Behavior Settings](#site-config--behavior-settings)
-11. [TypeScript Script Modules](#typescript-script-modules)
-12. [Customization Guide — What You Can Change](#customization-guide--what-you-can-change)
-13. [Going Live](#going-live)
+8. [Global Changes — Where & How](#global-changes--where--how)
+9. [CSS Variables](#css-variables)
+10. [Animation System](#animation-system)
+11. [Site Config — Behavior Settings](#site-config--behavior-settings)
+12. [TypeScript Script Modules](#typescript-script-modules)
+13. [Customization Guide — What You Can Change](#customization-guide--what-you-can-change)
+14. [Going Live](#going-live)
 
 ---
 
@@ -238,6 +239,187 @@ The home page assembles 15 independent components from `src/components/home/`. E
 
 ---
 
+## Global Changes — Where & How
+
+This section is the fastest way to make site-wide changes. Each row below tells you **exactly which file to edit** and **which line/rule to change** — no hunting through components needed.
+
+---
+
+### Button Typography (font-family · font-size · font-weight)
+
+**Single rule controls every button on every page:**
+
+```
+src/styles/global.css  →  lines ~48–55
+```
+
+```css
+button, [type="button"], [type="submit"], [type="reset"],
+.btn, .btn-fill-hover, .practice-view-btn, .header-cta,
+.hcta-btn, .c2-tab {
+  cursor: pointer;
+  font-family: var(--font-cabin);   /* ← swap font here */
+  font-size:   var(--fs-base);      /* ← swap size here */
+  font-weight: var(--fw-medium);    /* ← swap weight here */
+}
+```
+
+The variables themselves live in `src/styles/variables.css`:
+
+| Variable | Current value | What it controls |
+|---|---|---|
+| `--font-cabin` | `"Cabin", Helvetica, Arial, Lucida, sans-serif` | Button font family |
+| `--fs-base` | `16px` | Button font size |
+| `--fw-medium` | `500` | Button font weight |
+
+**To change all button text at once:** edit the three variable values in `variables.css`. The `global.css` rule picks them up automatically — no component edits needed.
+
+> Individual button rules in `cards.css` and `components.css` deliberately repeat `font-family`, `font-size`, and `font-weight` using the same variables. If you ever need one button class to differ, override just those properties in its own rule.
+
+---
+
+### Button Arrow Icon (MoveRight)
+
+All buttons and links use the Lucide `MoveRight` icon instead of a plain text `→`. The icon is rendered as `<MoveRight size={16} />`.
+
+**Where icons are imported (by file type):**
+
+| File location | Icon package | Import syntax |
+|---|---|---|
+| `src/components/home/*.astro` | `lucide-react` | `import { MoveRight } from 'lucide-react'` |
+| `src/components/cards/*.astro` | `lucide-react` | `import { MoveRight } from 'lucide-react'` |
+| `src/components/common/Button.astro` | `lucide-react` | `import { MoveRight } from 'lucide-react'` |
+| `src/components/layout/Header.astro` | `lucide-astro` | `import { ..., MoveRight } from 'lucide-astro'` |
+| `src/pages/**/*.astro` | `lucide-astro` | `import { ..., MoveRight } from 'lucide-astro'` |
+
+**To change the icon globally:** replace `<MoveRight size={16} />` with any other Lucide icon component across all files. A project-wide find-and-replace for `MoveRight` covers every instance.
+
+**To change the icon size:** the `size` prop is set per-call. Button arrows use `size={16}`, sidebar category arrows use `size={14}`.
+
+---
+
+### Brand / Accent Color
+
+```
+src/styles/variables.css  →  --color-primary
+```
+
+```css
+--color-primary: #ffc64a;   /* ← one change updates buttons, badges, kickers, icons */
+```
+
+Every element using `var(--color-primary)` or `var(--gcid-primary-color)` updates instantly — CTA buttons, kicker labels, practice area cards, badge backgrounds, hover states.
+
+---
+
+### Heading Font
+
+```
+src/styles/variables.css  →  --font-heading
+```
+
+```css
+--font-heading: "Bitter", Georgia, serif;   /* ← replace "Bitter" */
+```
+
+Also update the Google Fonts `<link>` in `src/layouts/MainLayout.astro` to load the new font.
+
+---
+
+### Body / UI Font
+
+```
+src/styles/variables.css  →  --font-body  +  --font-cabin
+```
+
+```css
+--font-body:  'Cabin';
+--font-cabin: "Cabin", Helvetica, Arial, Lucida, sans-serif;
+```
+
+Both must be changed together. `--font-body` is applied to the `<body>` element in `global.css`. `--font-cabin` is the full fallback stack used in component CSS and the global button rule.
+
+---
+
+### Section Vertical Spacing
+
+```
+src/styles/variables.css  →  --section-padding
+```
+
+```css
+--section-padding: clamp(4rem, 8vw, 7rem);   /* 64px → 112px, fluid */
+```
+
+This one variable controls the top/bottom padding of every section on every page.
+
+---
+
+### Container Width
+
+```
+src/styles/variables.css  →  --container-max
+```
+
+```css
+--container-max: 1280px;
+```
+
+All `.container` elements (used by every section) are constrained to this width.
+
+---
+
+### Card Corners (Border Radius)
+
+```
+src/styles/variables.css  →  --radius-sm  (and siblings)
+```
+
+```css
+--radius-sm:      10px;    /* standard cards, inputs */
+--radius-md:      18px;
+--radius-section: 22px;    /* large section cards like the contact card */
+--radius-pill:    999px;   /* all buttons */
+```
+
+---
+
+### Scroll Animations (Enable / Disable / Speed)
+
+```
+src/config/site.config.ts  →  scrollReveal
+```
+
+```ts
+scrollReveal: {
+  enabled:   true,   // ← false = no scroll animations site-wide
+  threshold: 0.15,   // ← 0–1, fraction of element visible before it fires
+}
+```
+
+---
+
+### Quick Global Change Reference
+
+| What to change | File | Token / Setting |
+|---|---|---|
+| All button font family | `variables.css` | `--font-cabin` |
+| All button font size | `variables.css` | `--fs-base` |
+| All button font weight | `variables.css` | `--fw-medium` |
+| All button arrow icon | all `.astro` files | Replace `MoveRight` import + JSX |
+| Accent / brand color | `variables.css` | `--color-primary` |
+| Heading font | `variables.css` | `--font-heading` |
+| Body / UI font | `variables.css` | `--font-body` + `--font-cabin` |
+| Section vertical padding | `variables.css` | `--section-padding` |
+| Max content width | `variables.css` | `--container-max` |
+| Card corner radius | `variables.css` | `--radius-sm` |
+| Hover / transition speed | `variables.css` | `--transition` |
+| Disable scroll animations | `site.config.ts` | `scrollReveal.enabled: false` |
+| Slider cards per screen | `site.config.ts` | `testimonials.visibleCards` |
+| Team autoplay speed | `site.config.ts` | `team.autoplayInterval` |
+
+---
+
 ## CSS Variables
 
 All design tokens live in `src/styles/variables.css` under `:root`. Change a token here to update every component that references it — no component code changes needed.
@@ -248,7 +430,7 @@ All design tokens live in `src/styles/variables.css` under `:root`. Change a tok
 |---|---|---|
 | `--color-primary` | `#ffc342` | Golden yellow — CTA buttons, kicker labels, icon backgrounds, active states |
 | `--color-primary-soft` | `#fff1b8` | Pale yellow — soft accent backgrounds |
-| `--color-primary-dark` | `#101932` | Dark navy — button backgrounds, icon container fill |
+| `--color-primary-dark` | `#242424` | Dark navy — button backgrounds, icon container fill |
 | `--color-primary-bg` | `#ffeecc` | Brand strip / announcement banner background |
 | `--color-dark` | `#0f1a34` | Deep navy — hero background, dark sections |
 | `--color-dark-2` | `#1d2947` | Mid navy — cards on dark backgrounds |
@@ -278,11 +460,11 @@ All design tokens live in `src/styles/variables.css` under `:root`. Change a tok
 | `--fs-h3` | `24px` | Sub-section headings |
 | `--fs-h2` | `38px` | Section headings |
 | `--fs-h1` | `50px` | Hero headline |
-| `--fw-normal` | `400` | Normal weight |
-| `--fw-medium` | `500` | Medium — nav, body emphasis |
-| `--fw-semibold` | `600` | Semibold — headings, kickers, card titles |
-| `--fw-bold` | `700` | Bold — stat numbers, strong emphasis |
-| `--fw-heavy` | `800` | Heavy — counter numbers |
+| `--fw-normal` | `500` | Buttons, body text default |
+| `--fw-medium` | `500` | Nav links, body emphasis |
+| `--fw-semibold` | `600` | Kickers, card titles, subheadings |
+| `--fw-bold` | `700` | Stat numbers, strong emphasis |
+| `--fw-heavy` | `800` | Counter numbers, display headings |
 | `--lh-tight` | `1em` | Tight — display type, large numbers |
 | `--lh-heading` | `1.2em` | Heading line height |
 | `--lh-body` | `1.6em` | Body paragraph line height |
@@ -610,7 +792,7 @@ Used in the hero background, dark section backgrounds, and button fills.
 
 ```css
 --color-dark:         #0f1a34;   /* hero / dark section background */
---color-primary-dark: #101932;   /* button bg, icon container fill */
+--color-primary-dark: #242424;   /* button bg, icon container fill */
 --color-dark-2:       #1d2947;   /* cards placed on dark backgrounds */
 ```
 
@@ -660,7 +842,7 @@ Both variables must be updated together — `--font-body` is used in `global.css
 | `--fw-bold` | `700` | Headings, strong emphasis |
 | `--fw-semibold` | `600` | Kickers, card titles, subheadings |
 | `--fw-medium` | `500` | Nav links, body emphasis |
-| `--fw-normal` | `400` | Body text |
+| `--fw-normal` | `500` | Buttons, standard body text |
 
 ---
 

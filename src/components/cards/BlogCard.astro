@@ -1,4 +1,5 @@
 ---
+import { MoveRight } from 'lucide-react';
 const { item } = Astro.props;
 ---
 
@@ -17,6 +18,6 @@ const { item } = Astro.props;
 
   <a class="btn btn--sm" href={`/blog/${item.slug}`}>
     Read More
-    <span>→</span>
+    <MoveRight size={16} />
   </a>
 </article>

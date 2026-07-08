@@ -4,7 +4,7 @@ import Header from "../../components/layout/Header.astro";
 import Footer from "../../components/layout/Footer.astro";
 import PageHero from "../../components/common/PageHero.astro";
 // import ContactCTA from "../../components/home/ContactCTA.astro";
-import { Phone, Mail, Clock, MapPin, Gavel } from "lucide-astro";
+import { Phone, Mail, Clock, MapPin, Gavel, MoveRight } from "lucide-astro";
 
 const services = [
   "Corporate & Business Law",
@@ -91,7 +91,7 @@ const services = [
 
           <div class="form-action">
             <button type="submit" class="btn-fill-hover">
-              Book Appointment <span>→</span>
+              Book Appointment <MoveRight size={16} />
             </button>
           </div>
           <p class="form-success" style="display:none;color:#22c55e;font-weight:600;">

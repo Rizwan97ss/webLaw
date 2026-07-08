@@ -4,7 +4,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import Header from "../../../components/layout/Header.astro";
 import Footer from "../../../components/layout/Footer.astro";
 import PageHero from "../../../components/common/PageHero.astro";
-import { User, Tag, CalendarDays } from "lucide-astro";
+import { User, Tag, CalendarDays, MoveRight } from "lucide-astro";
 
 const toSlug = (str: string) =>
   str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
@@ -78,7 +78,7 @@ const fmt = (d: Date) =>
 
                   <a href={`/blog/${post.id}`} class="blog-card__btn">
                     Read More
-                    <span>→</span>
+                    <MoveRight size={16} />
                   </a>
                 </div>
               </article>
@@ -97,7 +97,7 @@ const fmt = (d: Date) =>
                 {categories.map((cat) => (
                   <li class={cat === categoryName ? "active" : ""}>
                     <a href={`/blog/category/${toSlug(cat)}`}>
-                      <span class="cat-arrow">→</span>
+                      <MoveRight size={14} />
                       {cat}
                     </a>
                   </li>

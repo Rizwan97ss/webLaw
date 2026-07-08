@@ -1,5 +1,5 @@
 ---
-import { Menu, X, ChevronDown, Phone, Mail, Facebook, Instagram, Linkedin } from 'lucide-astro';
+import { Menu, X, ChevronDown, Phone, Mail, Facebook, Instagram, Linkedin, MoveRight } from 'lucide-astro';
 
 
 const navLinks = [
@@ -124,7 +124,7 @@ const currentPath = Astro.url.pathname;
 
       <!-- CTA (desktop only) -->
       <a href="/contact" class="header-cta btn-fill-hover">
-        Free Consultation <span aria-hidden="true">→</span>
+        Free Consultation <MoveRight size={16} />
       </a>
 
       <!-- Hamburger (mobile / tablet only) -->

@@ -45,9 +45,9 @@
   background: var(--color-primary);
   color: var(--gcid-qdtr7s3apr) !important;
 
-  font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
+  font-family: var(--font-cabin);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
 
   text-decoration: none;
 

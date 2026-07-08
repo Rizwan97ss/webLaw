@@ -1,5 +1,5 @@
 ---
-import { ChevronRight, ChevronLeft, Scale, User, Tag } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Scale, User, Tag, MoveRight } from 'lucide-react';
 
 const posts = [
   {
@@ -53,7 +53,7 @@ const posts = [
         <h2>Latest News & Update</h2>
       </div>
  <a href="/blog" class="practice-view-btn btn-fill-hover">
-  View More <span>→</span>
+  View More <MoveRight size={16} />
 </a>
       
     </div>
@@ -63,7 +63,7 @@ const posts = [
         {posts.map((post) => (
           <article class="blog-slide">
             <div class="blog-card">
-              <div class="blog-image">
+              <div class="blog-image shine-image">
                 <img src={post.image} alt={post.title} />
                 <span class="blog-badge">{post.date}</span>
               </div>
@@ -77,7 +77,7 @@ const posts = [
                 <h3>{post.title}</h3>
 
                 <a href={`/blog/${post.slug}`} class="practice-view-btn btn-fill-hover">
-                  Read More <span>→</span>
+                  Read More <MoveRight size={16} />
                 </a>
               </div>
 
