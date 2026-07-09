@@ -12,8 +12,8 @@
   .approach-head h2 {
     margin: 0.5rem 0 0;
     font-family: var(--font-heading);
-    font-size: 38px;
-    font-weight: 600;
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-semibold);
     line-height: 1.2;
     color: var(--gcid-heading-color, var(--color-text));
   }
@@ -59,16 +59,16 @@
 
   .approach-text h4 {
     font-family: var(--et_global_heading_font);
-    font-size: 22px;
-    font-weight: 600;
+    font-size: var(--fs-22);
+    font-weight: var(--fw-semibold);
     color: var(--gcid-secondary-color) !important;
     margin: 0;
   }
 
   .approach-text p {
     color: var(--gcid-ns9vhla8ew);
-    font-size: 16px;
-    font-weight: 500;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-medium);
     line-height: 1.6em;
     margin: 0;
   }

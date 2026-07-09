@@ -27,8 +27,8 @@
 .contact-page .contact-info h2 {
   margin: 0;
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 36px;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-36);
   line-height: 1.2;
   color: var(--gcid-heading-color, var(--color-primary-dark));
 }
@@ -62,7 +62,7 @@
   margin: 0;
   align-self: center;
   font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
-  font-size: 15px;
+  font-size: var(--fs-base);
   line-height: 1.5;
   color: var(--gcid-body-color, var(--color-muted-alt));
 }
@@ -90,7 +90,7 @@
   background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.05);
   color: var(--color-text);
   font-family: "Cabin", sans-serif;
-  font-size: 15px;
+  font-size: var(--fs-base);
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -116,7 +116,7 @@
 .contact-page .contact-form input::placeholder,
 .contact-page .contact-form textarea::placeholder {
   color: var(--color-text);
-  font-size: 15px;
+  font-size: var(--fs-base);
 }
 
 .contact-page .contact-form select {
@@ -138,8 +138,8 @@
   background: var(--color-primary);
   color: var(--color-primary-dark);
   font-family: 'Cabin', Helvetica, Arial, Lucida, sans-serif;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -150,7 +150,7 @@
 .contact-page .form-action button:hover {
   transform: translateY(-2px);
   background: var(--color-primary-dark);
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 /* ── Map ─────────────────────────────────────────────── */
@@ -175,7 +175,7 @@
   }
 
   .contact-page .contact-info h2 {
-    font-size: 30px;
+    font-size: var(--fs-30);
   }
 }
 
@@ -214,7 +214,7 @@
   }
 
   .contact-page .contact-info h2 {
-    font-size: 26px;
+    font-size: var(--fs-26);
   }
 
   .contact-page .contact-form {

@@ -14,7 +14,7 @@
   .cta-banner__bg {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: var(--color-black-a70);
     pointer-events: none;
   }
 
@@ -32,9 +32,9 @@
   .cta-banner__content h2 {
     margin: 0;
     font-family: var(--et_global_heading_font);
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 38px;
+    color: var(--color-white);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-h2);
     line-height: 1.2em;
     text-align: center;
   }
@@ -42,10 +42,10 @@
   .cta-banner__content p {
     margin: 0;
     font-family: var(--et_global_body_font);
-    font-size: 16px;
+    font-size: var(--fs-base);
     line-height: 1.6;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
+    font-weight: var(--fw-medium);
+    color: var(--color-white-a85);
     max-width: 740px;
   }
 
@@ -56,8 +56,8 @@
     background: var(--color-primary, var(--color-primary));
     color: var(--color-primary-dark);
     font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 700;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-bold);
     border-radius: 100px;
     text-decoration: none;
     white-space: nowrap;

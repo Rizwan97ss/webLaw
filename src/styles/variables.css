@@ -33,6 +33,27 @@
   --color-dark-3:   #273351;          /* darkest navy — step / breadcrumb bg */
   --color-triangle: #ffe1a6;          /* decorative triangle / arrow shape */
 
+  /* ── Additional Solid Colors ──────────────────────────── */
+  --color-pure-black:   #000000;           /* pure black — hover focus states */
+  --color-dark-navy:    #10182f;           /* dark navy variant */
+  --color-primary-warm: #ffc342;           /* warm primary variant */
+
+  /* ── Alpha / Overlay Tokens ───────────────────────────── */
+  --color-text-a07:    rgba(36, 36, 36, 0.07);
+  --color-white-a24:   rgba(255, 255, 255, 0.24);
+  --color-white-a30:   rgba(255, 255, 255, 0.30);
+  --color-white-a55:   rgba(255, 255, 255, 0.55);
+  --color-white-a65:   rgba(255, 255, 255, 0.65);
+  --color-white-a85:   rgba(255, 255, 255, 0.85);
+  --color-white-a86:   rgba(255, 255, 255, 0.86);
+  --color-black-a15:   rgba(0, 0, 0, 0.15);
+  --color-black-a70:   rgba(0, 0, 0, 0.70);
+  --color-black-a90:   rgba(0, 0, 0, 0.90);
+  --color-primary-a10: rgba(255, 198, 74, 0.10);
+  --color-primary-a24: rgba(255, 198, 74, 0.24);
+  --color-navy-a16:    rgba(16, 24, 47, 0.16);
+  --color-navy-a72:    rgba(16, 24, 47, 0.72);
+
   /* ── gcid aliases — mapped to brand tokens ─────────────── */
   --gcid-primary-color:  var(--color-primary);
   --gcid-secondary-color: var(--color-white);
@@ -52,7 +73,7 @@
   --et_global_body_font:    'Cabin';
 
   /* ── Font Size Scale ──────────────────────────────────── */
-  --fs-xs:   13px;
+  --fs-xs:   13px;             /* micro text, metadata */
   --fs-sm:   14px;             /* metadata, badges */
   --fs-base: 16px;             /* body copy */
   --fs-md:   17px;             /* kickers, nav links */
@@ -60,6 +81,35 @@
   --fs-h3:   24px;             /* sub-headings */
   --fs-h2:   38px;             /* section headings */
   --fs-h1:   50px;             /* hero headline */
+
+  /* ── Extended Font Scale (component-specific) ─────────── */
+  --fs-10: 10px;
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-18: 18px;
+  --fs-19: 19px;
+  --fs-21: 21px;
+  --fs-22: 22px;
+  --fs-23: 23px;
+  --fs-25: 25px;
+  --fs-26: 26px;
+  --fs-27: 27px;
+  --fs-28: 28px;
+  --fs-30: 30px;
+  --fs-31: 31px;
+  --fs-32: 32px;
+  --fs-34: 34px;
+  --fs-35: 35px;
+  --fs-36: 36px;
+  --fs-37: 37px;
+  --fs-40: 40px;
+  --fs-42: 42px;
+  --fs-43: 43px;
+  --fs-44: 44px;
+  --fs-48: 48px;
+  --fs-60: 60px;
+  --fs-70: 70px;
+  --fs-90: 90px;
 
   /* ── Font Weights ─────────────────────────────────────── */
   --fw-normal:   400;
@@ -79,7 +129,7 @@
   --container-max:    1280px;
   --container-gutter: 2rem;
   --container:        1320px;          /* legacy alias */
-  --gutter:           clamp(24px, 8vw, 154px);
+  --gutter:           clamp(24px, 8vw, 115px);
   --horizontal-gap-parent: 3%;
 
   /* ── Spacing Scale ────────────────────────────────────── */

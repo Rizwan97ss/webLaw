@@ -2,7 +2,7 @@
 
 .team-section {
   padding: var(--section-padding) 0;
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 .team-head {
@@ -13,8 +13,8 @@
 .team-head h2 {
   margin: 0.5rem 0 0;
   font-family: var(--font-heading);
-  font-size: 38px;
-  font-weight: 600;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
   color: var(--gcid-heading-color, var(--color-text));
 }
@@ -140,8 +140,8 @@
 .team-name-tag h4 {
   margin: 0 0 2px;
   font-family: var(--font-heading);
-  font-size: 17px;
-  font-weight: 700;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
   color: var(--color-primary-dark);
   line-height: 1.2;
   white-space: nowrap;
@@ -149,8 +149,8 @@
 
 .team-name-tag p {
   margin: 0;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
   color: var(--color-primary-dark);
   font-family: var(--font-body);
   opacity: 0.8;

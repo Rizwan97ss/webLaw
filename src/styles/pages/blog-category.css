@@ -6,5 +6,5 @@
   text-align: center;
   padding: 60px 0;
   color: var(--gcid-body-color, var(--color-muted-alt));
-  font-size: 18px;
+  font-size: var(--fs-18);
 }

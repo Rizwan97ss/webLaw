@@ -26,7 +26,7 @@
   margin: 0;
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--gcid-heading-color, var(--color-primary-dark));
   line-height: 1.2;
 }
@@ -47,7 +47,7 @@
   background-color: hsl(from var(--gcid-primary-color) calc(h + 0) calc(s + 0) calc(l + 0) / 0.05);
   color: var(--color-text);
   font-family: "Cabin", sans-serif;
-  font-size: 15px;
+  font-size: var(--fs-base);
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -73,7 +73,7 @@
 .c2-form input::placeholder,
 .c2-form textarea::placeholder {
   color: var(--color-text);
-  font-size: 15px;
+  font-size: var(--fs-base);
 }
 
 .c2-form select {
@@ -104,11 +104,11 @@
 .c2-tab {
   padding: 12px 28px;
   border: 0;
-  background: #fff;
+  background: var(--color-white);
   color: var(--gcid-heading-color, var(--color-text));
   font-family: var(--font-cabin, "Cabin", sans-serif);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
@@ -116,7 +116,7 @@
 .c2-tab.is-active {
   background: var(--gcid-primary-color, var(--color-primary));
   color: var(--color-primary-dark);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
 
 .c2-tab:hover:not(.is-active) {
@@ -169,14 +169,14 @@
 
 .c2-blurb h4 {
   margin: 0 0 4px;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
   color: var(--gcid-heading-color, var(--color-primary-dark));
 }
 
 .c2-blurb p {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--fs-sm);
   color: var(--gcid-body-color, var(--color-muted-alt));
   font-family: var(--font-cabin, "Cabin", sans-serif);
 }
@@ -229,6 +229,6 @@
 
   .c2-tab {
     padding: 10px 18px;
-    font-size: 14px;
+    font-size: var(--fs-sm);
   }
 }

@@ -5,5 +5,5 @@
   .service-list li.active a {
     background: var(--gcid-primary-color, var(--color-primary));
     color: var(--color-text);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
   }

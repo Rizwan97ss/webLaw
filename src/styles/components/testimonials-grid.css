@@ -29,7 +29,7 @@
 
 .testimonial-card-page .testimonial-top strong {
   font-family: "Comic Sans MS", cursive;
-  font-size: 22px;
+  font-size: var(--fs-22);
   line-height: 1;
 }
 
@@ -42,14 +42,14 @@
 .testimonial-card-page .testimonial-line {
   width: 64px;
   height: 1px;
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--color-black-a15);
   margin: 22px 0;
 }
 
 .testimonial-card-page .testimonial-box p {
   margin: 0;
   color: var(--color-muted-alt);
-  font-size: 16px;
+  font-size: var(--fs-base);
   line-height: 1.7;
 }
 
@@ -69,13 +69,13 @@
 
 .testimonial-card-page .testimonial-author h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--fs-h4);
   line-height: 1.2;
 }
 
 .testimonial-card-page .testimonial-author span {
   color: var(--color-muted-alt);
-  font-size: 14px;
+  font-size: var(--fs-sm);
 }
 
 @media (max-width: 1024px) {

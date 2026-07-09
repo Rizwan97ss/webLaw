@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     padding: 80px 20px;
-    background: #fff;
+    background: var(--color-white);
   }
 
   /* ── Centered content ─────────────────────────────── */
@@ -23,7 +23,7 @@
   /* ── Big 404 number ───────────────────────────────── */
   .error-number {
     font-size: clamp(100px, 18vw, 180px);
-    font-weight: 800;
+    font-weight: var(--fw-heavy);
     line-height: 1;
     color: var(--gcid-primary-color, var(--color-primary));
     letter-spacing: -4px;
@@ -34,7 +34,7 @@
   .error-inner h2 {
     margin: 0;
     font-size: clamp(1.6rem, 3vw, 2.4rem);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     color: var(--gcid-heading-color, var(--color-primary-dark));
     line-height: 1.2;
   }
@@ -42,7 +42,7 @@
   /* ── Description ──────────────────────────────────── */
   .error-inner p {
     margin: 0;
-    font-size: 17px;
+    font-size: var(--fs-md);
     line-height: 1.6;
     color: var(--gcid-body-color, #505658);
   }
@@ -55,8 +55,8 @@
     background: var(--gcid-primary-color, var(--color-primary));
     color: var(--gcid-heading-color, var(--color-primary-dark));
     border-radius: 100px;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-bold);
     text-decoration: none;
     transition: opacity 0.3s;
   }

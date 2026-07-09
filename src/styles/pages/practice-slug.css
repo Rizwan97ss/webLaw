@@ -9,14 +9,14 @@
   .cs-section h2 {
     margin: 0;
     font-size: clamp(1.5rem, 2.5vw, 2rem);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     color: var(--gcid-heading-color, var(--color-primary-dark));
     line-height: 1.2;
   }
 
   .cs-section p {
     margin: 0;
-    font-size: 16px;
+    font-size: var(--fs-base);
     line-height: 1.7;
     color: var(--gcid-body-color, #505658);
   }
@@ -33,7 +33,7 @@
   .cs-bullet-list li {
     position: relative;
     padding-left: 34px;
-    font-size: 16px;
+    font-size: var(--fs-base);
     line-height: 1.6;
     color: var(--gcid-body-color, #505658);
   }
@@ -51,8 +51,8 @@
     border-radius: 50%;
     background: var(--gcid-primary-color, var(--color-primary));
     color: var(--color-primary-dark);
-    font-size: 12px;
-    font-weight: 700;
+    font-size: var(--fs-12);
+    font-weight: var(--fw-bold);
   }
 
   .cs-gallery {
@@ -98,14 +98,14 @@
 
   .cs-achieve-blurb h4 {
     margin: 0 0 8px;
-    font-size: 17px;
-    font-weight: 700;
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
     color: var(--gcid-heading-color, var(--color-primary-dark));
   }
 
   .cs-achieve-blurb p {
     margin: 0;
-    font-size: 14px;
+    font-size: var(--fs-sm);
     line-height: 1.6;
     color: var(--gcid-body-color, #505658);
   }
@@ -139,8 +139,8 @@
 
   .cs-info-item h4 {
     margin: 0 0 2px;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
     color: var(--gcid-body-color, #505658);
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -148,15 +148,15 @@
 
   .cs-info-item p {
     margin: 0;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-semibold);
     color: var(--gcid-heading-color, var(--color-primary-dark));
   }
 
   .service-list li.active a {
     background: var(--gcid-primary-color, var(--color-primary));
     color: var(--color-text);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
   }
 
   @media (max-width: 640px) {

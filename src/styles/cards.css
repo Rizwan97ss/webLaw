@@ -19,7 +19,7 @@
   color: var(--color-text);
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(28px, 3.5vw, 48px);
-  font-weight: 800;
+  font-weight: var(--fw-heavy);
   line-height: 1.1;
   letter-spacing: -0.5px;
 }
@@ -82,7 +82,7 @@
 }
 
 .practice-view-btn:hover {
-  color: #fff !important;
+  color: var(--color-white) !important;
 }
 
 .practice-view-btn:hover::before {
@@ -145,8 +145,8 @@
 
 .practice-number h2 {
   margin: 0;
-  font-size: 90px;
-  font-weight: 800;
+  font-size: var(--fs-90);
+  font-weight: var(--fw-heavy);
   line-height: 1;
   background: linear-gradient(
     to bottom,
@@ -187,7 +187,7 @@
 }
 
 .practice-card:hover .practice-icon {
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 .practice-content {
@@ -200,8 +200,8 @@
   margin: 0 0 12px;
     color: var(--gcid-heading-color) !important;
   font-family: 'Bitter';
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
   line-height: 1.2;
 }
 
@@ -209,8 +209,8 @@
   /* margin: 0 0 24px; */
   color: var(--color-text);
   font-family: 'Cabin';
-  font-size: 16px;
-  font-weight: 500;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
   line-height: 1.55;
 }
 
@@ -225,8 +225,8 @@
   background: var(--color-primary);
   color: var(--color-primary-dark);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
   text-decoration: none;
   transition:
     background 0.35s ease,
@@ -235,7 +235,7 @@
 
 .practice-card:hover .practice-btn {
   background: var(--color-primary-dark);
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 /* Responsive */
@@ -257,7 +257,7 @@
   }
 
   .practice-head h2 {
-    font-size: 40px;
+    font-size: var(--fs-40);
   }
 
   .practice-grid {
@@ -280,7 +280,7 @@
   }
 
   .practice-head h2 {
-    font-size: 30px;
+    font-size: var(--fs-30);
   }
 
   .practice-card {
@@ -288,7 +288,7 @@
   }
 
   .practice-number h2 {
-    font-size: 70px;
+    font-size: var(--fs-70);
   }
 
   .practice-grid {

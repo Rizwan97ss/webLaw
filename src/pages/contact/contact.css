@@ -10,8 +10,8 @@
   margin: 0;
   color: var(--gcid-secondary-color, #fff);
   text-align: center;
-  font-size: 60px;
-  font-weight: 700;
+  font-size: var(--fs-60);
+  font-weight: var(--fw-bold);
   line-height: 1.2;
 }
 
@@ -49,15 +49,15 @@
 
   color: var(--gcid-primary-color, #ffc342);
   font-family: "Cabin", sans-serif;
-  font-size: 17px;
-  font-weight: 600;
+  font-size:var(--fs-md);
+  font-weight: var(--fw-semibold);
 }
 
 .contact-info h2 {
   margin: 0;
   color: var(--gcid-heading-color, #242424);
-  font-size: 38px;
-  font-weight: 600;
+  font-size:var(--fs-h2);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
 }
 
@@ -95,8 +95,8 @@
   margin: 0;
   color: var(--gcid-heading-color, #242424);
   font-family: "Cabin", sans-serif;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
   line-height: 1.2;
 }
 
@@ -140,7 +140,7 @@
 
   color: var(--gcid-body-color, #505658);
   font-family: "Cabin", sans-serif;
-  font-size: 15px;
+  font-size: var(--fs-base);
 
   outline: none;
 }
@@ -153,7 +153,7 @@
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
   color: var(--gcid-body-color, #505658);
-  font-size: 15px;
+  font-size: var(--fs-base);
 }
 
 .form-action {
@@ -175,7 +175,7 @@
   color: var(--gcid-qdtr7s3apr, #242424);
 
   font-family: "Cabin", sans-serif;
-  font-size: 16px;
+  font-size: var(--fs-base);
   cursor: pointer;
 }
 
@@ -205,7 +205,7 @@
 
 .form-action button span {
   margin-left: 8px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
 }
 
 .contact-map {
@@ -228,7 +228,7 @@
   }
 
   .contact-hero h1 {
-    font-size: 40px;
+    font-size: var(--fs-40);
   }
 
   .contact-page {
@@ -241,7 +241,7 @@
   }
 
   .contact-info h2 {
-    font-size: 30px;
+    font-size: var(--fs-30);
   }
 }
 
@@ -251,7 +251,7 @@
   }
 
   .contact-hero h1 {
-    font-size: 28px;
+    font-size: var(--fs-28);
   }
 
   .contact-page {
@@ -272,7 +272,7 @@
   }
 
   .contact-info h2 {
-    font-size: 20px;
+    font-size:var(--fs-h4);
   }
 
   .contact-item {
@@ -280,7 +280,7 @@
   }
 
   .contact-item p {
-    font-size: 15px;
+    font-size: var(--fs-base);
   }
 
   .contact-map iframe {

@@ -5,7 +5,7 @@
   padding-top: 90px;
   padding-bottom: 90px;
   background-repeat: no-repeat !important;
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), url(https://civitas.divigurus.com/wp-content/uploads/2026/03/notary-documents-verification-client-legal-furniture-1700916-pxhere.com-1-scaled.jpg) !important;
+  background-image: linear-gradient(90deg, var(--color-black-a70) 0%, var(--color-black-a70) 100%), url(https://civitas.divigurus.com/wp-content/uploads/2026/03/notary-documents-verification-client-legal-furniture-1700916-pxhere.com-1-scaled.jpg) !important;
 }
 
 /* Decorative diagonal stripe overlay — matches ET Builder mask */
@@ -36,8 +36,8 @@
   margin: 0;
   font-family: var(--font-heading);
   font-size: clamp(32px, 5vw, 60px);
-  font-weight: 700;
-  color: #fff;
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
   line-height: 1.1;
 }
 
@@ -59,22 +59,22 @@
   gap: 0.5rem;
   font-size: 0.9rem;
   font-family: var(--font-cabin);
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--color-white-a65);
 }
 
 .page-hero__breadcrumb a {
   color: var(--color-primary);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   transition: color 0.2s;
 }
 
 .page-hero__breadcrumb a:hover {
-  color: #fff;
+  color: var(--color-white);
 }
 
 .page-hero__breadcrumb span:last-child {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--color-text-on-dark);
 }
 
 @media (max-width: 640px) {
@@ -86,12 +86,12 @@
 /* Legacy eyebrow kept for backward compat */
 .eyebrow {
   color: var(--color-primary);
-  font-weight: 800;
+  font-weight: var(--fw-heavy);
 }
 
 .practice-details {
   padding: 80px 0;
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 .practice-details__grid {
@@ -120,7 +120,7 @@
   height: 0%;
   left: 50%;
   top: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--color-white-a30);
   transform: translate(-50%, -50%) rotate(-45deg);
   z-index: 1;
 }
@@ -150,19 +150,19 @@
 
 .content-box h2 {
   margin: 0 0 20px;
-     font-size: 38px;
-    font-weight: 600;
+     font-size: var(--fs-h2);
+    font-weight: var(--fw-semibold);
         font-family: var(--et_global_body_font);
 line-height: 1.2em;
     color: var(--gcid-heading-color) !important;
 }
 
 .content-box p {
-  font-size: 16px;
+  font-size: var(--fs-base);
   line-height: 1.6;
   color: var(--gcid-body-color, #505658);
       font-family: var(--et_global_body_font);
-      font-weight: 500;
+      font-weight: var(--fw-medium);
 
 }
 
@@ -180,7 +180,7 @@ line-height: 1.2em;
 .case-row__content h3,
 .sidebar-card h3 {
   margin: 0 0 15px;
-  font-size: 20px;
+  font-size: var(--fs-h4);
   line-height: 1.2;
   color: var(--gcid-heading-color, var(--color-primary-dark));
 }
@@ -196,7 +196,7 @@ line-height: 1.2em;
   position: relative;
   padding-left: 30px;
   margin-bottom: 15px;
-  font-size: 16px;
+  font-size: var(--fs-base);
   line-height: 1.6;
 }
 
@@ -212,8 +212,8 @@ line-height: 1.2em;
   border-radius: 50%;
   background: var(--gcid-primary-color, var(--color-primary));
   color: var(--color-primary-dark);
-  font-size: 13px;
-  font-weight: 700;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
 }
 
 .faq-list-main {
@@ -231,8 +231,8 @@ line-height: 1.2em;
 .faq-list-main summary {
   cursor: pointer;
   padding: 20px 40px 20px 20px;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
   color: var(--gcid-heading-color, var(--color-primary-dark));
 }
 
@@ -244,7 +244,7 @@ line-height: 1.2em;
 .faq-list-main details p {
   padding: 20px;
   margin: 0;
-  font-size: 16px;
+  font-size: var(--fs-base);
   line-height: 1.6;
 }
 
@@ -259,15 +259,15 @@ line-height: 1.2em;
 .service-list a {
   position: relative;
   display: block;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: var(--fw-normal);
+  font-size: var(--fs-base);
   line-height: 1.6em;
   font-family: var(--et_global_body_font);
   margin-bottom: 20px;
   padding: 10px 20px;
   border-radius: 5px;
   background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 30%, white);
-  color: #000;
+  color: var(--color-pure-black);
   text-decoration: none;
   transition: 0.3s;
 }
@@ -300,17 +300,17 @@ line-height: 1.2em;
 }
 
 .download-card--dark {
-  background: #000;
-  color: #fff;
+  background: var(--color-pure-black);
+  color: var(--color-white);
 }
 
 .sidebar-cta {
   padding: 0 30px 30px;
   border-radius: var(--radius-sm);
   text-align: center;
-  color: #fff;
+  color: var(--color-white);
   background:
-    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    linear-gradient(var(--color-black-a70), var(--color-black-a70)),
     url("https://civitas.divigurus.com/wp-content/uploads/2026/04/wood-tool-hammer-symbol-balance-business-839873-pxhere.com-1-scaled.jpg") center / cover;
 }
 
@@ -329,11 +329,11 @@ line-height: 1.2em;
 
 .sidebar-cta h4 {
   margin: 0 0 10px;
-  font-size: 22px;
+  font-size: var(--fs-22);
 }
 
 .sidebar-cta a {
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
 }
 
@@ -402,8 +402,8 @@ line-height: 1.2em;
   }
 
   .content-box h2 {
-    font-size: 38px;
-    font-weight: 600;
+    font-size: var(--fs-h2);
+    font-weight: var(--fw-semibold);
         font-family: var(--et_global_body_font);
 line-height: 1.2em;
     color: var(--gcid-heading-color) !important;
@@ -412,12 +412,12 @@ line-height: 1.2em;
 
   .faq-list-main summary {
     padding: 15px 30px 15px 15px;
-    font-size: 16px;
+    font-size: var(--fs-base);
   }
 
   .faq-list-main details p {
     padding: 15px;
-    font-size: 15px;
+    font-size: var(--fs-base);
   }
 }
 
@@ -425,23 +425,23 @@ line-height: 1.2em;
 .blog-hero {
   padding: 90px 0;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    linear-gradient(90deg, var(--color-black-a70), var(--color-black-a70)),
     url("https://civitas.divigurus.com/wp-content/uploads/2026/03/notary-documents-verification-client-legal-furniture-1700916-pxhere.com-1-scaled.jpg") center / cover no-repeat;
 }
 
 .blog-hero h1 {
   margin: 0;
-  color: #ffffff;
+  color: var(--color-white);
   text-align: center;
   font-family: "Bitter", serif;
-  font-size: 60px;
-  font-weight: 700;
+  font-size: var(--fs-60);
+  font-weight: var(--fw-bold);
   line-height: 1.2;
 }
 
 .blog-details {
   padding: 80px 0;
-  background: #ffffff;
+  background: var(--color-white);
 }
 
 .blog-details__grid {
@@ -468,7 +468,7 @@ line-height: 1.2em;
   height: 0%;
   left: 50%;
   top: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--color-white-a30);
   transform: translate(-50%, -50%) rotate(-45deg);
   z-index: 1;
 }
@@ -495,8 +495,8 @@ line-height: 1.2em;
   margin: 0 0 20px;
   color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
-  font-size: 38px;
-  font-weight: 600;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
 }
 
@@ -504,8 +504,8 @@ line-height: 1.2em;
   margin: 30px 0 15px;
   color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
-  font-size: 26px;
-  font-weight: 600;
+  font-size: var(--fs-26);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
 }
 
@@ -513,7 +513,7 @@ line-height: 1.2em;
 .blog-content li {
   color: var(--gcid-body-color, #505658);
   font-family: "Cabin", sans-serif;
-  font-size: 16px;
+  font-size: var(--fs-base);
   line-height: 1.7;
 }
 
@@ -541,8 +541,8 @@ line-height: 1.2em;
   margin: 0 0 20px;
   color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
   line-height: 1.2;
 }
 
@@ -605,8 +605,8 @@ line-height: 1.2em;
   margin: 0 0 8px;
   color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
   line-height: 1.3;
 }
 
@@ -614,7 +614,7 @@ line-height: 1.2em;
   margin: 0;
   color: var(--gcid-body-color, #505658);
   font-family: "Cabin", sans-serif;
-  font-size: 14px;
+  font-size: var(--fs-sm);
 }
 
 @media (max-width: 980px) {
@@ -623,7 +623,7 @@ line-height: 1.2em;
   }
 
   .blog-hero h1 {
-    font-size: 40px;
+    font-size: var(--fs-40);
   }
 
   .blog-details {
@@ -645,7 +645,7 @@ line-height: 1.2em;
   }
 
   .blog-hero h1 {
-    font-size: 28px;
+    font-size: var(--fs-28);
   }
 
   .blog-details {
@@ -657,11 +657,11 @@ line-height: 1.2em;
   }
 
   .blog-content h2 {
-    font-size: 24px;
+    font-size: var(--fs-h3);
   }
 
   .blog-content h3 {
-    font-size: 20px;
+    font-size: var(--fs-h4);
   }
 
   .recent-post {
@@ -677,7 +677,7 @@ line-height: 1.2em;
 /* .contact-hero {
   padding: 90px 0;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    linear-gradient(90deg, var(--color-black-a70), var(--color-black-a70)),
     url("https://civitas.divigurus.com/wp-content/uploads/2026/03/notary-documents-verification-client-legal-furniture-1700916-pxhere.com-1-scaled.jpg")
       center / cover no-repeat;
 }
@@ -686,8 +686,8 @@ line-height: 1.2em;
   margin: 0;
   color: var(--gcid-secondary-color, #fff);
   text-align: center;
-  font-size: 60px;
-  font-weight: 700;
+  font-size: var(--fs-60);
+  font-weight: var(--fw-bold);
   line-height: 1.2;
 } */
 
@@ -699,8 +699,8 @@ line-height: 1.2em;
 
   color: var(--gcid-primary-color, var(--color-primary));
   font-family: "Cabin", sans-serif;
-  font-size: 17px;
-  font-weight: 600;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
 }
 
 .form-action {
@@ -727,14 +727,14 @@ line-height: 1.2em;
   color: var(--gcid-qdtr7s3apr, var(--color-primary-dark));
 
   font-family: "Cabin", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
   line-height: 1;
   cursor: pointer;
 }
 
 .form-action button span {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   line-height: 1;
 }
 
@@ -752,7 +752,7 @@ line-height: 1.2em;
   }
 
   .page-hero__title {
-    font-size: 44px;
+    font-size: var(--fs-44);
   }
 
   /* Blog hero */
@@ -761,7 +761,7 @@ line-height: 1.2em;
   }
 
   .blog-hero h1 {
-    font-size: 44px;
+    font-size: var(--fs-44);
   }
 
   /* Practice details */
@@ -784,7 +784,7 @@ line-height: 1.2em;
   }
 
   .page-hero__title {
-    font-size: 32px;
+    font-size: var(--fs-32);
   }
 
   /* Blog hero */
@@ -793,7 +793,7 @@ line-height: 1.2em;
   }
 
   .blog-hero h1 {
-    font-size: 30px;
+    font-size: var(--fs-30);
   }
 
   /* Blog & practice details pages */
@@ -804,17 +804,17 @@ line-height: 1.2em;
 
   /* Content box heading */
   .content-box h2 {
-    font-size: 28px;
+    font-size: var(--fs-28);
   }
 }
 
 @media (max-width: 480px) {
   .page-hero__title {
-    font-size: 28px;
+    font-size: var(--fs-28);
   }
 
   .blog-hero h1 {
-    font-size: 26px;
+    font-size: var(--fs-26);
   }
 
 }

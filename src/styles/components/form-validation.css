@@ -1,6 +1,6 @@
 /* Form validation styles for field error display and invalid input highlighting */
 .field-wrap { display: flex; flex-direction: column; width: 100%; }
-.field-error { color: var(--color-error); font-size: 12px; margin-top: 4px; min-height: 16px; }
+.field-error { color: var(--color-error); font-size: var(--fs-12); margin-top: 4px; min-height: 16px; }
 .field-wrap input.invalid,
 .field-wrap select.invalid,
 .field-wrap textarea.invalid { border-color: var(--color-error) !important; }

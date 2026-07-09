@@ -19,7 +19,7 @@
 .ts2-head h2 {
   margin: 0;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--gcid-heading-color, var(--color-primary-dark));
   line-height: 1.2;
 }
@@ -70,11 +70,11 @@
   background: color-mix(in srgb, var(--gcid-primary-color, var(--color-primary)) 40%, white);
   padding: 8px 14px;
   border-radius: 5px;
-  font-size: 40px;
+  font-size: var(--fs-40);
   line-height: 1;
   color: var(--gcid-heading-color, var(--color-primary-dark));
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: var(--fw-black);
   user-select: none;
 }
 
@@ -96,21 +96,21 @@
 
 .ts2-author-info h4 {
   margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--fs-18);
+  font-weight: var(--fw-semibold);
   color: var(--gcid-heading-color, var(--color-primary-dark));
 }
 
 .ts2-author-info p {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--fs-sm);
   color: var(--gcid-body-color, #505658);
 }
 
 /* ── Quote text ──────────────────────────────────────── */
 .ts2-text {
   margin: 0;
-  font-size: 16px;
+  font-size: var(--fs-base);
   line-height: 1.6;
   color: var(--gcid-body-color, #505658);
 }

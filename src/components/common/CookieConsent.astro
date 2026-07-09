@@ -67,7 +67,7 @@
   }
 
   .ck__icon {
-    font-size: 22px;
+    font-size: var(--fs-22);
     flex-shrink: 0;
     line-height: 1;
   }
@@ -75,8 +75,8 @@
   .ck__title {
     margin: 0;
     font-family: var(--font-heading);
-    font-size: 16px;
-    font-weight: 700;
+    font-size: var(--fs-base);
+    font-weight: var(--fw-bold);
     color: var(--color-white);
     line-height: 1.2;
   }
@@ -85,7 +85,7 @@
   .ck__text {
     margin: 0 0 18px;
     font-family: var(--font-cabin);
-    font-size: 13px;
+    font-size:var(--fs-xs);
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.55;
   }
@@ -113,7 +113,7 @@
     border-radius: var(--radius-pill);
     font-family: var(--font-cabin);
     font-size: 13.5px;
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     cursor: pointer;
     border: 0;
     transition: transform 0.2s ease, opacity 0.2s ease;
@@ -138,7 +138,7 @@
   .ck__btn--accept {
     background: var(--color-primary);
     color: var(--color-dark);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
   }
 
   .ck__btn--accept:hover {
