@@ -54,10 +54,6 @@ button, [type="button"], [type="submit"], [type="reset"],
   font-weight: var(--fw-medium);
 }
 
-html {
-  background: var(--color-white);
-}
-
 body {
   font-family: var(--font-body);
   color: var(--color-text);
@@ -68,13 +64,6 @@ body {
   margin: 0;
   /* Prevent any element from causing horizontal scroll */
   overflow-x: clip;
-}
-
-@media (min-width: 1440px) {
-  body {
-    max-width: 1440px;
-    margin-inline: auto;
-  }
 }
 
 h1, h2, h3, h4, h5 {
@@ -89,18 +78,20 @@ p {
 .container,
 .header-container,
 .hero-container {
-  width: 100%;
-  max-width: calc(var(--container-max) + 2 * var(--container-gutter));
-  padding-inline: var(--container-gutter);
-  margin-inline: auto;
+  /* Scales from near-zero at small screens → caps at 80px from 1440px onwards */
+  padding-inline: clamp(1rem, calc((100% - var(--container-max)) / 2), var(--container-gutter));
 }
 
 /* ── Responsive container gutter ────────────────────── */
 @media (max-width: 1024px) {
-  :root { --container-gutter: 2rem; }
+  .container,
+  .header-container,
+  .hero-container { padding-inline: 2rem; }
 }
 @media (max-width: 480px) {
-  :root { --container-gutter: 1.25rem; }
+  .container,
+  .header-container,
+  .hero-container { padding-inline: 1.25rem; }
 }
 
 .section {

@@ -44,8 +44,7 @@
 /* Header */
 
 .header-container {
-  width: min(calc(100% - 308.5px), 1320px);
-  margin-inline: auto;
+  width: 100%;
 }
 
 .site-header {
@@ -414,10 +413,6 @@
 /* ── Mobile / tablet nav (≤ 1024px) ──────────────────── */
 @media (max-width: 1024px) {
 
-  .header-container {
-    width: min(100% - 32px, 1320px);
-  }
-
   .topbar {
     display: none;
   }
@@ -565,10 +560,6 @@
 
 /* ── Very small phones (≤ 480px) ─────────────────────── */
 @media (max-width: 480px) {
-
-  .header-container {
-    width: min(100% - 24px, 1320px);
-  }
 
   .brand-logo {
     font-size: var(--fs-h3);
