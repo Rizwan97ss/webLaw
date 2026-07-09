@@ -13,13 +13,19 @@ Complete reference for the Civitas Law firm website.
 5. [Pages & Routes](#pages--routes)
 6. [Home Sections](#home-sections)
 7. [Features](#features)
-8. [Global Changes — Where & How](#global-changes--where--how)
-9. [CSS Variables](#css-variables)
-10. [Animation System](#animation-system)
-11. [Site Config — Behavior Settings](#site-config--behavior-settings)
-12. [TypeScript Script Modules](#typescript-script-modules)
-13. [Customization Guide — What You Can Change](#customization-guide--what-you-can-change)
-14. [Going Live](#going-live)
+8. [Site Identity & Firm Info](#site-identity--firm-info)
+9. [SEO — Meta, Open Graph, JSON-LD](#seo--meta-open-graph-json-ld)
+10. [Sitemap](#sitemap)
+11. [RSS Feed](#rss-feed)
+12. [Content Management](#content-management)
+13. [Navigation](#navigation)
+14. [Global Changes — Where & How](#global-changes--where--how)
+15. [CSS Variables](#css-variables)
+16. [Animation System](#animation-system)
+17. [Site Config — Behavior Settings](#site-config--behavior-settings)
+18. [TypeScript Script Modules](#typescript-script-modules)
+19. [Customization Guide — What You Can Change](#customization-guide--what-you-can-change)
+20. [Going Live](#going-live)
 
 ---
 
@@ -239,6 +245,417 @@ The home page assembles 15 independent components from `src/components/home/`. E
 
 ---
 
+## Site Identity & Firm Info
+
+All firm-specific text that appears across the entire site (browser tab titles, SEO descriptions, Open Graph previews, JSON-LD schema, RSS feed, canonical URLs) is driven by a single file:
+
+```
+src/consts.ts
+```
+
+```ts
+export const SITE_TITLE       = 'Civitas Law';
+export const SITE_DESCRIPTION = 'Civitas Law offers experienced legal counsel...';
+export const SITE_URL         = 'https://example.com';   // ← your production domain
+export const SITE_OG_IMAGE    = '/og-image.jpg';         // ← 1200×630 image in /public/
+
+export const FIRM_NAME    = 'Civitas Law';
+export const FIRM_PHONE   = '+01 23456789';
+export const FIRM_EMAIL   = 'contact@example.com';
+export const FIRM_ADDRESS = '123 Legal Ave, City, State 00000';
+```
+
+**Where each constant is used:**
+
+| Constant | Used in |
+|---|---|
+| `SITE_TITLE` | `<title>` on every page, RSS feed title, JSON-LD `name` |
+| `SITE_DESCRIPTION` | `<meta name="description">` default, RSS feed description, JSON-LD `description` |
+| `SITE_URL` | Canonical URL fallback, sitemap base URL, OG image absolute URL |
+| `SITE_OG_IMAGE` | `og:image` and `twitter:image` on all pages |
+| `FIRM_NAME` | `<meta name="author">`, JSON-LD `name`, footer, header |
+| `FIRM_PHONE` | JSON-LD `telephone`, topbar, footer |
+| `FIRM_EMAIL` | JSON-LD `email`, topbar, footer |
+| `FIRM_ADDRESS` | JSON-LD `PostalAddress.streetAddress`, footer |
+
+> The OG image must be placed at `public/og-image.jpg`. It appears when the site is shared on social media. Recommended size: **1200 × 630 px**.
+
+**Page-specific title format:**
+
+```
+Home page:    "Civitas Law — Justice Driven by Experience"
+Other pages:  "Page Title | Civitas Law"
+```
+
+The `|` separator and `SITE_TITLE` suffix are appended automatically in `MainLayout.astro`. Each page passes its own `title` prop to override the left side.
+
+---
+
+## SEO — Meta, Open Graph, JSON-LD
+
+All SEO tags are rendered inside `src/layouts/MainLayout.astro`. Every page that uses `MainLayout` gets the full SEO treatment automatically.
+
+### Meta Tags
+
+```html
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots"      content="index, follow, ..." />
+<meta name="author"      content={FIRM_NAME} />
+<link rel="canonical"    href={canonicalURL} />
+```
+
+The canonical URL is built from `Astro.url.pathname` + your `site` value in `astro.config.mjs`. No manual canonical management needed.
+
+### Robots / noIndex
+
+Any page can be excluded from search engine indexing by passing `noIndex={true}` to `MainLayout`:
+
+```astro
+<MainLayout title="Thank You" noIndex={true}>
+```
+
+This renders `<meta name="robots" content="noindex, nofollow" />` instead of the index rule. Use it for thank-you pages, error pages, and duplicate/demo routes.
+
+### Open Graph
+
+Automatically rendered on every page:
+
+```html
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content={canonicalURL} />
+<meta property="og:title"       content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image"       content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name"   content={SITE_TITLE} />
+<meta property="og:locale"      content="en_US" />
+```
+
+Blog post pages pass `type="article"` and `pubDate` to `MainLayout`, which also adds:
+
+```html
+<meta property="article:published_time" content={pubDate} />
+```
+
+### Twitter Card
+
+```html
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image"       content={ogImage} />
+```
+
+### JSON-LD Structured Data (LegalService Schema)
+
+The homepage injects a `LegalService` JSON-LD block, which Google uses for rich results (knowledge panel, local pack, etc.). It is only active when `isHome={true}` is passed:
+
+```astro
+<!-- src/pages/index.astro -->
+<MainLayout isHome={true} ...>
+```
+
+The schema is populated entirely from `src/consts.ts`:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Civitas Law",
+  "url": "https://your-domain.com",
+  "logo": "https://your-domain.com/favicon.svg",
+  "image": "https://your-domain.com/og-image.jpg",
+  "description": "...",
+  "telephone": "+01 23456789",
+  "email": "contact@example.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Legal Ave, City, State 00000"
+  },
+  "openingHoursSpecification": {
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+  "priceRange": "$$"
+}
+```
+
+**To update JSON-LD opening hours or price range**, edit the schema object directly inside `MainLayout.astro` (the `jsonLd` const). All other fields come from `consts.ts`.
+
+**To add `sameAs` social profiles** (recommended for local SEO), add URLs to the `sameAs` array:
+
+```ts
+sameAs: [
+  "https://www.facebook.com/yourfirm",
+  "https://www.linkedin.com/company/yourfirm",
+],
+```
+
+### Per-Page SEO Props
+
+`MainLayout` accepts these props for per-page SEO customization:
+
+| Prop | Type | Default | Purpose |
+|---|---|---|---|
+| `title` | `string` | `SITE_TITLE` | Left side of the `<title>` tag |
+| `description` | `string` | `SITE_DESCRIPTION` | `<meta name="description">` |
+| `image` | `string` | `SITE_OG_IMAGE` | OG and Twitter card image |
+| `type` | `string` | `"website"` | `og:type` — use `"article"` for blog posts |
+| `noIndex` | `boolean` | `false` | Adds `noindex, nofollow` |
+| `pubDate` | `string` | — | ISO date for `article:published_time` |
+| `isHome` | `boolean` | `false` | Enables JSON-LD LegalService schema |
+
+---
+
+## Sitemap
+
+The sitemap is auto-generated at build time by `@astrojs/sitemap`. It is available at `/sitemap-index.xml` after deployment.
+
+**Configuration is in `astro.config.mjs`:**
+
+```js
+sitemap({
+  filter: (page) =>
+    !page.includes('/error/') &&
+    !page.includes('/blog/blog-details') &&
+    !page.includes('/case-study/case_study_details') &&
+    !page.includes('/practice-areas/practice-details'),
+  changefreq: 'weekly',
+  priority: 0.7,
+  lastmod: new Date(),
+}),
+```
+
+**What each option does:**
+
+| Option | Value | Purpose |
+|---|---|---|
+| `filter` | function | Excludes demo/placeholder pages from the sitemap |
+| `changefreq` | `'weekly'` | Tells crawlers how often pages change |
+| `priority` | `0.7` | Page priority hint (0.0–1.0) for crawlers |
+| `lastmod` | `new Date()` | Sets last-modified to the build date on every page |
+
+**Pages excluded from the sitemap** (demo routes you'll replace or remove):
+
+- `/error/` and all sub-paths
+- `/blog/blog-details`
+- `/case-study/case_study_details`
+- `/practice-areas/practice-details`
+
+**To exclude additional pages**, add them to the `filter` function:
+
+```js
+filter: (page) =>
+  !page.includes('/error/') &&
+  !page.includes('/thank-you'),   // ← add your exclusion
+```
+
+**Required:** The `site` property in `astro.config.mjs` must be set to your production domain for the sitemap to generate correct absolute URLs:
+
+```js
+export default defineConfig({
+  site: 'https://your-domain.com',   // ← required for sitemap
+  ...
+})
+```
+
+**After deploying**, submit the sitemap URL to Google Search Console:
+`https://your-domain.com/sitemap-index.xml`
+
+---
+
+## RSS Feed
+
+The blog RSS feed is at `/rss.xml`. It is implemented in `src/pages/rss.xml.js` and includes all published (non-draft) blog posts sorted newest first.
+
+```js
+// src/pages/rss.xml.js
+return rss({
+  title: `${SITE_TITLE} — Legal Insights`,
+  description: SITE_DESCRIPTION,
+  site: context.site,
+  items: sorted.map((post) => ({
+    title:       post.data.title,
+    description: post.data.description,
+    pubDate:     post.data.pubDate,
+    author:      post.data.author,
+    categories:  [post.data.category, ...(post.data.tags ?? [])],
+    link:        `/blog/${post.id}/`,
+  })),
+  customData: `<language>en-us</language>`,
+});
+```
+
+**To change the RSS feed title:** edit the `title:` string in `rss.xml.js`.
+
+**To change the feed language:** edit `<language>en-us</language>` in `customData`.
+
+**Draft posts** (`draft: true` in frontmatter) are automatically excluded from the feed — the collection query filters them out before building the item list.
+
+**The feed is autodiscovered** by browsers and RSS readers via this tag in `MainLayout.astro`:
+
+```html
+<link rel="alternate" type="application/rss+xml" title="Civitas Law Blog" href="/rss.xml" />
+```
+
+---
+
+## Content Management
+
+### Blog Posts
+
+Blog posts are MDX files in `src/content/blog/`. Each file becomes a route at `/blog/[filename]`.
+
+**To add a blog post**, create a new `.md` or `.mdx` file:
+
+```md
+---
+title:       "Your Post Title"
+description: "One-sentence summary for SEO and cards."
+pubDate:     2026-01-15
+author:      "By Jane Smith"
+image:       "/images/blog/your-image.jpg"
+category:    "Business Law"
+tags:        ["contracts", "LLC"]
+draft:       false
+---
+
+Your content here. MDX files can also import and use React components.
+```
+
+**Frontmatter fields:**
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `title` | string | Yes | Displayed on card, page title, and RSS |
+| `description` | string | Yes | SEO meta description and card excerpt |
+| `pubDate` | date | Yes | ISO date — used for sorting and RSS |
+| `author` | string | No | Defaults to `"By Civitas Law"` |
+| `image` | string | Yes | Path to image in `/public/` |
+| `category` | string | Yes | Shown on card; used for category filter page |
+| `tags` | string[] | No | Defaults to `[]`; included in RSS categories |
+| `draft` | boolean | No | Defaults to `false`; `true` hides post everywhere |
+
+**Draft posts** are excluded from the blog listing, RSS feed, and sitemap. Use `draft: true` while writing a post you're not ready to publish.
+
+---
+
+### Practice Areas
+
+Practice areas are defined in `src/data/practiceAreas.ts` as a TypeScript array. Each entry appears as a card on the home page and generates a detail page at `/practice-areas/[slug]`.
+
+```ts
+{
+  id: 1,
+  slug: "corporate-business-law",        // ← URL: /practice-areas/corporate-business-law
+  title: "Corporate & Business Law",
+  icon: Building2,                        // ← Lucide icon component
+  description: "Short card description.",
+  featured: true,                         // ← shows on home page cards
+}
+```
+
+**To add a practice area:** add a new object to the array with a unique `id` and `slug`.
+**To change icons:** import any icon from `lucide-react` at the top of the file and assign it to `icon`.
+
+---
+
+### Case Studies
+
+Case studies are defined in `src/data/caseStudies.ts`. Each entry appears in the home page grid and has a detail page at `/case-study/[slug]`.
+
+```ts
+{
+  id: 1,
+  slug: "personal-injury-settlement",
+  title: "$2.4M Personal Injury Settlement",
+  category: "Personal Injury",
+  image: "/images/case-studies/case-1.jpg",
+  excerpt: "Short summary for the card.",
+  result: "$2.4 Million Settlement",
+}
+```
+
+Place images in `public/images/case-studies/`.
+
+---
+
+### Testimonials
+
+Testimonials are defined in `src/data/testimonials.ts` and displayed in the home slider and testimonials pages.
+
+```ts
+{
+  id: 1,
+  name: "Sarah L.",
+  role: "Family Law Client",
+  image: "/images/testimonials/sarah.jpg",
+  rating: 5,                              // 1–5
+  quote: "During the most difficult period...",
+}
+```
+
+Place images in `public/images/testimonials/`.
+
+---
+
+### FAQs
+
+FAQs are defined in `src/data/faqs.ts` and used on the home FAQ accordion and the standalone FAQ page.
+
+```ts
+{
+  id: 1,
+  question: "How much will legal representation cost?",
+  answer: "Our fee structures are transparent...",
+}
+```
+
+Add, remove, or reorder objects to update every FAQ instance site-wide at once.
+
+---
+
+## Navigation
+
+The navigation menu is defined directly in the Header component:
+
+```
+src/components/layout/Header.astro  →  navLinks array (top of the file)
+```
+
+```ts
+const navLinks = [
+  { label: "Home",     href: "/" },
+  { label: "About Us", href: "/about" },
+  {
+    label: "Practice Areas",
+    href: "#",
+    children: [
+      { label: "Practice Area",         href: "/practice-areas" },
+      { label: "Practice Area Details", href: "/practice-areas/practice-details" },
+    ],
+  },
+  // ... more items
+];
+```
+
+**To add a top-level link:** add `{ label: "...", href: "..." }` to the array.
+
+**To add a dropdown:** add a `children` array to any top-level item.
+
+**To remove an item:** delete its object from the array.
+
+The mobile hamburger breakpoint (default: 1024px) is controlled by `siteConfig.nav.mobileBreakpoint` in `site.config.ts`.
+
+### Topbar Contact Info & Social Links
+
+The topbar phone number, email, and social icons are hardcoded in `src/components/layout/Header.astro`. Search for the `topbar__contact` section and update the `href` and displayed text values directly.
+
+---
+
 ## Global Changes — Where & How
 
 This section is the fastest way to make site-wide changes. Each row below tells you **exactly which file to edit** and **which line/rule to change** — no hunting through components needed.
@@ -355,17 +772,53 @@ This one variable controls the top/bottom padding of every section on every page
 
 ---
 
-### Container Width
+### Container Width & Padding
 
 ```
-src/styles/variables.css  →  --container-max
+src/styles/variables.css  →  --container-max · --container-gutter
+src/styles/global.css     →  .container / .header-container / .hero-container rule
 ```
+
+The container system uses three coordinated rules:
 
 ```css
---container-max: 1280px;
+/* 1. Base — applies on all screens above 1024px */
+.container,
+.header-container,
+.hero-container {
+  max-width: 1440px;           /* content never exceeds this; section backgrounds still bleed full-width */
+  margin-inline: auto;         /* centers the container within the full-width section */
+  padding-inline: clamp(1rem, calc((100% - var(--container-max)) / 2), var(--container-gutter));
+  /*              └─ scales from 1rem → 80px as viewport grows 1280px → 1440px, then caps at 80px */
+}
+
+/* 2. Tablet — flat 2rem gutter */
+@media (max-width: 1024px) {
+  .container, .header-container, .hero-container { padding-inline: 2rem; }
+}
+
+/* 3. Mobile — tighter gutter */
+@media (max-width: 480px) {
+  .container, .header-container, .hero-container { padding-inline: 1.25rem; }
+}
 ```
 
-All `.container` elements (used by every section) are constrained to this width.
+**Gutter at each breakpoint:**
+
+| Viewport | Padding each side | Content width |
+|---|---|---|
+| 480px | 1.25rem (20px) | ~440px |
+| 768px | 2rem (32px) | ~704px |
+| 1024px | 2rem (32px) | ~960px |
+| 1360px | 40px (auto-scaled) | 1280px |
+| 1440px | 80px | **1280px** |
+| 1920px+ | 80px (capped) | **1280px** |
+
+**Key behavior:** section backgrounds (dark navy, cream, white) always span the full viewport width. Only the content block inside each section is capped at 1440px and centered — no blank body margins on ultrawide screens.
+
+**To change the max content width:** edit `--container-max` in `variables.css`.  
+**To change the desktop gutter:** edit `--container-gutter` in `variables.css`.  
+**To change the overall cap:** edit `max-width: 1440px` in the `.container` rule in `global.css`.
 
 ---
 
@@ -403,6 +856,21 @@ scrollReveal: {
 
 | What to change | File | Token / Setting |
 |---|---|---|
+| Firm name, phone, email, address | `src/consts.ts` | `FIRM_NAME`, `FIRM_PHONE`, `FIRM_EMAIL`, `FIRM_ADDRESS` |
+| Site title and SEO description | `src/consts.ts` | `SITE_TITLE`, `SITE_DESCRIPTION` |
+| Production domain / canonical URL | `astro.config.mjs` + `src/consts.ts` | `site:` + `SITE_URL` |
+| Social share image (OG image) | `public/og-image.jpg` + `src/consts.ts` | Replace file + `SITE_OG_IMAGE` |
+| JSON-LD opening hours / price range | `src/layouts/MainLayout.astro` | `jsonLd` const object |
+| JSON-LD social profiles (sameAs) | `src/layouts/MainLayout.astro` | `sameAs: [...]` array |
+| Navigation menu items | `src/components/layout/Header.astro` | `navLinks` array |
+| Topbar phone / email / social links | `src/components/layout/Header.astro` | `topbar__contact` section |
+| Blog posts | `src/content/blog/*.md` | Add / edit MDX files |
+| Practice areas | `src/data/practiceAreas.ts` | Edit the array |
+| Case studies | `src/data/caseStudies.ts` | Edit the array |
+| Testimonials | `src/data/testimonials.ts` | Edit the array |
+| FAQs | `src/data/faqs.ts` | Edit the array |
+| Sitemap excluded pages | `astro.config.mjs` | `sitemap({ filter: ... })` |
+| RSS feed title | `src/pages/rss.xml.js` | `title:` string |
 | All button font family | `variables.css` | `--font-cabin` |
 | All button font size | `variables.css` | `--fs-base` |
 | All button font weight | `variables.css` | `--fw-medium` |
@@ -490,8 +958,8 @@ All design tokens live in `src/styles/variables.css` under `:root`. Change a tok
 
 | Variable | Value | Usage |
 |---|---|---|
-| `--container-max` | `1280px` | Maximum content width |
-| `--container-gutter` | `2rem` | Horizontal padding on `.container` (1.5rem below 480px) |
+| `--container-max` | `1280px` | Max inner content width used in the container clamp formula |
+| `--container-gutter` | `80px` | Desktop gutter cap — padding tops out at this value (reached at 1440px viewport) |
 | `--section-padding` | `clamp(4rem, 8vw, 7rem)` | Vertical padding on all sections — fluid 64px → 112px |
 | `--pad-card` | `var(--sp-5)` = 20px | Standard card inner padding |
 | `--gap-grid` | `var(--sp-7)` = 28px | Standard grid and flex gap |
@@ -859,8 +1327,11 @@ Increase both values to add more vertical space between sections. This applies t
 #### Narrow or Widen the Content Column
 
 ```css
---container-max: 1280px;   /* max width of all .container elements */
+--container-max:    1280px;   /* inner content width used in the clamp formula */
+--container-gutter: 80px;     /* desktop gutter — padding on each side at 1440px+ */
 ```
+
+Containers are capped at `1440px` total width (`max-width` in `global.css`) and auto-centered within each section. Section backgrounds always bleed full-width regardless of viewport size. To change the hard cap, edit `max-width: 1440px` directly in the `.container` rule in `src/styles/global.css`.
 
 ---
 
@@ -1083,7 +1554,8 @@ nav: {
 | More space between sections | `variables.css` | `--section-padding` |
 | Rounder or sharper card corners | `variables.css` | `--radius-sm` |
 | Faster or slower hover effects | `variables.css` | `--transition` |
-| Narrow or widen the page | `variables.css` | `--container-max` |
+| Narrow or widen the content column | `variables.css` | `--container-max` |
+| Change the desktop side gutter | `variables.css` | `--container-gutter` |
 | Disable all scroll animations | `site.config.ts` | `scrollReveal.enabled: false` |
 | Change when animations fire | `site.config.ts` | `scrollReveal.threshold` |
 | Speed up stats counters | `site.config.ts` | `stats.animationDuration` |
@@ -1105,19 +1577,34 @@ node --version    # must be ≥ 22.12.0
 npm --version     # any recent version
 ```
 
-### Step 1 — Update your site URL
+### Step 1 — Update firm identity
 
-Open `astro.config.mjs` and set the `site` property to your production domain. This is required for the sitemap to generate correct URLs.
+Open `src/consts.ts` and replace every placeholder with real values:
+
+```ts
+export const SITE_TITLE       = 'Your Firm Name';
+export const SITE_DESCRIPTION = 'Your firm tagline for SEO.';
+export const SITE_URL         = 'https://your-domain.com';
+export const SITE_OG_IMAGE    = '/og-image.jpg';  // place 1200×630 image in /public/
+
+export const FIRM_NAME    = 'Your Firm Name';
+export const FIRM_PHONE   = '+1 555-000-0000';
+export const FIRM_EMAIL   = 'info@yourfirm.com';
+export const FIRM_ADDRESS = '123 Main St, City, State 00000';
+```
+
+### Step 2 — Update your site URL in Astro config
+
+Open `astro.config.mjs` and set `site` to your production domain. This is required for the sitemap and canonical URLs to be correct.
 
 ```js
-// astro.config.mjs
 export default defineConfig({
-  site: 'https://your-domain.com',   // ← change this
+  site: 'https://your-domain.com',   // ← must match SITE_URL in consts.ts
   ...
 })
 ```
 
-### Step 2 — Install and build locally
+### Step 3 — Install and build locally
 
 ```bash
 npm install
@@ -1194,13 +1681,23 @@ SOME_SECRET_KEY=xxxx
 
 ### Post-Deploy Checklist
 
-| Item | Where to change |
-|---|---|
-| Update `site` URL | `astro.config.mjs` |
-| Replace placeholder images | Component data arrays (e.g. `Hero.astro`, `CaseStudies.astro`) |
-| Update firm name, address, phone | `layouts/Footer.astro`, `layouts/Header.astro` |
-| Set real contact form action | `components/home/ContactCTA.astro` |
-| Add Google Analytics / Tag Manager | `layouts/MainLayout.astro` `<head>` |
-| Verify sitemap | Visit `/sitemap-index.xml` after deploy |
-| Verify RSS feed | Visit `/rss.xml` after deploy |
-| Submit sitemap to Google Search Console | search.google.com/search-console |
+| # | Item | Where to change |
+|---|---|---|
+| 1 | Update firm name, phone, email, address | `src/consts.ts` |
+| 2 | Update production domain | `astro.config.mjs` → `site:` + `src/consts.ts` → `SITE_URL` |
+| 3 | Replace OG image | Place 1200×630 file at `public/og-image.jpg` |
+| 4 | Update JSON-LD opening hours + social profiles | `src/layouts/MainLayout.astro` → `jsonLd` const |
+| 5 | Replace nav menu links | `src/components/layout/Header.astro` → `navLinks` |
+| 6 | Update topbar phone, email, social icons | `src/components/layout/Header.astro` → `topbar__contact` |
+| 7 | Replace placeholder images | `public/images/` — hero, team, case studies, testimonials |
+| 8 | Add real blog posts | `src/content/blog/*.md` — delete placeholder posts |
+| 9 | Update practice areas | `src/data/practiceAreas.ts` |
+| 10 | Update case studies | `src/data/caseStudies.ts` |
+| 11 | Update testimonials | `src/data/testimonials.ts` |
+| 12 | Update FAQs | `src/data/faqs.ts` |
+| 13 | Set real contact form action | `src/components/home/ContactCTA.astro` |
+| 14 | Add Google Analytics / Tag Manager | `src/layouts/MainLayout.astro` → `<head>` |
+| 15 | Verify sitemap | Visit `/sitemap-index.xml` after deploy |
+| 16 | Verify RSS feed | Visit `/rss.xml` after deploy |
+| 17 | Submit sitemap to Google Search Console | search.google.com/search-console |
+| 18 | Test social sharing preview | pastes.io/ogp or opengraph.xyz with your URL |
