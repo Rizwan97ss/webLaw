@@ -70,51 +70,53 @@ const socials = [
   <PageHero title="Attorney Profile" />
 
   <section class="atty-section">
-    <div class="container atty-grid">
-      <div class="atty-photo shine-image reveal-left">
-        <img
-          src="https://civitas.divigurus.com/wp-content/uploads/2026/03/documents-contract-eyebrow-collar-formal-wear-neck-1707616-pxhere.com_11zon-scaled.jpg"
-          alt="Elena M. — Personal Attorney"
-          fetchpriority="high"
-          decoding="async"
-        />
-      </div>
+    <div class="container">
+        <div class="atty-inner">
+          <div class="atty-photo shine-image reveal-left">
+            <img
+              src="https://civitas.divigurus.com/wp-content/uploads/2026/03/documents-contract-eyebrow-collar-formal-wear-neck-1707616-pxhere.com_11zon-scaled.jpg"
+              alt="Elena M. — Personal Attorney"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
 
-      <div class="atty-info reveal-right">
-        <h2 class="atty-name">Elena M.</h2>
-        <p class="atty-role">Personal Attorney</p>
+          <div class="atty-info reveal-right">
+            <h2 class="atty-name">Elena M.</h2>
+            <p class="atty-role">Personal Attorney</p>
 
-        <div class="atty-stats">
-          {
-            stats.map(({ icon: Icon, label, value }) => (
-              <div class="atty-stat">
-                <span class="atty-stat__icon">
-                  <Icon size={26} stroke-width={2.4} />
-                </span>
-                <div>
-                  <h4>{label}</h4>
-                  <p>{value}</p>
-                </div>
-              </div>
-            ))
-          }
+            <div class="atty-stats">
+              {
+                stats.map(({ icon: Icon, label, value }) => (
+                  <div class="atty-stat">
+                    <span class="atty-stat__icon">
+                      <Icon size={26} stroke-width={2.4} />
+                    </span>
+                    <div>
+                      <h4>{label}</h4>
+                      <p>{value}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+
+            <div class="atty-social">
+              {
+                socials.map((s) => (
+                  <a
+                    href={s.href}
+                    class="atty-social__link"
+                    aria-label={`Follow on ${s.label}`}
+                  >
+                    {s.char}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
         </div>
-
-        <div class="atty-social">
-          {
-            socials.map((s) => (
-              <a
-                href={s.href}
-                class="atty-social__link"
-                aria-label={`Follow on ${s.label}`}
-              >
-                {s.char}
-              </a>
-            ))
-          }
-        </div>
       </div>
-    </div>
   </section>
 
   <!-- ── About ─────────────────────────────────────────── -->
@@ -261,6 +263,4 @@ const socials = [
   );
 
   reveals.forEach((el) => revealObserver.observe(el));
-
-  
 </script>

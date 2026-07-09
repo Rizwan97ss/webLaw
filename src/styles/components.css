@@ -1109,6 +1109,7 @@
   padding: clamp(20px, 2.5vw, 30px);
   border-radius: 24px;
   background: var(--color-cream-warm);
+  overflow: hidden;
 }
 
 .about-image-wrap {
@@ -1155,7 +1156,7 @@
   inset: 4px;
   border: 2px dashed var(--color-primary);
   border-radius: 50%;
-  animation: spinBadge 30s linear infinite;
+  animation: spinBadge 15s linear infinite;
 
 }
 
