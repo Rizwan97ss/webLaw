@@ -190,6 +190,22 @@
   background: var(--color-white);
 }
 
+/* Button state on card hover: dark bg + white text */
+.practice-card:hover .practice-view-btn {
+  background: var(--color-text);
+  color: var(--color-white) !important;
+}
+
+/* Flip the fill pseudo-element to white so hovering the button reveals white */
+.practice-card:hover .practice-view-btn::before {
+  background: var(--color-white);
+}
+
+/* Button hover within hovered card: white bg + dark text */
+.practice-card:hover .practice-view-btn:hover {
+  color: var(--color-text) !important;
+}
+
 .practice-content {
   position: relative;
   /* padding: 10px 20px 20px 20px !important; */

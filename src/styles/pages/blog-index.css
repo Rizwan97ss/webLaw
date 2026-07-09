@@ -37,12 +37,7 @@
     box-shadow 0.35s ease;
 }
 
-.blog-card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.08),
-    0 8px 20px rgba(255, 196, 66, 0.12);
-}
+
 
 .blog-card__img-wrap {
   position: relative;
@@ -149,16 +144,6 @@
   font-weight: var(--fw-bold);
   line-height: 1;
   text-decoration: none;
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.blog-card__btn:hover {
-  transform: translateY(-2px);
-  background: var(--gcid-heading-color, var(--color-primary-dark));
-  color: var(--color-white);
 }
 
 .blog-card__btn span {
