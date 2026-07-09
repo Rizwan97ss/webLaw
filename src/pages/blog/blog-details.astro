@@ -14,7 +14,9 @@ const post = {
 };
 
 const categories = ["Family Law", "Criminal Law", "Real Estate Law"];
-
+// used in template for category href
+const toSlug = (str: string) =>
+  str.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
 const recentPosts = [
   {
     title: "Protecting Your Rights with Professional Legal Services",
@@ -119,7 +121,7 @@ const recentPosts = [
             <ul class="sidebar-cat-list">
               {categories.map((cat) => (
                 <li>
-                  <a href="#">
+                  <a href={`/blog/category/${toSlug(cat)}`}>
                     <MoveRight size={14} />
                     {cat}
                   </a>

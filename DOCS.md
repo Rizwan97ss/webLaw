@@ -25,7 +25,9 @@ Complete reference for the Civitas Law firm website.
 17. [Site Config — Behavior Settings](#site-config--behavior-settings)
 18. [TypeScript Script Modules](#typescript-script-modules)
 19. [Customization Guide — What You Can Change](#customization-guide--what-you-can-change)
-20. [Going Live](#going-live)
+20. [Button Patterns](#button-patterns)
+21. [Page-Specific Notes](#page-specific-notes)
+22. [Going Live](#going-live)
 
 ---
 
@@ -1565,6 +1567,155 @@ nav: {
 | Stop hero image rotating | `site.config.ts` | `hero.imageRotateInterval: 0` |
 | Back-to-top button appears earlier | `site.config.ts` | `scrollTop.showAfterPx` |
 | Change mobile nav breakpoint | `site.config.ts` | `nav.mobileBreakpoint` |
+
+---
+
+## Button Patterns
+
+### `btn-fill-hover` — Animated Fill Button
+
+Defined in `src/styles/variables.css`. Apply to any `<a>` or `<button>` alongside the base button class.
+
+**How it works:** A `::before` pseudo-element expands from the horizontal center (`width: 0 → 100%`) using `cubic-bezier(.22,.61,.36,1)`. Fill color is `var(--color-text)` (dark `#242424`). On hover, text color flips to white.
+
+```html
+<a href="/contact" class="some-btn btn-fill-hover">Get Started <MoveRight size={16} /></a>
+```
+
+**Rules — never break the animation:**
+
+| Rule | Why |
+|---|---|
+| Never add `:hover { background: X }` directly on a `btn-fill-hover` element | Overrides the pseudo-element fill, making the transition look instant |
+| Never add `transition: background` to a `btn-fill-hover` element | Fights the pseudo-element; both transitions run simultaneously and the direct one wins |
+| Never add `transform: translateY()` on hover to a `btn-fill-hover` button | Causes unwanted upward jump that looks broken |
+| Always let `variables.css` own the `transition:` on the element | `color .4s ease, transform .3s ease` — already set there |
+
+**Correct pattern for a custom button using `btn-fill-hover`:**
+
+```css
+/* ✅ Correct — only style the base state; no :hover overrides */
+.my-btn {
+  height: 52px;
+  padding: 0 36px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-primary-dark);
+  /* btn-fill-hover handles all hover behavior */
+}
+```
+
+```css
+/* ❌ Wrong — breaks the smooth fill */
+.my-btn:hover {
+  background: var(--color-text);
+  transform: translateY(-2px);
+  transition: background 0.25s ease;
+}
+```
+
+---
+
+### Three-State Practice Area Card Button
+
+The `.practice-view-btn` on each practice area card has custom three-state behavior driven entirely by CSS specificity — no JS needed.
+
+| State | CSS trigger | Button appearance |
+|---|---|---|
+| Default | (resting) | Primary yellow bg, dark text |
+| Card hovered | `.practice-card:hover .practice-view-btn` | Dark bg, white text |
+| Button hovered (within hovered card) | `.practice-card:hover .practice-view-btn:hover` | White fill sweeps in, text returns to dark |
+
+```css
+/* src/styles/cards.css */
+
+/* State 2: card hovered — dark bg + white text */
+.practice-card:hover .practice-view-btn {
+  background: var(--color-text);
+  color: var(--color-white) !important;
+}
+
+/* State 2 → 3 transition: flip the fill pseudo-element to white */
+.practice-card:hover .practice-view-btn::before {
+  background: var(--color-white);
+}
+
+/* State 3: button hovered within hovered card — white fill reveals, dark text */
+.practice-card:hover .practice-view-btn:hover {
+  color: var(--color-text) !important;
+}
+```
+
+The fill sweep animation (from `::before`) continues to run normally — only the fill *color* changes from dark to white when the card is hovered.
+
+---
+
+### Blog Card "Read More" Button
+
+Blog card buttons must always carry **both** classes:
+
+```html
+<a href={`/blog/${post.id}`} class="blog-card__btn btn-fill-hover">
+  Read More
+  <MoveRight size={16} />
+</a>
+```
+
+- `blog-card__btn` — applies the base button styles (background, padding, font, etc.)
+- `btn-fill-hover` — applies the smooth fill animation
+
+Missing `btn-fill-hover` disables the animation silently — the button will still look like a button but won't animate on hover. This applies to **both** `src/pages/blog/index.astro` and `src/pages/blog/category/[category].astro`.
+
+---
+
+## Page-Specific Notes
+
+### Attorney Profile (`src/pages/attorney-profile.astro`)
+
+Styles: `src/styles/pages/attorney-profile.css`
+
+#### Responsive layout rules
+
+The `.atty-inner` card is a 2-column grid that collapses at 980px:
+
+| Breakpoint | Layout |
+|---|---|
+| Desktop (> 980px) | `grid-template-columns: clamp(260px, 32%, 410px) 1fr` — image column scales fluidly |
+| ≤ 980px | Single column; photo resets to `width: 70%; max-width: 460px; height: 440px` |
+| ≤ 640px | Photo full width; `height: 320px` |
+
+Photo height on desktop is `clamp(340px, 36vw, 470px)` — never `height: 100%` (that stretches the image to fill the entire grid row height). The grid uses `align-items: center`, not `stretch`.
+
+#### Contact section below the profile
+
+`.atty-contact-inner` must use `width: 100%; max-width: 750px` — never `width: 750px`. A fixed pixel width overflows the container on screens narrower than 750px.
+
+---
+
+### Contact Page Style 1 (`src/pages/contact/contact_1.astro`)
+
+Styles: `src/styles/pages/contact-page.css`
+
+The form submit button uses `btn-fill-hover` for animation. It has **no** `:hover` rule in the CSS — all hover behavior comes from `variables.css`.
+
+If the button animation breaks in the future, check for:
+1. A `:hover { background: X }` override that was added back
+2. A `transform: translateY()` on hover
+3. A `transition:` property on the button element itself that overrides the one in `variables.css`
+
+The `.contact-card` grid collapses from 2-column to 1-column at ≤ 1024px. The `.form-row` (first name / last name side by side) collapses at ≤ 640px.
+
+---
+
+### Blog Category Page (`src/pages/blog/category/[category].astro`)
+
+The Read More button must include `btn-fill-hover`:
+
+```html
+<a href={`/blog/${post.id}`} class="blog-card__btn btn-fill-hover">
+```
+
+The `category` variable from `Astro.params` on line 26 is declared but unused (slug filtering uses `categoryName` from `Astro.props` instead). This is a lint warning only — it doesn't affect functionality.
 
 ---
 

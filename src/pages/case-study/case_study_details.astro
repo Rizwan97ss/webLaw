@@ -13,12 +13,12 @@ const caseInfo = [
 ];
 
 const recentCases = [
-  { label: "The $2.4M Settlement",    href: "#" },
-  { label: "Corporate Merger Victory", href: "#" },
-  { label: "Asset Protection Success", href: "#" },
-  { label: "Criminal Charges Dismissal", href: "#" },
+  { label: "The $2.4M Settlement",       slug: "the-2-4m-settlement",    href: "#" },
+  { label: "Corporate Merger Victory",slug: "corporate-merger-victory", href: "#" },
+  { label: "Asset Protection Success",slug: "asset-protection-success", href: "#" },
+  { label: "Criminal Charges Dismissal", slug: "criminal-charges-dismissal", href: "#" },
 ];
-
+// const slug= "the-2-4m-settlement";
 const faqs = [
   {
     question: "How much will my legal representation cost?",
@@ -173,7 +173,7 @@ const faqs = [
             <h3>Recent Cases</h3>
             <ul class="service-list">
               {recentCases.map((c) => (
-                <li><a href={c.href}>{c.label}</a></li>
+                <li><a href={`/case-study/${c.slug}`}>{c.label}</a></li>
               ))}
             </ul>
           </div>

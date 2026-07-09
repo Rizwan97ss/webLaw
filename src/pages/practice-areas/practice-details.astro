@@ -5,12 +5,12 @@ import Footer from "../../components/layout/Footer.astro";
 import PageHero from "../../components/common/PageHero.astro";
 
 const services = [
-  "Corporate & Business Law",
-  "Family Law & Mediation",
-  "Personal Injury Litigation",
-  "Estate Planning & Probate",
-  "Criminal Defense",
-  "Real Estate Law",
+  {label:"Corporate & Business Law", slug: "corporate-and-business-law"},
+ {label: "Family Law & Mediation",slug: "family-law-and-mediation"},
+  {label:"Personal Injury Litigation",slug: "personal-injury-litigation"},
+  {label:"Estate Planning & Probate",slug: "estate-planning-and-probate"},
+  {label:"Criminal Defense",slug: "criminal-defense"},
+{ label: "Real Estate Law",slug: "real-estate-law"}
 ];
 
 const faqs = [
@@ -107,7 +107,7 @@ const faqs = [
           <ul class="service-list">
             {services.map((service) => (
               <li>
-                <a href="#">{service}</a>
+                <a href={`/practice-areas/${service.slug}`}>{service.label}</a>
               </li>
             ))}
           </ul>
