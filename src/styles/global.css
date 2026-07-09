@@ -54,6 +54,10 @@ button, [type="button"], [type="submit"], [type="reset"],
   font-weight: var(--fw-medium);
 }
 
+html {
+  background: var(--color-white);
+}
+
 body {
   font-family: var(--font-body);
   color: var(--color-text);
@@ -64,6 +68,13 @@ body {
   margin: 0;
   /* Prevent any element from causing horizontal scroll */
   overflow-x: clip;
+}
+
+@media (min-width: 1440px) {
+  body {
+    max-width: 1440px;
+    margin-inline: auto;
+  }
 }
 
 h1, h2, h3, h4, h5 {
