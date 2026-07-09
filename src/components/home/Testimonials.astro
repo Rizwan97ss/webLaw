@@ -3,7 +3,9 @@ import { ChevronRight, ChevronLeft, Scale, MoveRight } from "lucide-react";
 
 const isHomePage =
   Astro.url.pathname === "/" ||
-  Astro.url.pathname === "/case-study" || Astro.url.pathname === "/attorney-profile" || Astro.url.pathname === "/practice-areas";
+  Astro.url.pathname === "/case-study" ||
+  Astro.url.pathname === "/attorney-profile" ||
+  Astro.url.pathname === "/practice-areas";
 const testimonials = [
   {
     logo: "BRAND LOGO",
@@ -35,29 +37,38 @@ const testimonials = [
   {
     logo: "BRAND LOGO",
     quote:
-      "They handled my estate planning with clarity, patience, and professionalism.",
-    name: "Anna P",
-    role: "Estate Planning Client",
+      "After a serious accident, I felt overwhelmed. They took over the fight and secured a settlement that changed my family's .",
+    name: "David K",
+    role: "Corporate Law Client",
     image:
       "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
   },
   {
     logo: "BRAND LOGO",
     quote:
-      "Their communication was consistent and honest. I always knew exactly.",
-    name: "Robert M",
-    role: "Real Estate Client",
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are .",
+    name: "Michael R",
+    role: "Personal Injury Client",
     image:
-      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/man-person-people-hair-white-boy-1046502-pxhere.com_.jpg",
   },
   {
     logo: "BRAND LOGO",
     quote:
-      "Their communication was consistent and honest. I always knew exactly.",
-    name: "Robert M",
-    role: "Real Estate Client",
+      "After a serious accident, I felt overwhelmed. They took over the fight and secured a settlement that changed my family's .",
+    name: "David K",
+    role: "Corporate Law Client",
     image:
-      "https://civitas.divigurus.com/wp-content/uploads/2026/04/laptop-notebook-work-hand-suit-people-1278242-pxhere.com_.jpg",
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/person-people-girl-woman-hair-white-642888-pxhere.com_11zon-scaled-1.jpg",
+  },
+  {
+    logo: "BRAND LOGO",
+    quote:
+      "Their strategic approach to our complex merger saved us months of negotiation. They are more than just lawyers; they are .",
+    name: "Michael R",
+    role: "Personal Injury Client",
+    image:
+      "https://civitas.divigurus.com/wp-content/uploads/2026/04/man-person-people-hair-white-boy-1046502-pxhere.com_.jpg",
   },
 ];
 ---
@@ -66,7 +77,9 @@ const testimonials = [
   <div class="container">
     <div class="testimonial-head">
       <div>
-        <p class="testimonial-kicker"><Scale size={16} className="kicker-icon" /> Testimonials</p>
+        <p class="testimonial-kicker">
+          <Scale size={16} className="kicker-icon" /> Testimonials
+        </p>
         <h2>What Our Client's Say</h2>
       </div>
 
@@ -115,61 +128,57 @@ const testimonials = [
             </div>
           </div>
 
-           {
-  isHomePage ? (
-    <div class="testimonial-arrows">
-      <button class="testimonial-arrow testimonial-prev" type="button">
-        <ChevronLeft />
-      </button>
+          {isHomePage ? (
+            <div class="testimonial-arrows">
+              <button class="testimonial-arrow testimonial-prev" type="button">
+                <ChevronLeft />
+              </button>
 
-      <button class="testimonial-arrow testimonial-next" type="button">
-        <ChevronRight />
-      </button>
-    </div>
-  ) : null
-}
+              <button class="testimonial-arrow testimonial-next" type="button">
+                <ChevronRight />
+              </button>
+            </div>
+          ) : null}
         </>
       ) : (
-    <div class="testimonial-grid-page">
-      {testimonials.slice(0, 6).map((item) => (
-        <article class="testimonial-card-page">
-          <div class="testimonial-box">
-            <div class="testimonial-top">
-              <strong>{item.logo}</strong>
-              <span>★★★★★</span>
-            </div>
+        <div class="testimonial-grid-page">
+          {testimonials.slice(0, 6).map((item) => (
+            <article class="testimonial-card-page">
+              <div class="testimonial-box">
+                <div class="testimonial-top">
+                  <strong>{item.logo}</strong>
+                  <span>★★★★★</span>
+                </div>
 
-            <div class="testimonial-line"></div>
+                <div class="testimonial-line" />
 
-            <p>{item.quote}</p>
-          </div>
+                <p>{item.quote}</p>
+              </div>
 
-          <div class="testimonial-author">
-            <img src={item.image} alt={item.name} />
+              <div class="testimonial-author">
+                <img src={item.image} alt={item.name} />
 
-            <div>
-              <h3>{item.name}</h3>
-              <span>{item.role}</span>
-            </div>
-          </div>
-        </article>
-      ))}
-    </div>
-  )
-}
-
-
+                <div>
+                  <h3>{item.name}</h3>
+                  <span>{item.role}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )
+    }
   </div>
 </section>
 <script>
-  import { createSlider } from '../../scripts/slider';
-  import { siteConfig } from '../../config/site.config';
+  import { createSlider } from "../../scripts/slider";
+  import { siteConfig } from "../../config/site.config";
   createSlider({
-    trackSelector: '.testimonial-track',
-    slideSelector: '.testimonial-card',
-    prevSelector:  '.testimonial-prev',
-    nextSelector:  '.testimonial-next',
-    visibleCards:  siteConfig.testimonials.visibleCards,
-    breakpoints:   siteConfig.testimonials.breakpoints,
+    trackSelector: ".testimonial-track",
+    slideSelector: ".testimonial-card",
+    prevSelector: ".testimonial-prev",
+    nextSelector: ".testimonial-next",
+    visibleCards: siteConfig.testimonials.visibleCards,
+    breakpoints: siteConfig.testimonials.breakpoints,
   });
 </script>

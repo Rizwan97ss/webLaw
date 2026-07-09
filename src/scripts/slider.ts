@@ -9,17 +9,26 @@ interface SliderOptions {
 
 export function createSlider(options: SliderOptions): void {
   const track = document.querySelector<HTMLElement>(options.trackSelector);
-  const slides = document.querySelectorAll<HTMLElement>(options.slideSelector);
-  const prev  = document.querySelector<HTMLElement>(options.prevSelector);
-  const next  = document.querySelector<HTMLElement>(options.nextSelector);
+  const originalSlides = Array.from(document.querySelectorAll<HTMLElement>(options.slideSelector));
+  const prev = document.querySelector<HTMLElement>(options.prevSelector);
+  const next = document.querySelector<HTMLElement>(options.nextSelector);
 
-  if (!track || !slides.length) return;
+  if (!track || !originalSlides.length) return;
 
-  // Narrowed references so inner closures stay typed as HTMLElement
   const safeTrack: HTMLElement = track;
-  const firstSlide: HTMLElement = slides[0];
+  const total = originalSlides.length;
+
+  // Append clones for seamless infinite loop: [real…, clone…]
+  originalSlides.forEach((slide) => {
+    const clone = slide.cloneNode(true) as HTMLElement;
+    clone.setAttribute('aria-hidden', 'true');
+    safeTrack.appendChild(clone);
+  });
+
+  const firstReal: HTMLElement = originalSlides[0];
 
   let index = 0;
+  let isAnimating = false;
 
   function getVisible(): number {
     if (window.innerWidth <= options.breakpoints.mobileMaxWidth) return options.visibleCards.mobile;
@@ -27,24 +36,42 @@ export function createSlider(options: SliderOptions): void {
     return options.visibleCards.desktop;
   }
 
-  function update(): void {
-    const maxIndex = Math.max(slides.length - getVisible(), 0);
-    if (index > maxIndex) index = maxIndex;
-    safeTrack.style.transform = `translateX(-${index * firstSlide.getBoundingClientRect().width}px)`;
+  function moveTo(i: number, animate: boolean): void {
+    safeTrack.style.transition = animate ? '' : 'none';
+    safeTrack.style.transform = `translateX(-${i * firstReal.getBoundingClientRect().width}px)`;
   }
 
   next?.addEventListener('click', () => {
-    const maxIndex = Math.max(slides.length - getVisible(), 0);
-    index = index >= maxIndex ? 0 : index + 1;
-    update();
+    if (isAnimating) return;
+    isAnimating = true;
+    moveTo(++index, true);
   });
 
   prev?.addEventListener('click', () => {
-    const maxIndex = Math.max(slides.length - getVisible(), 0);
-    index = index <= 0 ? maxIndex : index - 1;
-    update();
+    if (isAnimating) return;
+    isAnimating = true;
+    if (index <= 0) {
+      // Instantly jump to clone zone at end, then animate backwards
+      index = total;
+      moveTo(index, false);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        moveTo(--index, true);
+      }));
+    } else {
+      moveTo(--index, true);
+    }
   });
 
-  window.addEventListener('resize', update, { passive: true });
-  update();
+  safeTrack.addEventListener('transitionend', (e: TransitionEvent) => {
+    if (e.propertyName !== 'transform') return;
+    // Seamlessly snap from clone zone back to real slides
+    if (index >= total) {
+      index -= total;
+      moveTo(index, false);
+    }
+    isAnimating = false;
+  });
+
+  window.addEventListener('resize', () => moveTo(index, false), { passive: true });
+  moveTo(0, false);
 }
