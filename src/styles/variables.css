@@ -127,7 +127,7 @@
 
   /* ── Layout ───────────────────────────────────────────── */
   --container-max:    1280px;
-  --container-gutter: 2rem;
+  --container-gutter: 80px;           /* laptop+ fixed gutter (equal left/right) */
   --container:        1320px;          /* legacy alias */
   --gutter:           clamp(24px, 8vw, 115px);
   --horizontal-gap-parent: 3%;

@@ -78,12 +78,14 @@ p {
 .container,
 .header-container,
 .hero-container {
-  width: min(100% - var(--container-gutter), var(--container-max));
+  width: 100%;
+  max-width: calc(var(--container-max) + 2 * var(--container-gutter));
+  padding-inline: var(--container-gutter);
   margin-inline: auto;
 }
 
 /* ── Responsive container gutter ────────────────────── */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   :root { --container-gutter: 2rem; }
 }
 @media (max-width: 480px) {
