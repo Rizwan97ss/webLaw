@@ -78,7 +78,8 @@ p {
 .container,
 .header-container,
 .hero-container {
-  /* Scales from near-zero at small screens → caps at 80px from 1440px onwards */
+  max-width: 1440px;
+  margin-inline: auto;
   padding-inline: clamp(1rem, calc((100% - var(--container-max)) / 2), var(--container-gutter));
 }
 
