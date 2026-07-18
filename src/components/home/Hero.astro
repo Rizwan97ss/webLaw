@@ -1,9 +1,21 @@
 ---
+import { getImage } from "astro:assets";
 import Button from "../common/Button.astro";
 import { MoveRight } from 'lucide-react';
+import rawHeroBg from "../../assets/1700916.jpg";
+import rawHero2 from "../../assets/1700912.jpg";
+import rawHero3 from "../../assets/1691514.jpg";
+
+const heroBg = await getImage({ src: rawHeroBg });
+const heroImg1 = await getImage({ src: rawHeroBg });
+const heroImg2 = await getImage({ src: rawHero2 });
+const heroImg3 = await getImage({ src: rawHero3 });
 ---
 
-<section class="hero">
+<section
+  class="hero"
+  style={`background: linear-gradient(90deg, rgba(12,23,51,0.96) 0%, rgba(12,23,51,0.94) 42%, rgba(12,23,51,0.9) 100%), url(${heroBg.src}) center center / cover no-repeat;`}
+>
   <div class="container hero__inner">
     <div class="hero__content hero-anim-left">
       <div class="hero__rating">
@@ -36,15 +48,46 @@ import { MoveRight } from 'lucide-react';
     </div>
 
     <div class="hero__image hero-anim-right">
-      <img id="hero-image" src="https://picsum.photos/700/800" alt="Lawyer" />
+      <div class="hero-slider" id="hero-slider">
+        <img class="hero-slide hero-slide--active" src={heroImg1.src} alt="Lawyer" fetchpriority="high" decoding="async" />
+        <img class="hero-slide" src={heroImg2.src} alt="Lawyer" decoding="async" />
+        <img class="hero-slide" src={heroImg3.src} alt="Lawyer" decoding="async" />
+      </div>
     </div>
   </div>
 </section>
 
-<script>
-  const image = document.getElementById("hero-image");
+<style>
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.06);
+    transition: opacity 1s ease, transform 1.2s ease;
+    border-radius: inherit;
+  }
+  .hero-slide--active {
+    opacity: 1;
+    transform: scale(1);
+  }
+</style>
 
-  setInterval(() => {
-    image.src = `https://picsum.photos/700/800?random=${Date.now()}`;
-  }, 3000); // change every 3 seconds
+<script is:inline>
+  (function () {
+    var slides = document.querySelectorAll("#hero-slider .hero-slide");
+    var current = 0;
+    setInterval(function () {
+      slides[current].classList.remove("hero-slide--active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("hero-slide--active");
+    }, 3500);
+  })();
 </script>

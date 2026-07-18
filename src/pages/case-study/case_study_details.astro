@@ -4,6 +4,10 @@ import Header from "../../components/layout/Header.astro";
 import Footer from "../../components/layout/Footer.astro";
 import PageHero from "../../components/common/PageHero.astro";
 import { FileText, Calendar, User, Clock, Phone } from "lucide-astro";
+import img1701078 from "../../assets/1701078.jpg";
+import img632090 from "../../assets/632090.jpg";
+import img1363790 from "../../assets/1363790.jpg";
+import img959354 from "../../assets/959354.jpg";
 
 const caseInfo = [
   { icon: FileText, label: "Case Name",     value: "The $2.4M Settlement" },
@@ -52,7 +56,7 @@ const faqs = [
           <!-- Hero image -->
           <div class="shine-image practice-details__hero-image">
             <img
-              src="https://civitas.divigurus.com/wp-content/uploads/2026/04/lawyer-eyewear-clothing-glasses-head-vision-care-1701078-pxhere.com-1.jpg"
+              src={img1701078.src}
               alt="Case study hero"
               fetchpriority="high"
               decoding="async"
@@ -82,7 +86,7 @@ const faqs = [
             <div class="cs-gallery__row">
               <div class="shine-image cs-gallery__small">
                 <img
-                  src="https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-work-working-table-coffee-wood-632090-pxhere.com-1-scaled.jpg"
+                  src={img632090.src}
                   alt="Gallery image 1"
                   loading="lazy"
                   decoding="async"
@@ -90,7 +94,7 @@ const faqs = [
               </div>
               <div class="shine-image cs-gallery__small">
                 <img
-                  src="https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-pencil-pen-red-paper-lip-1363790-pxhere.com-1-scaled.jpg"
+                  src={img1363790.src}
                   alt="Gallery image 2"
                   loading="lazy"
                   decoding="async"
@@ -99,7 +103,7 @@ const faqs = [
             </div>
             <div class="shine-image cs-gallery__wide">
               <img
-                src="https://civitas.divigurus.com/wp-content/uploads/2026/04/writing-table-book-light-wood-vintage-959354-pxhere.com-1-scaled.jpg"
+                src={img959354.src}
                 alt="Gallery image 3"
                 loading="lazy"
                 decoding="async"

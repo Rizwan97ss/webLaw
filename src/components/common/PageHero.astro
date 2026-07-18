@@ -1,15 +1,25 @@
 ---
+import { getImage } from "astro:assets";
+import rawBg from "../../assets/1700916.jpg";
+
+const bg = await getImage({ src: rawBg });
+
 const {
   title,
   breadcrumb = "Home",
 } = Astro.props;
 ---
 
-<section class="page-hero">
+<section
+  class="page-hero"
+  style={`background-image: linear-gradient(90deg, var(--color-black-a70) 0%, var(--color-black-a70) 100%), url(${bg.src});`}
+>
   <div class="page-hero__mask" aria-hidden="true"></div>
   <div class="page-hero__deco" aria-hidden="true"></div>
+
   <div class="container page-hero__inner">
     <h1 class="page-hero__title">{title}</h1>
+
     <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
       <a href="/">{breadcrumb}</a>
       <span aria-hidden="true">›</span>

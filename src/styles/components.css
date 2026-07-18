@@ -630,7 +630,7 @@
       rgba(12, 23, 51, 0.96) 0%,
       rgba(12, 23, 51, 0.94) 42%,
       rgba(12, 23, 51, 0.9) 100%),
-    url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600") center center / cover no-repeat;
+    url("../assets/1700916.jpg") center center / cover no-repeat;
 }
 
 .hero__inner {
@@ -968,18 +968,19 @@
 
 .clients {
   padding-bottom: 20px;
+  padding-top: 20px;
   background: var(--color-primary-bg);
   overflow: hidden;
 }
 
 .clients__inner {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 3fr;
   align-items: center;
 }
 
 .clients__title {
-  text-align: center;
+  text-align: left;
 }
 
 .clients__title h2 {

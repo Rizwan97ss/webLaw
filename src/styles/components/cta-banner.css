@@ -3,7 +3,7 @@
   .cta-banner {
     position: relative;
     padding: clamp(5rem, 10vw, 8rem) 2rem;
-    background-image: url("https://civitas.divigurus.com/wp-content/uploads/2026/04/Hukuk-lawyer-varnish-court-wood-stain-1699294-pxhere.com-2-1.jpg");
+    background-image: url("../../assets/1699294.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

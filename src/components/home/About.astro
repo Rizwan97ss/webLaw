@@ -1,5 +1,6 @@
 ---
 import { Scale, MoveRight } from "lucide-react";
+import imgAbout from "../../assets/793319.jpg";
 const isHomePage = Astro.url.pathname === "/";
 ---
 <section class="about-section">
@@ -8,7 +9,7 @@ const isHomePage = Astro.url.pathname === "/";
       <div class="about-image-wrap" data-reveal="left">
         <div class="shine-image about-image-shine">
           <img
-            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80"
+            src={imgAbout.src}
             alt="Court room"
             class="about-image"
           />

@@ -4,8 +4,9 @@
   overflow: hidden;
   padding-top: 90px;
   padding-bottom: 90px;
-  background-repeat: no-repeat !important;
-  background-image: linear-gradient(90deg, var(--color-black-a70) 0%, var(--color-black-a70) 100%), url(https://civitas.divigurus.com/wp-content/uploads/2026/03/notary-documents-verification-client-legal-furniture-1700916-pxhere.com-1-scaled.jpg) !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 /* Decorative diagonal stripe overlay — matches ET Builder mask */
@@ -311,7 +312,7 @@ line-height: 1.2em;
   color: var(--color-white);
   background:
     linear-gradient(var(--color-black-a70), var(--color-black-a70)),
-    url("https://civitas.divigurus.com/wp-content/uploads/2026/04/wood-tool-hammer-symbol-balance-business-839873-pxhere.com-1-scaled.jpg") center / cover;
+    url("../assets/839873.jpg") center / cover;
 }
 
 .sidebar-cta__icon {
@@ -426,7 +427,7 @@ line-height: 1.2em;
   padding: 90px 0;
   background:
     linear-gradient(90deg, var(--color-black-a70), var(--color-black-a70)),
-    url("https://civitas.divigurus.com/wp-content/uploads/2026/03/notary-documents-verification-client-legal-furniture-1700916-pxhere.com-1-scaled.jpg") center / cover no-repeat;
+    url("../assets/1700916.jpg") center / cover no-repeat;
 }
 
 .blog-hero h1 {

@@ -47,7 +47,7 @@ const navLinks = [
   },
 ];
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
 <header class="site-header" id="site-header">
